@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nolan University</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:#0b2a5b;
+color:white;
+line-height:1.6;
+}
+
+.container{
+width:90%;
+max-width:1100px;
+margin:auto;
+padding:20px 0;
+}
+
+h1,h2,h3{
+color:#ffd24c;
+margin-bottom:10px;
+}
+
+section{
+padding:30px 0;
+}
+
+.logo-title{
+font-size:28px;
+font-weight:bold;
+color:#ffd24c;
+}
+
+.tagline{
+font-size:16px;
+color:white;
+}
+
+header{
+background:#04122b;
+text-align:center;
+padding:20px;
+border-bottom:2px solid #ffd24c;
+}
+
+.hero{
+text-align:center;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:18px;
+max-width:800px;
+margin:auto;
+}
+
+.program-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:15px;
+}
+
+.card{
+background:#123d82;
+padding:25px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+.card ul{
+padding-left:18px;
+}
+
+.highlight{
+background:#102f64;
+text-align:center;
+}
+
+.benefits{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+margin-top:20px;
+}
+
+.benefit{
+background:#123d82;
+padding:15px 20px;
+border-radius:6px;
+}
+
+.cta{
+text-align:center;
+background:#061a3a;
+padding:40px 20px;
+}
+
+.cta h2{
+font-size:26px;
+}
+
+.cta button{
+background:#ffd24c;
+color:#0b2a5b;
+border:none;
+padding:14px 30px;
+font-size:16px;
+font-weight:bold;
+border-radius:5px;
+cursor:pointer;
+margin-top:15px;
+}
+
+.cta button:hover{
+background:white;
+}
+
+.duration{
+font-weight:bold;
+margin-bottom:15px;
+color:#ffd24c;
+}
+
+.scholarship-btn{
+background:#ffd24c;
+color:#0b2a5b !important;
+padding:10px 18px;
+border-radius:6px;
+font-weight:bold;
+text-decoration:none;
+display:inline-block;
+transition:all 0.3s ease;
+}
+
+.scholarship-btn:hover{
+background:#e6bb3f;
+transform:translateY(-2px);
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:#04122b;">
+
+  <!-- Logo Image -->
+  <div class="logo">
+    <a href="#">
+      <img src="ChatGPT Image Mar 11, 2026, 07_22_41 PM.png" 
+           alt="Nolan University Logo" 
+           style="height:50px; object-fit:contain;">
+    </a>
+  </div>
+
+  <!-- Hamburger Menu Icon -->
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="nolan-university-landing.html">Home</a></li>
+
+    <!-- Schools Dropdown -->
+    <li class="dropdown">
+      <a href="#">Schools ▼</a>
+      <ul class="dropdown-menu">
+        <li><a href="school-technology-ai.html">School of Technology & AI</a></li>
+        <li><a href="gsbf.html">Graduate School of Banking & Finance</a></li>
+        <li><a href="school-entrepreneurship.html">School of Entrepreneurship & Venture Creation</a></li>
+        <li><a href="school-global-business.html">School of Global Business & Leadership</a></li>
+      </ul>
+    </li>
+
+    <li><a href="admissions.html">Admissions</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="faculty.html">Faculty</a></li>
+
+    <!-- Programmes Dropdown -->
+    <li class="dropdown">
+      <a href="#" class="toggle">Programmes ▼</a>
+      <ul class="dropdown-menu">
+
+        <!-- BSc -->
+        <li>
+          <a href="#" class="toggle">🎓 3-Year Bachelor’s Degrees</a>
+          <ul class="dropdown-menu nested">
+            <li><a href="#">BSc Finance & Investment</a></li>
+            <li><a href="#">BSc Financial Technology</a></li>
+            <li><a href="#">BSc Entrepreneurship & Venture Creation</a></li>
+            <li><a href="#">BSc Business Analytics & AI</a></li>
+          </ul>
+        </li>
+
+        <!-- MSc -->
+        <li>
+          <a href="#" class="toggle">🎓 1-Year Master’s Degrees</a>
+          <ul class="dropdown-menu nested">
+            <li><a href="#">MSc Finance & Capital Markets</a></li>
+            <li><a href="#">MSc Venture Capital & Private Equity</a></li>
+            <li><a href="#">MBA Entrepreneurship & Innovation</a></li>
+          </ul>
+        </li>
+
+        <!-- Professional Diplomas -->
+        <li>
+          <a href="#" class="toggle">Professional Diploma in</a>
+          <ul class="dropdown-menu nested">
+            <li><a href="#">1️⃣ Investment Banking</a></li>
+            <li><a href="#">2️⃣ Venture Capital & Private Equity</a></li>
+            <li><a href="#">3️⃣ Startup Builder Program</a></li>
+            <li><a href="#">4️⃣ FinTech & Digital Finance</a></li>
+            <li><a href="#">5️⃣ AI for Business & Finance</a></li>
+          </ul>
+        </li>
+
+        <!-- Career Programs -->
+        <li>
+          <a href="#" class="toggle">Career Accelerator Programs, Executive Certificates, Postgraduate Certificates & Industry Certifications</a>
+          <ul class="dropdown-menu nested">
+            <li><a href="#">1️⃣ Investment Banking & Financial Markets</a></li>
+            <li><a href="#">2️⃣ Venture Capital & Private Equity</a></li>
+            <li><a href="#">3️⃣ Financial Technology (FinTech)</a></li>
+            <li><a href="#">4️⃣ Entrepreneurship & Startup Creation</a></li>
+            <li><a href="#">5️⃣ Artificial Intelligence for Business</a></li>
+            <li><a href="#">6️⃣ Business Analytics & Data Strategy</a></li>
+            <li><a href="#">7️⃣ Wealth Management & Investment Advisory</a></li>
+            <li><a href="#">8️⃣ Global Business & Strategic Leadership</a></li>
+            <li><a href="#">9️⃣ Digital Finance & Blockchain</a></li>
+            <li><a href="#">🔟 Innovation & Venture Building</a></li>
+          </ul>
+        </li>
+
+        <!-- Youth Programmes -->
+        <li>
+          <a href="#" class="toggle">Youth Programmes</a>
+          <ul class="dropdown-menu nested">
+            <li><a href="#">○ AI and Machine Learning Pioneers Summer School</a></li>
+            <li><a href="#">○ Future Entrepreneurs Summer School</a></li>
+            <li><a href="#">○ Future Climate Tech Innovators Summer School</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+
+    <li><a href="apply.html">Apply</a></li>
+    <li><a href="student-login.html">Student Login</a></li>
+<li><a href="scholarships.html">Scholarships & Funding</a></li>
+  </ul>
+</nav>
+
+<!-- CSS -->
+<style>
+body {margin:0; font-family:Arial, Helvetica, sans-serif; background:#0b2a5b; color:white;}
+.navbar {display:flex; justify-content:space-between; align-items:center; background:#04122b; padding:15px 20px; position:relative;}
+.logo {color:#ffd24c; font-weight:bold; font-size:18px;}
+.menu-icon {font-size:24px; cursor:pointer; color:white; display:block;}
+
+/* Nav Links hidden by default */
+.nav-links {list-style:none; margin:0; padding:0; display:none; flex-direction:column; background:#123d82; position:absolute; top:100%; right:0; width:300px; border-radius:6px; z-index:1000;}
+.nav-links.show {display:flex;}
+.nav-links li {border-bottom:1px solid #102f64; position:relative;}
+.nav-links a {text-decoration:none; color:white; display:block; padding:12px 15px;}
+.nav-links a:hover {background:#102f64;}
+
+/* Dropdown menus */
+.dropdown-menu {display:none; flex-direction:column; background:#102f64; padding-left:0;}
+.nested {padding-left:20px;} /* indent nested items for clean look */
+.toggle::after {content:" ▼"; float:right;}
+.dropdown:hover > .dropdown-menu {display:flex;} /* desktop hover */
+
+/* Responsive */
+@media screen and (min-width:768px){
+  .menu-icon {display:none;}
+  .nav-links {display:flex !important; flex-direction:row; position:static; width:auto; background:transparent;}
+  .nav-links li {border:none; margin:0 12px;}
+  .dropdown-menu {position:absolute; display:none; min-width:250px;}
+  .dropdown:hover > .dropdown-menu {display:block;}
+  .nested {padding-left:15px;} 
+}
+</style>
+
+<!-- JS -->
+<script>
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('show');
+}
+
+// Toggle submenus for mobile
+document.querySelectorAll('.toggle').forEach(item => {
+  item.addEventListener('click', function(e){
+    e.preventDefault();
+    const submenu = this.nextElementSibling;
+    if(submenu) submenu.classList.toggle('show');
+  });
+});
+</script> 
+
+<!-- HEADER -->
+<header>
+<div class="logo-title">NOLAN UNIVERSITY</div>
+<div class="tagline">Learn to Lead. Lead to Excel.</div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero-slider" style="position:relative; width:100%; max-width:900px; margin:auto; height:0; padding-bottom:115%; overflow:hidden; background:#0b2a5b;">
+
+  <!-- Slides -->
+  <div class="slide active" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="http://afrileapcapital.com/wp-content/uploads/2026/03/ChatGPT-Image-Mar-13-2026-03_13_18-PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 01_45_01 PM.jpg" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_10_37 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_36_34 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_28_15 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_23_29 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_41_46 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_20_27 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 02_54_02 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 01_42_45 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 01_45_01 PM.jpg" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_20_27 PM.png" 
+         style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <!-- CTA Buttons -->
+  <div class="hero-buttons" style="position:absolute; bottom:0px; left:50%; transform:translateX(-50%); display:flex; gap:15px; z-index:2;">
+    <a href="apply.html" style="padding:12px 25px; background:#ffd24c; color:#0b2a5b; border-radius:5px; text-decoration:none; font-weight:bold;">Apply Now</a>
+    <a href="bachelor's-degrees-portal.html" style="padding:12px 25px; border:2px solid #ffd24c; color:#ffd24c; border-radius:5px; text-decoration:none; font-weight:bold;">Explore Programmes</a>
+  </div>
+
+</section>
+
+<!-- SIMPLE JS SLIDER -->
+<script>
+let slides = document.querySelectorAll(".hero-slider .slide");
+let index = 0;
+
+function showSlide(i){
+  slides.forEach(s => s.style.display = "none");
+  index = i;
+  if(index >= slides.length) index = 0;
+  if(index < 0) index = slides.length - 1;
+  slides[index].style.display = "flex";
+}
+
+// Auto Slide
+setInterval(()=>{ showSlide(index+1); }, 5000);
+
+// Initial
+showSlide(0);
+</script>
+
+<!-- HERO SECTION -->
+<section class="hero">
+<div class="container">
+<h1>Your Future in Finance, Technology & Entrepreneurship Starts Here</h1>
+<p>
+Nolan University is a modern global & professional university built for company builders, investors, and innovators.</p>
+<p>
+Nolan University — A globally respected UK-style institution, rooted in Africa, educating the next generation of company builders, investors, and innovators.</p>
+<p>
+A university attracts students from UK, US, Canada, Australia, Dubai, and across Africa.
+It is a place where Company Builders, Investors, and Innovators Are Educated.
+</p>
+</div>
+</section>
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="hero-slider" style="position:relative; width:100%; max-width:900px; margin:auto; height:0; padding-bottom:100%; overflow:hidden; background:#0b2a5b;">
+
+<!-- SLIDES -->
+<div class="slide">
+<img src="ChatGPT Image Mar 13, 2026, 02_54_02 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+</div>
+
+<div class="slide">
+<img src="ChatGPT Image Mar 13, 2026, 03_41_46 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+</div>
+
+<div class="slide">
+<img src="ChatGPT Image Mar 11, 2026, 11_47_33 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+</div>
+
+</section>
+
+
+<!-- CONTENT -->
+<div class="excellence-content">
+
+<h2>Prepare to Stand Out</h2>
+
+<p class="subheadline">
+Nolan University prepares ambitious professionals to stand out in competitive industries through online programs in finance, entrepreneurship, and leadership.
+</p>
+
+<div class="value-grid">
+
+<div class="value-card">
+<i class="fas fa-laptop"></i>
+<p>Modern, flexible online courses for career advancement</p>
+</div>
+
+<div class="value-card">
+<i class="fas fa-briefcase"></i>
+<p>Learn skills that employers value immediately</p>
+</div>
+
+<div class="value-card">
+<i class="fas fa-user-graduate"></i>
+<p>Personalized support and mentorship</p>
+</div>
+
+<div class="value-card">
+<i class="fas fa-network-wired"></i>
+<p>Build your professional brand and network</p>
+</div>
+
+</div>
+
+<a href="apply.html" class="cta-btn">Start Excelling Today</a>
+
+</div>
+
+
+<style>
+
+/* SLIDER */
+
+.hero-slider .slide{
+position:absolute;
+width:100%;
+height:100%;
+display:none;
+align-items:center;
+justify-content:center;
+}
+
+.hero-slider .slide:first-child{
+display:flex;
+}
+
+.hero-slider img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+
+/* CONTENT */
+
+.excellence-content{
+max-width:1100px;
+margin:0 auto;
+padding:5px 20px 40px 20px; /* removes gap */
+text-align:center;
+font-family:Arial, Helvetica, sans-serif;
+background:#0b2a5b; /* same color as slider */
+}
+
+.excellence-content h2{
+color:#0b2a5b;
+font-size:34px;
+margin:10px 0;
+}
+
+.subheadline{
+max-width:750px;
+margin:auto;
+font-size:17px;
+color:white;
+margin-bottom:30px;
+}
+
+/* VALUE GRID */
+
+.value-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+}
+
+.value-card{
+background:#f5f7fb;
+padding:25px;
+border-radius:8px;
+text-align:center;
+}
+
+.value-card i{
+font-size:32px;
+color:#0b2a5b;
+margin-bottom:12px;
+}
+
+.value-card p{
+color:#222;
+font-weight:500;
+}
+
+/* CTA */
+
+.cta-btn{
+display:inline-block;
+margin-top:35px;
+background:#ffd24c;
+color:#0b2a5b;
+padding:16px 38px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+}
+
+.cta-btn:hover{
+background:#ffea7a;
+}
+
+</style>
+
+
+<script>
+
+window.onload = function(){
+
+let slides = document.querySelectorAll(".hero-slider .slide");
+let index = 0;
+
+function showSlide(i){
+
+slides.forEach(slide => slide.style.display="none");
+
+index = i;
+
+if(index >= slides.length) index = 0;
+if(index < 0) index = slides.length-1;
+
+slides[index].style.display="flex";
+
+}
+
+setInterval(function(){
+showSlide(index+1);
+},5000);
+
+}
+
+</script>
+
+<!-- SCHOOLS SECTION -->
+<section>
+  <div class="container">
+    <h2 style="text-align:center; font-size:22px; color:#ffd24c; margin-bottom:20px;">
+      Four Schools in Which to Pursue Your Passions
+    </h2>
+
+    <div class="program-grid">
+
+      <a href="gsbf.html" class="school-card-link">
+        <div class="card school-card">
+          🎓 GSBF — Graduate School of Banking & Finance
+        </div>
+      </a>
+
+      <a href="school-entrepreneurship.html" class="school-card-link">
+        <div class="card school-card">
+          🎓 School of Entrepreneurship & Venture Creation
+        </div>
+      </a>
+
+      <a href="school-technology-ai.html" class="school-card-link">
+        <div class="card school-card">
+          🎓 School of Technology & AI
+        </div>
+      </a>
+
+      <a href="school-global-business.html" class="school-card-link">
+        <div class="card school-card">
+          🎓 School of Global Business & Leadership
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+
+.school-card-link{
+text-decoration:none;
+color:#ffd24c;
+}
+
+.school-card{
+font-size:14px;
+text-align:center;
+color:#ffd24c;
+padding:18px 15px;
+transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.school-card:hover{
+transform: translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,0.5);
+background:#1a4a9a;
+color:#ffd24c;
+}
+
+</style>
+
+<!-- BACHELORS & MASTERS -->
+<section>
+<div class="container">
+<h2>Pursue One of Our Degrees</h2>
+<div class="program-grid">
+
+<div class="card">
+<h3>🎓 3-Year Bachelor’s Degrees</h3>
+<ul>
+<li>BSc Finance & Investment</li>
+<li>BSc Financial Technology</li>
+<li>BSc Entrepreneurship & Venture Creation</li>
+<li>BSc Business Analytics & AI</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🎓 1-Year Master’s Degrees</h3>
+<ul>
+<li>MSc Finance & Capital Markets</li>
+<li>MSc Venture Capital & Private Equity</li>
+<li>MSc Venture Strategy</li>
+<li>MBA Entrepreneurship & Innovation</li>
+<li>MBA in Venture Strategy & Finance</li>
+</ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PROFESSIONAL DIPLOMAS -->
+<section>
+<div class="container">
+
+<h2>Professional Diplomas</h2>
+
+<div class="program-grid">
+
+<div class="card">
+
+<h3>🎓 2-Year Professional Diplomas</h3>
+
+<ul>
+<li>Diploma in Investment Banking</li>
+<li>Diploma in Venture Capital & Private Equity</li>
+<li>Diploma in Startup Building</li>
+<li>Diploma in Financial Technology (FinTech) & Digital Finance</li>
+<li>Diploma in Artificial Intelligence for Business & Finance</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- CTA BUTTON -->
+<div style="text-align:center; margin-top:40px;">
+
+<a href="diploma-programmes.html" 
+style="
+display:inline-block;
+padding:14px 30px;
+background:#ffd24c;
+color:#0b2a5b;
+font-weight:bold;
+text-decoration:none;
+border-radius:6px;
+font-size:16px;
+transition:0.3s;
+">
+
+View All Diplomas
+
+</a>
+
+</div>
+
+</div>
+</section>
+
+<!-- CAREER ACCELERATOR PROGRAMS -->
+<section>
+<div class="container">
+<h2>Career Accelerator Programs, Executive Certificates, Postgraduate Certificates & Industry Certifications</h2>
+<div class="program-grid">
+
+<div class="card">
+<h3>🎓 3 – 5 Month Programs</h3>
+<ul>
+<li>Investment Banking & Financial Markets</li>
+<li>Venture Capital & Private Equity</li>
+<li>Financial Technology (FinTech)</li>
+<li>Entrepreneurship & Startup Creation</li>
+<li>Artificial Intelligence for Business</li>
+<li>Business Analytics & Data Strategy</li>
+<li>Wealth Management & Investment Advisory</li>
+<li>Global Business & Strategic Leadership</li>
+<li>Digital Finance & Blockchain</li>
+<li>Innovation & Venture Building</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- CTA BUTTON -->
+<div style="text-align:center; margin-top:40px;">
+
+<a href="short-programmes.html" 
+style="
+display:inline-block;
+padding:14px 30px;
+background:#ffd24c;
+color:#0b2a5b;
+font-weight:bold;
+text-decoration:none;
+border-radius:6px;
+font-size:16px;
+transition:0.3s;
+">
+
+View All Short Courses
+
+
+</a>
+
+</div>
+
+</div>
+</section>
+
+<!-- Scholarships Section -->
+<section class="scholarship-section" style="text-align:center; margin:0; padding:0;">
+
+  <!-- Image -->
+  <img src="ChatGPT Image Mar 14, 2026, 12_53_42 AM.png" 
+       alt="Diverse professionals representing scholarships" 
+       style="width:100%; max-width:1100px; height:auto; display:block; object-fit:cover;">
+
+  <!-- Headline and Paragraph -->
+  <div style="margin:0; padding:0;">
+    <h2 style="margin:0; font-size:32px; color:white;">Scholarships</h2>
+    <p style="margin:0; font-size:16px; color:white;">
+      We are committed to ensuring our world-class education is available to talented individuals from any background.
+    </p>
+    <p style="margin:0; font-size:16px; color:white;">
+      See how our scholarships are supporting future leaders and apply.
+    </p>
+
+    <!-- CTA Button -->
+    <div style="margin-top:15px;">
+      <a href="scholarships.html" 
+         style="background:#ffd24c; color:#0b2a5b; padding:14px 30px; text-decoration:none; font-weight:bold; border-radius:6px; display:inline-block;">
+         Explore Scholarships & Funding
+      </a>
+    </div>
+  </div>
+
+</section>
+
+</section>
+<!-- BENEFITS -->
+<section class="highlight">
+<div class="container">
+<h2>Why Study at Nolan University</h2>
+<p>All programs are <strong>100% Online</strong> and designed for global careers.</p>
+<div class="benefits">
+<div class="benefit">🎓 Scholarships Available</div>
+<div class="benefit">📚 Flexible Learning</div>
+<div class="benefit">🌍 International Opportunities</div>
+</div>
+</div>
+<li><a href="scholarships.html" class="scholarship-btn">Explore Scholarships & Funding</a></li>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="cta">
+<h2>🔥 Don’t wait for opportunities — prepare for them.</h2>
+<button>👉 Enroll in Nolan University Online Today</button>
+</section>
+
+<!-- FOOTER SECTION -->
+<footer style="background:#0b2a5b; color:white; padding:60px 20px; font-family:Arial, Helvetica, sans-serif;">
+
+  <div style="max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:30px;">
+
+    <!-- Quick Links + Our 4 Schools Card -->
+<div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2); display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+  
+  <!-- Quick Links -->
+  <div>
+    <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Quick Links</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li style="margin-bottom:12px;"><a href="programs.html" style="color:white; text-decoration:none; transition:color 0.3s;">Programs</a></li>
+      <li style="margin-bottom:12px;"><a href="#" style="color:white; text-decoration:none; transition:color 0.3s;">About Us</a></li>
+      <li style="margin-bottom:12px;"><a href="admissions.html" style="color:white; text-decoration:none; transition:color 0.3s;">Admissions</a></li>
+      <li style="margin-bottom:12px;"><a href="contact.html" style="color:white; text-decoration:none; transition:color 0.3s;">Contact</a></li>
+      <li><a href="faq.html" style="color:white; text-decoration:none; transition:color 0.3s;">FAQ</a></li>
+    </ul>
+  </div>
+  
+  <!-- Our 4 Schools -->
+  <div>
+    <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Our 4 Schools</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li style="margin-bottom:12px;"><a href="gsbf.html" style="color:white; text-decoration:none; transition:color 0.3s;">🎓 GSBF — Graduate School of Banking & Finance</a></li>
+      <li style="margin-bottom:12px;"><a href="school-entrepreneurship.html" style="color:white; text-decoration:none; transition:color 0.3s;">🎓 School of Entrepreneurship & Venture Creation</a></li>
+      <li style="margin-bottom:12px;"><a href="school-technology-ai.html" style="color:white; text-decoration:none; transition:color 0.3s;">🎓 School of Technology & AI</a></li>
+      <li><a href="school-global-business.html" style="color:white; text-decoration:none; transition:color 0.3s;">🎓 School of Global Business & Leadership</a></li>
+    </ul>
+  </div>
+
+</div>
+
+    <!-- Social Media Card -->
+    <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Follow Us</h3>
+      <div style="display:flex; gap:15px; font-size:24px;">
+        <a href="#" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- Newsletter Card -->
+    <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <h3 style="color:#ffd24c; margin-bottom:15px; font-size:20px;">Newsletter</h3>
+      <p style="margin:0 0 10px 0;">Stay updated on new courses and certifications</p>
+      <form style="display:flex; flex-wrap:wrap; gap:10px;">
+        <input type="email" placeholder="Enter your email" 
+               style="padding:10px; border-radius:5px; border:none; flex:1; min-width:150px;">
+        <button type="submit" 
+                style="background:#ffd24c; color:#0b2a5b; padding:10px 20px; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition:background 0.3s;">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+    <footer class="footer">
+  <div class="footer-container">
+
+    <!-- Branding -->
+    <div class="footer-brand">
+      <h2>Nolan University</h2>
+      <p class="locations">Zambia | UK | Dubai</p>
+      <p class="note">Global Offices</p>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+  </div>
+
+  <p class="footer-bottom">A globally respected UK-style institution, rooted in Zambia, Africa educating the next generation of company builders, investors, and innovators, or simply students from UK, US, Canada, Australia, Dubai, and across Africa.</p>
+</footer>
+
+<style>
+/* Footer Base */
+.footer {
+  background: #061a3a;
+  color: #ffffff;
+  padding: 70px 20px 30px;
+  text-align: center;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Branding */
+.footer-brand h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: "Georgia", "Times New Roman", serif; /* elite feel */
+}
+
+.footer-brand .locations {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #d4af37;
+  letter-spacing: 2px;
+}
+
+.footer-brand .note {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #aaaaaa;
+  letter-spacing: 1px;
+}
+
+/* Gold Divider */
+.footer-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+  margin: 30px auto 10px;
+  opacity: 0.8;
+}
+
+/* Bottom */
+.footer-bottom {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #888888;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== YOUR HOVER EFFECTS (kept as requested) ===== */
+footer a:hover {
+  color: #ffd24c;
+}
+
+footer button:hover {
+  background: #fff200;
+}
+
+footer i:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+</style>
+<!-- Accreditation & Legal Card -->
+    <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <h3 style="color:#ffd24c; margin-bottom:15px; font-size:20px;">Accreditation & Legal Info</h3>
+      <p style="font-size:14px; line-height:1.6;">
+        Nolan University is accredited by EQUIS, AACSB, and the International Assembly for Collegiate Business Education (IACBE) and recognized globally.  
+        &copy; 2026 Nolan University. All rights reserved.  
+        <a href="terms.html" style="color:#ffd24c; text-decoration:none;">Terms of Service</a> | 
+        <a href="privacy.html" style="color:#ffd24c; text-decoration:none;">Privacy Policy</a>
+      </p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- FONT AWESOME CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- FOOTER HOVER EFFECTS -->
+<style>
+footer a:hover {
+  color: #ffd24c;
+}
+footer button:hover {
+  background: #fff200;
+}
+footer i:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+</style>
+
+<script>
+
+let slides = document.querySelectorAll(".slide");
+let dotsContainer = document.getElementById("dotsContainer");
+let index = 0;
+
+/* CREATE DOTS AUTOMATICALLY */
+
+slides.forEach((slide,i)=>{
+let dot = document.createElement("span");
+dot.addEventListener("click",()=>showSlide(i));
+dotsContainer.appendChild(dot);
+});
+
+let dots = dotsContainer.querySelectorAll("span");
+
+function showSlide(i){
+
+slides.forEach(s=>s.classList.remove("active"));
+dots.forEach(d=>d.classList.remove("active"));
+
+index = i;
+
+if(index >= slides.length) index = 0;
+if(index < 0) index = slides.length - 1;
+
+slides[index].classList.add("active");
+dots[index].classList.add("active");
+
+}
+
+function nextSlide(){
+showSlide(index+1);
+}
+
+function prevSlide(){
+showSlide(index-1);
+}
+
+/* AUTO SLIDE */
+
+setInterval(nextSlide,5000);
+
+showSlide(0);
+
+</script>
+</body>
+                                                      </html>
