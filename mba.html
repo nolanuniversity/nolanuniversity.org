@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nolan University · BSc & MBA · Finance, Technology, Entrepreneurship</title>
+    <!-- Font & base styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0B2A3B; /* Nolan navy */
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* ===== BRAND COLORS ===== */
+        :root {
+            --nolan-navy: #0B2A3B;
+            --nolan-gold: #F4C542;
+            --nolan-light-bg: #f5f8fa;
+            --nolan-white: #ffffff;
+            --nanol-gray-soft: #eef3f6;
+        }
+
+        /* header with brand colors */
+        .university-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 4px solid var(--nolan-gold);
+            padding-bottom: 1.25rem;
+        }
+
+        .uni-logo {
+            background: var(--nolan-navy);
+            color: var(--nolan-gold);
+            font-weight: 800;
+            font-size: 2rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px 4px 12px 4px;
+            box-shadow: 0 6px 0 #051a24;
+            border: 2px solid var(--nolan-gold);
+        }
+
+        .uni-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--nolan-navy);
+        }
+
+        .uni-name span {
+            color: var(--nolan-navy);
+            font-weight: 600;
+            background: var(--nolan-gold);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+            vertical-align: middle;
+            border: 2px solid var(--nolan-navy);
+        }
+
+        /* tagline from image */
+        .global-tagline {
+            background: var(--nolan-navy);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            margin: 1rem 0 2rem 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: center;
+            border-left: 8px solid var(--nolan-gold);
+            border-right: 8px solid var(--nolan-gold);
+        }
+
+        .global-tagline strong {
+            color: var(--nolan-gold);
+            font-weight: 700;
+        }
+
+        .identity-strip {
+            background: var(--nolan-navy);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin: 1rem 0 2rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 6px 0 var(--nolan-gold);
+            border: 2px solid var(--nolan-gold);
+        }
+        .identity-strip span {
+            background: var(--nolan-gold);
+            color: var(--nolan-navy);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            margin: 0 0.5rem;
+        }
+
+        .degree-tag {
+            background: var(--nolan-gold);
+            color: var(--nolan-navy);
+            font-weight: 700;
+            padding: 0.35rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 0.5rem 0 1rem 0;
+            font-size: 1.2rem;
+            border: 2px solid var(--nolan-navy);
+        }
+
+        /* section style */
+        .program-section {
+            background: var(--nolan-white);
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 25px -10px rgba(11,42,59,0.25);
+            border: 1px solid #dde7ed;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--nolan-navy);
+            margin-bottom: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-left: 8px solid var(--nolan-gold);
+            padding-left: 1.5rem;
+        }
+
+        .section-title i {
+            font-size: 2rem;
+            color: var(--nolan-navy);
+        }
+
+        .overview-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .overview-text {
+            flex: 2;
+            min-width: 280px;
+        }
+
+        .overview-stats {
+            flex: 1;
+            background: var(--nanol-gray-soft);
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid #cbdae3;
+        }
+
+        .stat-item {
+            margin-bottom: 1.8rem;
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            color: var(--nolan-navy);
+        }
+
+        .stat-value {
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--nolan-navy);
+            line-height: 1.2;
+        }
+
+        .stat-desc {
+            font-size: 0.95rem;
+            color: #2d4f62;
+        }
+
+        /* school cards (from image) */
+        .schools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .school-card {
+            background: var(--nolan-navy);
+            color: white;
+            padding: 1.2rem 0.8rem;
+            border-radius: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid var(--nolan-gold);
+        }
+        .school-card strong {
+            color: var(--nolan-gold);
+            font-size: 1rem;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .pillar-card {
+            background: #eef3f6;
+            border-radius: 24px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            border: 2px solid var(--nolan-gold);
+        }
+        .pillar-icon {
+            font-size: 3rem;
+        }
+        .pillar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--nolan-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-card {
+            background: #fafdff;
+            border-radius: 20px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 1.2rem;
+            border-left: 8px solid var(--nolan-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .module-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+        .module-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--nolan-navy);
+        }
+        .module-term {
+            background: var(--nolan-navy);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .module-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1rem;
+            margin: 0.5rem 0 0.8rem 0;
+        }
+        .tag-builder {
+            background: var(--nolan-gold);
+            color: var(--nolan-navy);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid var(--nolan-navy);
+        }
+        .tag-investor {
+            background: var(--nolan-navy);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .tag-innovator {
+            background: #0B2A3B;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid var(--nolan-gold);
+        }
+        .module-outcomes {
+            margin-top: 1rem;
+            background: #f4fafd;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--nolan-gold);
+        }
+        .module-outcomes ul {
+            list-style: none;
+        }
+        .module-outcomes li {
+            margin-bottom: 0.3rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .module-outcomes li::before {
+            content: "▹";
+            color: var(--nolan-gold);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .career-card {
+            background: #fafdff;
+            border-radius: 24px;
+            padding: 1.8rem 1rem;
+            text-align: center;
+            border: 1px solid #cbdae3;
+            border-bottom: 4px solid var(--nolan-gold);
+        }
+        .career-icon { font-size: 2.5rem; }
+        .career-role { font-weight: 700; font-size: 1.3rem; color: var(--nolan-navy); }
+
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #3b687d;
+            border-top: 2px solid var(--nolan-gold);
+            padding-top: 2rem;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background: var(--nolan-gold);
+            color: var(--nolan-navy);
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid var(--nolan-navy);
+        }
+        .btn-gold:hover {
+            background: var(--nolan-navy);
+            color: var(--nolan-gold);
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed var(--nolan-gold);
+            margin: 2rem 0;
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .schools-grid { grid-template-columns: repeat(2,1fr); }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .career-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- header with brand -->
+    <div class="university-header">
+        <div class="uni-logo">NU</div>
+        <div class="uni-name">NOLAN <span>UNIVERSITY</span></div>
+    </div>
+
+    <!-- global tagline from image -->
+    <div class="global-tagline">
+        <strong>A Modern Global & Professional University</strong> for FINANCE, TECHNOLOGY, AND ENTREPRENEURSHIP.
+    </div>
+
+    <!-- core identity -->
+    <div class="identity-strip">
+        ⚡ WHERE COMPANY BUILDERS, INVESTORS & INNOVATORS ARE EDUCATED <span>EST 2026</span>
+    </div>
+
+    <!-- Our 4 Schools (exactly as in image) -->
+    <div class="schools-grid">
+        <div class="school-card"><strong>Graduate School of</strong><br>Banking & Finance (GSBF)</div>
+        <div class="school-card"><strong>School of</strong><br>Entrepreneurship & Venture Creation</div>
+        <div class="school-card"><strong>School of</strong><br>Technology & AI</div>
+        <div class="school-card"><strong>School of</strong><br>Global Business & Leadership</div>
+    </div>
+
+    <!-- ===== BACHELOR'S DEGREE (BSc Finance & Investment) ===== -->
+    <div class="degree-tag">🎓 3-year BSc · Finance & Investment</div>
+
+    <!-- overview section BSc -->
+    <section class="program-section">
+        <h2 class="section-title">📋 Overview · BSc Finance & Investment</h2>
+        <div class="overview-grid">
+            <div class="overview-text">
+                <p style="font-size:1.2rem;">Shape the future of global finance. Nolan’s BSc blends rigorous quantitative training with real‑world investment practice, fully aligned with the CFA Institute.</p>
+                <p>You will master financial modelling, portfolio management, and ethical decision‑making – taught by research leaders and industry practitioners. From day one you engage with Bloomberg terminals, trading simulations, and spring week preparation.</p>
+                <p><span style="background: var(--nolan-gold); color: var(--nolan-navy); padding:0.3rem 1.2rem; border-radius:40px; font-weight:600;">Triple‑crown accredited</span></p>
+            </div>
+            <div class="overview-stats">
+                <div class="stat-item"><span class="stat-label">Duration</span><div class="stat-value">3 years</div><div class="stat-desc">full‑time, optional placement</div></div>
+                <div class="stat-item"><span class="stat-label">UCAS code</span><div class="stat-value">N3N5</div><div class="stat-desc">apply by 29 Jan</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BSc Curriculum snippet -->
+    <section class="program-section">
+        <h2 class="section-title">📚 BSc Curriculum · core modules (sample)</h2>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+            <div style="background:#eef3f6; border-radius:20px; padding:1.2rem;"><strong>Year 1</strong><br>Principles of Finance, Financial Accounting, Quantitative Methods</div>
+            <div style="background:#eef3f6; border-radius:20px; padding:1.2rem;"><strong>Year 2</strong><br>Corporate Finance, Equity Analysis, Financial Modelling (Excel/Python)</div>
+            <div style="background:#eef3f6; border-radius:20px; padding:1.2rem;"><strong>Year 3</strong><br>Advanced Portfolio Mgmt, Applied Investment Project, Alternatives</div>
+        </div>
+    </section>
+
+    <!-- ===== MBA PAGE (full detailed modules with builder/investor/innovator) ===== -->
+    <hr>
+    <div class="degree-tag">🚀 1-year MBA · Entrepreneurship & Innovation</div>
+
+    <!-- MBA overview -->
+    <section class="program-section">
+        <h2 class="section-title">📋 Overview · MBA Entrepreneurship & Innovation</h2>
+        <div style="display:flex; flex-wrap:wrap; gap:2rem;">
+            <div style="flex:2;">
+                <p style="font-size:1.3rem;">The Nolan MBA is built for those who refuse to choose between building, funding, and creating. You will master the tools of the <strong>investor</strong>, the mindset of the <strong>builder</strong>, and the curiosity of the <strong>innovator</strong> – because in today's world, you need all three.</p>
+                <p>We are the only programme where a single curriculum integrates venture creation, investment mechanics, and innovation strategy.</p>
+            </div>
+            <div style="flex:1; background:#eef3f6; border-radius:24px; padding:1.5rem;">
+                <div><span class="stat-label">Duration</span><div class="stat-value">12 months</div></div>
+                <div style="margin-top:1rem;"><span class="stat-label">Cohort</span><div class="stat-value">~45</div><div>builders, investors, innovators</div></div>
+            </div>
+        </div>
+        <!-- three pillars visual -->
+        <div class="pillar-grid">
+            <div class="pillar-card"><div class="pillar-icon">🏗️</div><div class="pillar-title">Builder</div><div>Venture creation, unit economics</div></div>
+            <div class="pillar-card"><div class="pillar-icon">💰</div><div class="pillar-title">Investor</div><div>Term sheets, fund modelling, cap tables</div></div>
+            <div class="pillar-card"><div class="pillar-icon">💡</div><div class="pillar-title">Innovator</div><div>Design thinking, prototyping, strategy</div></div>
+        </div>
+    </section>
+
+    <!-- MBA detailed modules (core) -->
+    <section class="program-section">
+        <h2 class="section-title">🔧 MBA core modules · built for all three</h2>
+
+        <!-- module 1 -->
+        <div class="module-card">
+            <div class="module-header"><span class="module-name">New Venture Finance</span><span class="module-term">term 1</span></div>
+            <div class="module-tags"><span class="tag-builder">BUILDER</span><span class="tag-investor">INVESTOR</span><span class="tag-innovator">INNOVATOR</span></div>
+            <div class="module-outcomes"><p>📌 practical outcomes:</p><ul><li>Build a dynamic cap table with multiple funding rounds (builder).</li><li>Simulate a seed negotiation and term sheet (investor).</li><li>Model different funding scenarios for a new product (innovator).</li></ul></div>
+        </div>
+
+        <!-- module 2 -->
+        <div class="module-card">
+            <div class="module-header"><span class="module-name">Venture Capital & Private Equity</span><span class="module-term">term 2</span></div>
+            <div class="module-tags"><span class="tag-investor">INVESTOR</span><span class="tag-builder">BUILDER</span></div>
+            <div class="module-outcomes"><p>📌 practical outcomes:</p><ul><li>Build a full LBO model with debt schedules (investor).</li><li>Calculate carried interest and distribution waterfalls (investor).</li><li>Analyse a real early‑stage deal (builder).</li></ul></div>
+        </div>
+
+        <!-- module 3 -->
+        <div class="module-card">
+            <div class="module-header"><span class="module-name">Design Thinking & Product Development</span><span class="module-term">term 2</span></div>
+            <div class="module-tags"><span class="tag-innovator">INNOVATOR</span><span class="tag-builder">BUILDER</span></div>
+            <div class="module-outcomes"><p>📌 practical outcomes:</p><ul><li>Create a clickable prototype (Figma) and conduct user tests (innovator).</li><li>Define MVP scope using story maps (builder).</li></ul></div>
+        </div>
+
+        <!-- module 4 capstone -->
+        <div class="module-card">
+            <div class="module-header"><span class="module-name">New Venture Creation Lab (Capstone)</span><span class="module-term">term 3</span></div>
+            <div class="module-tags"><span class="tag-builder">BUILDER</span><span class="tag-investor">INVESTOR</span><span class="tag-innovator">INNOVATOR</span></div>
+            <div class="module-outcomes"><p>📌 practical outcomes:</p><ul><li>Develop a full 3‑statement projection with unit economics (builder).</li><li>Create an investor pitch deck (investor).</li><li>Pitch at Demo Day in front of 50+ investors (innovator).</li></ul></div>
+        </div>
+
+        <!-- module 5 -->
+        <div class="module-card">
+            <div class="module-header"><span class="module-name">Technology & Innovation Strategy</span><span class="module-term">term 2</span></div>
+            <div class="module-tags"><span class="tag-innovator">INNOVATOR</span><span class="tag-investor">INVESTOR</span></div>
+            <div class="module-outcomes"><p>📌 practical outcomes:</p><ul><li>Prepare a tech scouting report (innovator).</li><li>Draft a patent landscape (innovator).</li><li>Analyse a platform ecosystem for investment (investor).</li></ul></div>
+        </div>
+    </section>
+
+    <!-- MBA career outcomes -->
+    <section class="program-section">
+        <h2 class="section-title">🚀 MBA career outcomes</h2>
+        <div class="career-grid">
+            <div class="career-card"><div class="career-icon">🏗️</div><div class="career-role">Founder / Co‑founder</div><div>40% launch within 2 years</div></div>
+            <div class="career-card"><div class="career-icon">💰</div><div class="career-role">Venture Capital</div><div>Balderton, Atomico, LocalGlobe</div></div>
+            <div class="career-card"><div class="career-icon">💡</div><div class="career-role">Innovation Lead / PM</div><div>Google, BCG DV, Unilever</div></div>
+        </div>
+    </section>
+
+    <!-- Professional Diplomas & Career Accelerators (from image) -->
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; background: var(--nolan-navy); color: white; border-radius: 48px; padding: 2rem 2.5rem; margin: 2rem 0;">
+        <div style="flex:1;">
+            <h3 style="color: var(--nolan-gold); font-size: 1.5rem;">Professional Diplomas</h3>
+            <ul style="list-style:none; margin-top:1rem;">
+                <li>▹ Investment Banking</li>
+                <li>▹ Venture Capital & Private Equity</li>
+                <li>▹ Startup Builder Program</li>
+                <li>▹ FinTech & Digital Finance</li>
+                <li>▹ AI for Business</li>
+            </ul>
+        </div>
+        <div style="flex:1;">
+            <h3 style="color: var(--nolan-gold); font-size: 1.5rem;">Career Accelerator</h3>
+            <p>Certifications & short programmes designed with industry partners.</p>
+            <div style="margin-top:1rem;"><span class="tag-builder">BUILDER</span> <span class="tag-investor" style="background:var(--nolan-gold); color:var(--nolan-navy);">INVESTOR</span> <span class="tag-innovator">INNOVATOR</span></div>
+        </div>
+    </div>
+
+    <!-- BSc teaser -->
+    <div style="background: #eef3f6; border-radius: 48px; padding: 2rem 2.5rem; border: 2px solid var(--nolan-gold);">
+        <h2 style="font-size: 2rem; font-weight: 800; color: var(--nolan-navy);">BSc Finance & Investment</h2>
+        <p style="font-size: 1.1rem;">The undergraduate degree where future financiers master valuation, modelling, and analysis – the foundation for builders, investors, and innovators.</p>
+        <a href="#" class="btn-gold" style="margin-top:1rem; display:inline-block;">→ view BSc programme</a>
+    </div>
+
+    <!-- footer with motto -->
+    <div class="footer-note">
+        <p><strong>NOLAN UNIVERSITY</strong> · Learn to Lead. Lead to Excel. · Triple accredited: AMBA, EQUIS, AACSB<br>
+        © 2025 Nolan University · Finance, Technology, Entrepreneurship · 100% Online Degrees</p>
+    </div>
+</div>
+</body>
+              </html>
