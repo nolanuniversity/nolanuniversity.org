@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="The first academic institution dedicated to entrepreneurial finance. BSc, MSc, and executive programmes in venture capital, startup finance, and term sheet negotiation. Nolan University.">
+    <meta name="keywords" content="entrepreneurial finance, venture capital, private equity, startup finance, term sheet, Nolan University, Lewis School">
+    <meta name="author" content="Nolan University">
+    <title>Lewis School of Entrepreneurial Finance | Nolan University</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Colors */
+        :root {
+            --primary-green: #1A4D3E;
+            --primary-green-light: #2A6B57;
+            --primary-green-dark: #0F3328;
+            --gold: #C8A951;
+            --gold-light: #D9BC6E;
+            --gold-dark: #A8893A;
+            --gray-light: #F5F5F5;
+            --gray-mid: #E0E0E0;
+            --gray-dark: #666666;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-green-light);
+            border-color: var(--primary-green-light);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--primary-green-dark);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        /* Header */
+        .top-bar {
+            background-color: var(--primary-green-dark);
+            color: var(--white);
+            font-size: 14px;
+            padding: 8px 0;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 24px;
+        }
+
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .top-bar a:hover {
+            color: var(--gold);
+        }
+
+        .main-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .university-logo {
+            font-size: 14px;
+            color: var(--gray-dark);
+            letter-spacing: 1px;
+        }
+
+        .school-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .hero .subhead {
+            font-size: 20px;
+            margin-bottom: 32px;
+            max-width: 700px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Quote Banner */
+        .quote-banner {
+            background-color: var(--gold);
+            color: var(--primary-green-dark);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .quote-banner p {
+                font-size: 24px;
+                font-style: italic;
+                font-family: 'Merriweather', serif;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .quote-banner .author {
+                margin-top: 12px;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+            }
+    
+            /* Section Styles */
+            .section {
+                padding: 64px 0;
+                border-bottom: 1px solid var(--gray-mid);
+            }
+    
+            .section-gray {
+                background-color: var(--gray-light);
+            }
+    
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 16px;
+                color: var(--primary-green-dark);
+                text-align: center;
+            }
+    
+            .section-subtitle {
+                text-align: center;
+                color: var(--gray-dark);
+                max-width: 700px;
+                margin: 0 auto 48px;
+                font-size: 18px;
+            }
+    
+            /* Two Column Layout */
+            .two-column {
+                display: flex;
+                gap: 48px;
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+    
+            .two-column > div {
+                flex: 1;
+                min-width: 280px;
+            }
+    
+            /* Stats Grid */
+            .stats-grid {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 32px;
+                text-align: center;
+            }
+    
+            .stat-card {
+                flex: 1;
+                min-width: 150px;
+            }
+    
+            .stat-number {
+                font-size: 48px;
+                font-weight: 800;
+                color: var(--gold);
+            }
+    
+            .stat-label {
+                font-size: 14px;
+                color: var(--gray-dark);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+    
+            /* Programme Cards */
+            .programme-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 32px;
+                margin-top: 32px;
+            }
+    
+            .programme-card {
+                background: var(--white);
+                border-radius: 8px;
+                padding: 24px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                transition: transform 0.3s, box-shadow 0.3s;
+                border: 1px solid var(--gray-mid);
+            }
+    
+            .programme-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            }
+    
+            .programme-card h3 {
+                color: var(--primary-green);
+                margin-bottom: 8px;
+            }
+    
+            .programme-meta {
+                font-size: 14px;
+                color: var(--gray-dark);
+                margin-bottom: 16px;
+                display: flex;
+                gap: 16px;
+            }
+    
+            .programme-card p {
+                margin-bottom: 20px;
+                color: #444;
+            }
+    
+            .programme-link {
+                color: var(--gold);
+                text-decoration: none;
+                font-weight: 600;
+            }
+    
+            /* Faculty Grid */
+            .faculty-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 32px;
+                margin-top: 32px;
+            }
+    
+            .faculty-card {
+                text-align: center;
+            }
+    
+            .faculty-photo {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background-color: var(--gray-mid);
+                margin: 0 auto 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 48px;
+                color: var(--gray-dark);
+            }
+    
+            .faculty-card h4 {
+                color: var(--primary-green);
+                margin-bottom: 4px;
+            }
+    
+            .faculty-title {
+                font-size: 14px;
+                color: var(--gray-dark);
+                margin-bottom: 8px;
+            }
+    
+            /* Experience Grid */
+            .experience-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 24px;
+                margin-top: 32px;
+            }
+    
+            .experience-item {
+                background: var(--white);
+                padding: 24px;
+                border-radius: 8px;
+                border-left: 4px solid var(--gold);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            }
+    
+            .experience-item i {
+                color: var(--gold);
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+    
+            /* Events List */
+            .events-list {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+    
+            .event-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 0;
+                border-bottom: 1px solid var(--gray-mid);
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+    
+            .event-date {
+                background-color: var(--primary-green);
+                color: var(--white);
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-weight: 600;
+                min-width: 100px;
+                text-align: center;
+            }
+    
+            .event-title {
+                flex: 1;
+                font-weight: 600;
+            }
+    
+            /* FAQ Accordion */
+            .faq-item {
+                margin-bottom: 16px;
+                border: 1px solid var(--gray-mid);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+    
+            .faq-question {
+                background: var(--white);
+                padding: 18px 24px;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+            .faq-question:hover {
+                background-color: var(--gray-light);
+            }
+    
+            .faq-answer {
+                padding: 0 24px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+                background-color: var(--gray-light);
+            }
+    
+            .faq-item.active .faq-answer {
+                padding: 18px 24px;
+                max-height: 500px;
+            }
+    
+            .faq-item.active .faq-question i {
+                transform: rotate(180deg);
+            }
+    
+            /* Contact Grid */
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 32px;
+            }
+    
+            .contact-card {
+                text-align: center;
+                padding: 24px;
+                background: var(--white);
+                border-radius: 8px;
+                border: 1px solid var(--gray-mid);
+            }
+    
+            .contact-card i {
+                font-size: 32px;
+                color: var(--gold);
+                margin-bottom: 16px;
+            }
+    
+            /* Footer */
+            .footer {
+                background-color: var(--primary-green-dark);
+                color: var(--white);
+                padding: 48px 0 24px;
+            }
+    
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+    
+            .footer-col h4 {
+                margin-bottom: 20px;
+                color: var(--gold);
+            }
+    
+            .footer-col a {
+                display: block;
+                color: #ccc;
+                text-decoration: none;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+    
+            .footer-col a:hover {
+                color: var(--gold);
+            }
+    
+            .footer-bottom {
+                text-align: center;
+                padding-top: 24px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                font-size: 14px;
+                color: #aaa;
+            }
+    
+            .social-links {
+                display: flex;
+                gap: 16px;
+                margin-top: 16px;
+            }
+    
+            .social-links a {
+                color: var(--white);
+                font-size: 20px;
+            }
+    
+            /* Responsive */
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+                
+                .mobile-menu-btn {
+                    display: block;
+                }
+    
+                .hero h1 {
+                    font-size: 36px;
+                }
+    
+                .section-title {
+                    font-size: 28px;
+                }
+    
+                .two-column {
+                    flex-direction: column;
+                }
+    
+                .stats-grid {
+                    flex-direction: column;
+                    align-items: center;
+                }
+    
+                .event-item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+    
+            /* Mobile Navigation */
+            .mobile-nav {
+                display: none;
+                flex-direction: column;
+                background-color: var(--white);
+                padding: 20px;
+                border-top: 1px solid var(--gray-mid);
+            }
+    
+            .mobile-nav.show {
+                display: flex;
+            }
+    
+            .mobile-nav a {
+                padding: 12px 0;
+                text-decoration: none;
+                color: var(--black);
+                border-bottom: 1px solid var(--gray-mid);
+            }
+        </style>
+    </head>
+    <body>
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <a href="#"><i class="fas fa-user"></i> Student Portal</a>
+            <a href="#"><i class="fas fa-chalkboard-user"></i> Faculty & Staff</a>
+            <a href="#"><i class="fas fa-graduation-cap"></i> Alumni</a>
+        </div>
+    </div>
+    
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo-area">
+                <span class="university-logo">NOLAN UNIVERSITY</span>
+                <span class="school-logo">Lewis School of Entrepreneurial Finance</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">About</a>
+                <a href="#">Programmes</a>
+                <a href="#">Faculty</a>
+                <a href="#">Admissions</a>
+                <a href="#">News & Events</a>
+                <a href="#">Contact</a>
+                <a href="#" class="btn btn-primary" style="padding: 8px 20px;">Apply Now</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <div class="mobile-nav">
+            <a href="#">About</a>
+            <a href="#">Programmes</a>
+            <a href="#">Faculty</a>
+            <a href="#">Admissions</a>
+            <a href="#">News & Events</a>
+            <a href="#">Contact</a>
+            <a href="#">Apply Now</a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Where Capital Meets Enterprise</h1>
+            <p class="subhead">The first academic institution dedicated entirely to entrepreneurial finance. Learn to fund ventures. Learn to build ventures. Graduate fluent in both.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-gold">Explore Programmes</a>
+                <a href="#" class="btn btn-secondary">Apply Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quote Banner -->
+    <div class="quote-banner">
+        <div class="container">
+            <p>"Finance without enterprise is sterile. Enterprise without finance is fragile."</p>
+            <div class="author">— Mwaba Lewis, Founder, Nolan University</div>
+        </div>
+    </div>
+    
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">About the Lewis School</h2>
+            <p class="section-subtitle">Why we exist and what makes us different</p>
+            <div class="two-column">
+                <div>
+                    <p style="margin-bottom: 16px;"><strong>Most universities teach finance in one building and entrepreneurship in another.</strong> Students graduate knowing one side of the table — but not the other.</p>
+                    <p style="margin-bottom: 16px;">The Lewis School of Entrepreneurial Finance was created to close that gap. We are the first degree-granting institution dedicated entirely to the discipline of funding innovation.</p>
+                    <p><strong>Our Mission:</strong> To educate and empower a new generation of financial leaders who think like founders and founders who think like financiers.</p>
+                </div>
+                <div>
+                    <div style="background: var(--gray-light); padding: 24px; border-radius: 8px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 16px;">At a Glance</h3>
+                        <p><strong>Parent Unit:</strong> Graduate School of Banking & Finance, Nolan University</p>
+                        <p><strong>Founded:</strong> 2025</p>
+                        <p><strong>Named For:</strong> Mwaba Lewis, Founder of Nolan University</p>
+                        <p><strong>Dean:</strong> Dr. [Name]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- By the Numbers -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">By the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Students (Projected Year 5)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$50M+</div>
+                    <div class="stat-label">Student-Led Venture Funding</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Countries Represented</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15:1</div>
+                    <div class="stat-label">Student-to-Faculty Ratio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Programmes Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Programmes</h2>
+            <p class="section-subtitle">Undergraduate, postgraduate, and executive education</p>
+            
+            <h3 style="color: var(--primary-green); margin: 32px 0 16px;">Undergraduate Programmes</h3>
+            <div class="programme-grid">
+                <div class="programme-card">
+                    <h3>BSc in Entrepreneurial Finance</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 3–4 years</span> <span><i class="fas fa-user-graduate"></i> Full-time</span></div>
+                    <p>Core finance curriculum with startup financial modeling, venture capital fundamentals, and a capstone venture pitch project.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+                <div class="programme-card">
+                    <h3>BSc in Venture Capital & Private Equity</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 3–4 years</span> <span><i class="fas fa-user-graduate"></i> Full-time</span></div>
+                    <p>Focus on fund structures, deal sourcing, due diligence, valuation, and portfolio management for private markets.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+                <div class="programme-card">
+                    <h3>BSc in Financial Literacy & Enterprise Education</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 3–4 years</span> <span><i class="fas fa-user-graduate"></i> Full-time</span></div>
+                    <p>Prepares students to teach financial literacy in schools and communities, with a minor in entrepreneurship.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+            </div>
+            
+            <h3 style="color: var(--primary-green); margin: 48px 0 16px;">Postgraduate Programmes</h3>
+            <div class="programme-grid">
+                <div class="programme-card">
+                    <h3>MSc in Entrepreneurial Finance</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 1–2 years</span> <span><i class="fas fa-user-graduate"></i> Full/Part-time</span></div>
+                    <p>Advanced study of financing new and growing ventures, including angel investing, crowdfunding, venture debt, and exit strategies.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+                <div class="programme-card">
+                    <h3>MSc in Venture Capital & Growth Equity</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 1–2 years</span> <span><i class="fas fa-user-graduate"></i> Full/Part-time</span></div>
+                    <p>Deep dive into institutional venture capital, growth equity, fund management, and LP-GP dynamics.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+                <div class="programme-card">
+                    <h3>MBA Track in Entrepreneurial Finance</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> Embedded</span> <span><i class="fas fa-user-graduate"></i> Full-time</span></div>
+                    <p>Specialisation within Nolan University's MBA programme focusing on finance for founders and early-stage investors.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+            </div>
+            
+            <h3 style="color: var(--primary-green); margin: 48px 0 16px;">Executive & Certificate Programmes</h3>
+            <div class="programme-grid">
+                <div class="programme-card">
+                    <h3>Executive Certificate: Funding Your Venture</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 8 weeks</span> <span><i class="fas fa-laptop"></i> Hybrid</span></div>
+                    <p>Intensive programme for working entrepreneurs seeking angel or VC funding. Term sheets, valuation, and pitch preparation.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+                <div class="programme-card">
+                    <h3>Certificate in Family Business & Wealth Management</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 6 months</span> <span><i class="fas fa-user-graduate"></i> Part-time</span></div>
+                    <p>For next-generation family business leaders balancing succession, investment, and innovation.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+                <div class="programme-card">
+                    <h3>Summer Institute in Entrepreneurial Finance</h3>
+                    <div class="programme-meta"><span><i class="fas fa-clock"></i> 2 weeks</span> <span><i class="fas fa-user-graduate"></i> Residential</span></div>
+                    <p>Immersive programme for undergraduates from any discipline. No prior finance experience required.</p>
+                    <a href="#" class="programme-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experiential Learning -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Experiential Learning</h2>
+            <p class="section-subtitle">You don't just learn entrepreneurial finance. You do it.</p>
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Capstone Venture Pitch</h3>
+                    <p>Every student builds a financial model and pitches to real investors.</p>
+                </div>
+                <div class="experience-item">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Lewis Venture Fund</h3>
+                    <p>Student-managed micro-fund that deploys real capital.</p>
+                </div>
+                <div class="experience-item">
+                    <i class="fas fa-microphone-alt"></i>
+                    <h3>Investor Pitch Series</h3>
+                    <p>Monthly live pitches with feedback from VCs and angels.</p>
+                </div>
+                <div class="experience-item">
+                    <i class="fas fa-file-signature"></i>
+                    <h3>Term Sheet Simulation</h3>
+                    <p>Negotiate a full round from term sheet to closing.</p>
+                </div>
+                <div class="experience-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Required Internship</h3>
+                    <p>Placements at VC firms, startups, and family offices.</p>
+                </div>
+                <div class="experience-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Industry Mentorship</h3>
+                    <p>One-on-one mentoring with practising investors and founders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Faculty Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Faculty</h2>
+            <p class="section-subtitle">Learn from practitioners who have sat at both tables</p>
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <div class="faculty-photo"><i class="fas fa-user-circle"></i></div>
+                    <h4>Dr. [Name]</h4>
+                    <div class="faculty-title">Founding Dean & Professor</div>
+                    <p style="font-size: 14px;">Venture Capital, Term Sheets</p>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-photo"><i class="fas fa-user-circle"></i></div>
+                    <h4>Prof. [Name]</h4>
+                    <div class="faculty-title">Professor of Practice</div>
+                    <p style="font-size: 14px;">Startup Financial Modeling</p>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-photo"><i class="fas fa-user-circle"></i></div>
+                    <h4>Dr. [Name]</h4>
+                    <div class="faculty-title">Associate Professor</div>
+                    <p style="font-size: 14px;">Entrepreneurial Finance Theory</p>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-photo"><i class="fas fa-user-circle"></i></div>
+                    <h4>[Name]</h4>
+                    <div class="faculty-title">Practitioner-in-Residence</div>
+                    <p style="font-size: 14px;">Angel Investing & Due Diligence</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 32px;">
+                <p><strong>Mwaba Lewis, Founder</strong> — Teaches "Finance for Founders" annually. Open to Lewis School students by application.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Careers Section -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Careers</h2>
+            <p class="section-subtitle">Where Lewis School graduates work</p>
+            <div class="two-column">
+                <div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 16px;">Common Roles</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Venture Capital Analyst</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Startup CFO</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Investment Associate (Private Equity)</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Founder / Entrepreneur</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Financial Educator</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 16px;">Career Support</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Dedicated Career Advisor</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Annual Venture Career Fair</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Internship Matching Programme</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> Alumni Mentor Network</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Upcoming Events -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-list">
+                <div class="event-item">
+                    <div class="event-date">[Date]</div>
+                    <div class="event-title">Lewis School Virtual Open House</div>
+                    <div>Online</div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">[Date]</div>
+                    <div class="event-title">Term Sheet Negotiation Workshop</div>
+                    <div>In-person</div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">[Date]</div>
+                    <div class="event-title">Annual Venture Capital Conference</div>
+                    <div>Hybrid</div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">Weekly</div>
+                    <div class="event-title">Office Hours with the Dean</div>
+                    <div>Online (drop-in)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What makes the Lewis School different from a traditional finance degree?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Traditional finance degrees prepare you for careers in banking or corporate finance. The Lewis School focuses specifically on entrepreneurial finance — funding new and growing ventures. You will learn startup valuation, term sheet negotiation, and investor pitching, not just corporate financial reporting.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do I need a background in finance to apply?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Undergraduate programmes: No. All required finance foundations are taught within the degree.<br><br>
+                    Postgraduate programmes: Introductory finance knowledge is recommended. A pre-course module is available.<br><br>
+                    Executive certificates: No prior finance required.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I take courses in other Nolan University schools?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes. Lewis School students can cross-register for electives in the School of Entrepreneurship & Venture Creation, School of Technology & AI, and School of Global Business & Leadership.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is the Lewis Venture Fund?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    A student-managed micro-fund that deploys real capital into early-stage ventures. Students serve as analysts, associates, and fund managers — gaining hands-on experience in deal sourcing, due diligence, and investment decision-making.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What scholarships are available?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Founder's Scholarship (full tuition), Mwaba Lewis Diversity Scholarship, Merit Scholarship (up to 50%), and Need-Based Grants. Visit our Financial Aid page for details.
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Admissions Enquiries</h3>
+                    <p><a href="mailto:lewis-admissions@nolan.edu">lewis-admissions@nolan.edu</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Programme Information</h3>
+                    <p><a href="mailto:lewis-programmes@nolan.edu">lewis-programmes@nolan.edu</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Partnerships</h3>
+                    <p><a href="mailto:lewis-partners@nolan.edu">lewis-partners@nolan.edu</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>[+Country Code] [Phone Number]</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <p><strong>Lewis School of Entrepreneurial Finance</strong><br>
+                Graduate School of Banking & Finance, Nolan University<br>
+                [Campus Address] | [City, Country]</p>
+                <p><a href="#" class="btn btn-secondary" style="margin-top: 16px;">Schedule a Campus Tour</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Lewis School</h4>
+                    <a href="#">About</a>
+                    <a href="#">Programmes</a>
+                    <a href="#">Faculty</a>
+                    <a href="#">Admissions</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="#">Current Students</a>
+                    <a href="#">Faculty & Staff</a>
+                    <a href="#">Alumni</a>
+                    <a href="#">Library</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="#">News & Events</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Careers at Lewis</a>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Accessibility</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nolan University. All rights reserved. Lewis School of Entrepreneurial Finance.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('show');
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === "#") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+    
+    </body>
+    </html>
