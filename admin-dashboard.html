@@ -42,85 +42,167 @@
         </div>
         <div id="paymentsList"></div>
     </div>
-
-    <script>
-        // Simple auth check - NO redirect loop
-        const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-        console.log('Auth check:', isLoggedIn);
+        <script>
+    // IMPORTANT: Check if we're in the admin folder
+    console.log('Current path:', window.location.pathname);
+    
+    // Check authentication - use absolute check
+    const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+    
+    if (isLoggedIn !== 'true') {
+        // Stay in admin folder - redirect to admin login, NOT root index
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    // Display admin email
+    document.getElementById('adminEmailDisplay').innerText = sessionStorage.getItem('adminEmail') || 'Admin';
+    
+    let allPayments = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+    
+    function loadPayments() {
+        const stored = localStorage.getItem('pendingVerifications');
+        allPayments = stored ? JSON.parse(stored) : [];
+        updateStats();
+        renderPayments();
+    }
+    
+    function updateStats() {
+        const pending = allPayments.filter(p => p.status === 'pending').length;
+        const approved = allPayments.filter(p => p.status === 'approved').length;
+        const rejected = allPayments.filter(p => p.status === 'rejected').length;
+        const total = allPayments.length;
         
-        if (isLoggedIn !== 'true') {
-            console.log('Redirecting to login');
-            window.location.href = 'index.html';
+        document.getElementById('pendingCount').innerText = pending;
+        document.getElementById('approvedCount').innerText = approved;
+        document.getElementById('rejectedCount').innerText = rejected;
+        document.getElementById('totalCount').innerText = total;
+    }
+    
+    function renderPayments() {
+        let filtered = allPayments;
+        if (currentFilter !== 'all') filtered = filtered.filter(p => p.status === currentFilter);
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            filtered = filtered.filter(p => 
+                p.referenceCode.toLowerCase().includes(query) ||
+                p.applicantName.toLowerCase().includes(query) ||
+                p.applicantEmail.toLowerCase().includes(query)
+            );
         }
         
-        // Display admin email
-        console.log('Admin email:', sessionStorage.getItem('adminEmail'));
-        
-        let allPayments = [];
-        
-        function loadPayments() {
-            const stored = localStorage.getItem('pendingVerifications');
-            allPayments = stored ? JSON.parse(stored) : [];
-            updateStats();
-            renderPayments();
+        const container = document.getElementById('paymentsList');
+        if (filtered.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No payment submissions found</p></div>';
+            return;
         }
         
-        function updateStats() {
-            document.getElementById('pendingCount').innerText = allPayments.filter(p => p.status === 'pending').length;
-            document.getElementById('approvedCount').innerText = allPayments.filter(p => p.status === 'approved').length;
-            document.getElementById('rejectedCount').innerText = allPayments.filter(p => p.status === 'rejected').length;
-            document.getElementById('totalCount').innerText = allPayments.length;
-        }
-        
-        function renderPayments() {
-            const container = document.getElementById('paymentsList');
-            const pending = allPayments.filter(p => p.status === 'pending');
-            
-            if (pending.length === 0) {
-                container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No pending payments</p></div>';
-                return;
-            }
-            
-            container.innerHTML = pending.map(payment => `
-                <div class="payment-card">
-                    <div class="payment-header">
-                        <span class="reference">${payment.referenceCode}</span>
-                        <span class="status status-pending">PENDING</span>
-                    </div>
-                    <div><strong>${payment.applicantName}</strong> - ${payment.applicantEmail}</div>
-                    <div>Amount: ${payment.currency === 'ZMW' ? 'ZK' : '$'}${payment.amount} - ${payment.paymentMethod}</div>
-                    <div style="margin-top: 16px;">
-                        <button class="btn-approve" onclick="verifyPayment('${payment.referenceCode}', 'approved')">Approve</button>
-                        <button class="btn-reject" onclick="verifyPayment('${payment.referenceCode}', 'rejected')">Reject</button>
-                    </div>
+        container.innerHTML = filtered.map(payment => `
+            <div class="payment-card ${payment.status}">
+                <div class="payment-header">
+                    <span class="reference">${payment.referenceCode}</span>
+                    <span class="status status-${payment.status}">${payment.status.toUpperCase()}</span>
                 </div>
-            `).join('');
-        }
-        
-        function verifyPayment(referenceCode, status) {
-            const payment = allPayments.find(p => p.referenceCode === referenceCode);
-            if (payment) {
-                payment.status = status;
-                payment.verifiedAt = new Date().toISOString();
-                localStorage.setItem('pendingVerifications', JSON.stringify(allPayments));
-                localStorage.setItem(`verified_${referenceCode}`, status);
-                
-                if (status === 'approved') {
-                    localStorage.setItem(`applicationFeePaid_${referenceCode}`, 'true');
-                }
-                
-                alert(`Payment ${status.toUpperCase()}! Applicant will be notified.`);
-                loadPayments();
+                <div class="payment-details">
+                    <div><strong>${payment.applicantName}</strong></div>
+                    <div>${payment.applicantEmail}</div>
+                    <div>${payment.applicantPhone || 'No phone'}</div>
+                    <div>${payment.currency === 'ZMW' ? 'ZK' : '$'}${payment.amount} - ${payment.paymentMethod}</div>
+                    <div>Submitted: ${new Date(payment.timestamp).toLocaleString()}</div>
+                </div>
+                ${payment.status === 'pending' ? `
+                    <div class="actions">
+                        <button class="btn-approve" onclick="verifyPayment('${payment.referenceCode}', 'approved')">✓ Approve</button>
+                        <button class="btn-reject" onclick="verifyPayment('${payment.referenceCode}', 'rejected')">✗ Reject</button>
+                    </div>
+                ` : `
+                    <div class="actions">
+                        <button class="btn-view" onclick="viewDetails('${payment.referenceCode}')">View Details</button>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 12px; color: #666;">
+                        Verified on ${new Date(payment.verifiedAt).toLocaleString()}
+                    </div>
+                `}
+            </div>
+        `).join('');
+    }
+    
+    function verifyPayment(referenceCode, status) {
+        const payment = allPayments.find(p => p.referenceCode === referenceCode);
+        if (payment) {
+            payment.status = status;
+            payment.verifiedAt = new Date().toISOString();
+            payment.verifiedBy = sessionStorage.getItem('adminEmail') || 'Admin';
+            
+            localStorage.setItem('pendingVerifications', JSON.stringify(allPayments));
+            localStorage.setItem(`verified_${referenceCode}`, status);
+            
+            if (status === 'approved') {
+                localStorage.setItem(`applicationFeePaid_${referenceCode}`, 'true');
             }
+            
+            alert(`Payment ${status.toUpperCase()}! Applicant will be notified.`);
+            loadPayments();
         }
-        
-        function logout() {
-            sessionStorage.clear();
-            window.location.href = 'index.html';
+    }
+    
+    function viewDetails(referenceCode) {
+        const payment = allPayments.find(p => p.referenceCode === referenceCode);
+        if (payment) {
+            alert(`Reference: ${payment.referenceCode}\nApplicant: ${payment.applicantName}\nEmail: ${payment.applicantEmail}\nAmount: ${payment.currency === 'ZMW' ? 'ZK' : '$'}${payment.amount}\nStatus: ${payment.status}`);
         }
+    }
+    
+    // Search and filter
+    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        renderPayments();
+    });
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            renderPayments();
+        });
+    });
+    
+    function exportData() {
+        const data = allPayments.map(p => ({
+            Reference: p.referenceCode,
+            Applicant: p.applicantName,
+            Email: p.applicantEmail,
+            Amount: `${p.currency === 'ZMW' ? 'ZK' : '$'}${p.amount}`,
+            Method: p.paymentMethod,
+            Status: p.status,
+            Submitted: new Date(p.timestamp).toLocaleString()
+        }));
         
-        loadPayments();
-        setInterval(loadPayments, 30000);
-    </script>
+        const csv = ['Reference,Applicant,Email,Amount,Method,Status,Submitted'];
+        data.forEach(d => {
+            csv.push(`"${d.Reference}","${d.Applicant}","${d.Email}","${d.Amount}","${d.Method}","${d.Status}","${d.Submitted}"`);
+        });
+        
+        const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `payments_${new Date().toISOString().slice(0,10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+    
+    function logout() {
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+    }
+    
+    // Initialize
+    loadPayments();
+    setInterval(loadPayments, 30000);
+        </script>
 </body>
 </html>
