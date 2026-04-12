@@ -9,32 +9,128 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1C3A 0%, #1A2D4D 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .payment-container { background: white; border-radius: 24px; padding: 40px; max-width: 500px; width: 100%; text-align: center; }
-        .payment-icon i { font-size: 48px; color: #C5A028; margin-bottom: 20px; }
-        h1 { font-size: 28px; color: #0A1C3A; }
-        .amount { font-size: 36px; font-weight: 800; color: #C5A028; margin: 20px 0; }
-        .btn { width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 20px; }
-        .btn-secondary { background: #0A1C3A; color: white; }
+        .payment-container { background: white; border-radius: 24px; padding: 40px; max-width: 550px; width: 100%; }
+        .payment-icon { width: 80px; height: 80px; background: #E8F0FE; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .payment-icon i { font-size: 48px; color: #C5A028; }
+        h1 { font-size: 28px; color: #0A1C3A; margin-bottom: 8px; text-align: center; }
+        .amount { font-size: 36px; font-weight: 800; color: #C5A028; margin: 20px 0; text-align: center; }
+        .merchant-number { background: #0A1C3A; color: white; padding: 16px; border-radius: 12px; margin: 20px 0; text-align: center; }
+        .merchant-number span { font-size: 24px; font-weight: 700; letter-spacing: 2px; }
+        .instruction { background: #FFF8E7; padding: 20px; border-radius: 12px; text-align: left; border-left: 4px solid #C5A028; margin: 20px 0; }
+        .instruction h3 { margin-bottom: 12px; color: #C5A028; }
+        .upload-area { border: 2px dashed #C5A028; border-radius: 12px; padding: 25px; text-align: center; margin: 20px 0; cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { background: #FFF8E7; border-color: #D4B84A; }
+        .preview-image { max-width: 100%; max-height: 150px; margin-top: 16px; border-radius: 8px; display: none; }
+        .reference-code { background: #F5F5F5; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 18px; text-align: center; margin: 16px 0; font-weight: 700; }
+        .btn { width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+        .btn:hover { background: #D4B84A; transform: translateY(-2px); }
+        .btn-secondary { background: #0A1C3A; color: white; margin-top: 12px; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .loading.show { display: block; }
     </style>
 </head>
 <body>
     <div class="payment-container">
         <div class="payment-icon"><i class="fas fa-mobile-alt"></i></div>
         <h1>Zamtel Money Payment</h1>
+        <p style="text-align: center; color: #666;">Pay your application fee using Zamtel Money</p>
+        
         <div class="amount" id="amountDisplay">ZK250</div>
-        <p>Send payment to Zamtel Money number: <strong>+260 95 1234567</strong></p>
-        <p style="margin: 10px 0;">Reference: <strong id="reference">NU-APP-XXXX</strong></p>
-        <button class="btn" id="confirmPaidBtn">✓ I Have Made the Payment</button>
-        <button class="btn btn-secondary" id="cancelBtn">← Cancel</button>
+        
+        <div class="merchant-number">
+            <i class="fas fa-phone-alt"></i><br>
+            <span id="merchantNumber">095 85 93 261</span>
+        </div>
+        
+        <div class="instruction">
+            <h3><i class="fas fa-info-circle"></i> How to pay using Zamtel Money:</h3>
+            <p>1. Dial <strong>*115#</strong> on your Zamtel line<br>
+            2. Select <strong>"Send Money"</strong><br>
+            3. Enter merchant number: <strong id="merchantDisplay">0958593261</strong><br>
+            4. Enter amount: <strong id="amountDisplay2">ZK250</strong><br>
+            5. Enter reference: <strong id="referenceDisplay">NU-XXXXXXXX</strong><br>
+            6. Enter your PIN to confirm</p>
+        </div>
+        
+        <div class="reference-code">
+            <i class="fas fa-hashtag"></i> Your Reference: <strong id="referenceCode">NU-XXXXXXXX</strong>
+        </div>
+        
+        <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: #C5A028;"></i>
+            <p>Click or drag to upload payment screenshot</p>
+            <p style="font-size: 12px;">PNG, JPG, or PDF (max 5MB)</p>
+            <input type="file" id="proofUpload" style="display: none;" accept="image/*,.pdf">
+            <img id="preview" class="preview-image" alt="Preview">
+        </div>
+        
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-spin"></i> Submitting proof...
+        </div>
+        
+        <button class="btn" id="submitProofBtn">Submit Proof for Verification</button>
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        
+        <div id="submissionStatus" style="margin-top: 16px;"></div>
     </div>
+
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const amount = urlParams.get('amount') || '250';
         const currency = urlParams.get('currency') || 'ZMW';
-        document.getElementById('amountDisplay').innerText = currency === 'ZMW' ? `ZK${amount}` : `$${amount}`;
-        document.getElementById('reference').innerText = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
-        document.getElementById('confirmPaidBtn').onclick = () => { localStorage.setItem('applicationFeePaid', 'true'); window.location.href = '../index.html?payment=success'; };
-        document.getElementById('cancelBtn').onclick = () => { window.location.href = '../index.html'; };
+        const applicantName = decodeURIComponent(urlParams.get('name') || 'Applicant');
+        const applicantEmail = decodeURIComponent(urlParams.get('email') || '');
+        const applicantPhone = decodeURIComponent(urlParams.get('phone') || '');
+        
+        // Zamtel specific merchant number - UPDATE WITH YOUR ACTUAL NUMBER
+        const ZAMTEL_MERCHANT = '0951234567';
+        
+        const referenceCode = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
+        const displayAmount = currency === 'ZMW' ? `ZK${amount}` : `$${amount}`;
+        
+        document.getElementById('amountDisplay').innerText = displayAmount;
+        document.getElementById('amountDisplay2').innerText = displayAmount;
+        document.getElementById('referenceCode').innerText = referenceCode;
+        document.getElementById('referenceDisplay').innerText = referenceCode;
+        document.getElementById('merchantNumber').innerText = ZAMTEL_MERCHANT;
+        document.getElementById('merchantDisplay').innerText = ZAMTEL_MERCHANT;
+        
+        let selectedFile = null;
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('proofUpload');
+        const preview = document.getElementById('preview');
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) {
+                selectedFile = e.target.files[0];
+                if (selectedFile.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => { preview.src = e.target.result; preview.style.display = 'block'; };
+                    reader.readAsDataURL(selectedFile);
+                }
+                uploadArea.style.borderColor = '#28A745';
+            }
+        });
+        
+        document.getElementById('submitProofBtn').addEventListener('click', () => {
+            if (!selectedFile) { alert('Please upload proof of payment'); return; }
+            
+            document.getElementById('loading').classList.add('show');
+            const submissionData = { referenceCode, applicantName, applicantEmail, applicantPhone, amount, currency, paymentMethod: 'Zamtel Money', merchantNumber: ZAMTEL_MERCHANT, timestamp: new Date().toISOString(), status: 'pending' };
+            let pending = JSON.parse(localStorage.getItem('pendingVerifications') || '[]');
+            pending.push(submissionData);
+            localStorage.setItem('pendingVerifications', JSON.stringify(pending));
+            localStorage.setItem(`proof_${referenceCode}`, JSON.stringify(submissionData));
+            
+            setTimeout(() => {
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('submissionStatus').innerHTML = `<div style="background:#D4EDDA;padding:16px;border-radius:12px;color:#155724;">✓ Proof submitted! Reference: ${referenceCode}<br>Admin will verify within 24 hours.<br><a href="../index.html?ref=${referenceCode}&pending=true">Return to Application</a></div>`;
+                setTimeout(() => window.location.href = `../index.html?ref=${referenceCode}&pending=true`, 4000);
+            }, 1500);
+        });
+        
+        document.getElementById('cancelBtn').addEventListener('click', () => window.location.href = '../index.html');
     </script>
 </body>
 </html>
