@@ -6,6 +6,7 @@
     <title>Airtel Money Payment | Nolan University</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1C3A 0%, #1A2D4D 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -18,10 +19,8 @@
         .merchant-number span { font-size: 24px; font-weight: 700; letter-spacing: 2px; }
         .instruction { background: #FFF8E7; padding: 20px; border-radius: 12px; text-align: left; border-left: 4px solid #C5A028; margin: 20px 0; }
         .instruction h3 { margin-bottom: 12px; color: #C5A028; }
-        .instruction p { line-height: 1.8; }
         .upload-area { border: 2px dashed #C5A028; border-radius: 12px; padding: 25px; text-align: center; margin: 20px 0; cursor: pointer; transition: all 0.3s; }
         .upload-area:hover { background: #FFF8E7; border-color: #D4B84A; }
-        .upload-area.dragover { background: #E8F0FE; border-color: #0A1C3A; }
         .preview-image { max-width: 100%; max-height: 150px; margin-top: 16px; border-radius: 8px; display: none; }
         .reference-code { background: #F5F5F5; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 18px; text-align: center; margin: 16px 0; font-weight: 700; }
         .btn { width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; margin-top: 12px; transition: all 0.3s; }
@@ -29,8 +28,8 @@
         .btn-secondary { background: #0A1C3A; color: white; margin-top: 12px; }
         .loading { display: none; text-align: center; margin: 20px 0; }
         .loading.show { display: block; }
-        .helper-text { font-size: 12px; color: #666; margin-top: 8px; text-align: center; }
-        @media (max-width: 480px) { .payment-container { padding: 24px; } .merchant-number span { font-size: 18px; } }
+        .success-message { background: #D4EDDA; padding: 16px; border-radius: 12px; color: #155724; margin-top: 16px; display: none; }
+        @media (max-width: 480px) { .payment-container { padding: 24px; } }
     </style>
 </head>
 <body>
@@ -72,13 +71,32 @@
             <i class="fas fa-spinner fa-spin"></i> Submitting proof...
         </div>
         
+        <div class="success-message" id="successMessage"></div>
+        
         <button class="btn" id="submitProofBtn">Submit Proof for Verification</button>
         <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
-        
-        <div id="submissionStatus" style="margin-top: 16px;"></div>
     </div>
 
     <script>
+        // ========================================
+        // EMAILJS CONFIGURATION - REPLACE WITH YOUR ACTUAL KEYS
+        // ========================================
+        // Step 1: Sign up at https://www.emailjs.com
+        // Step 2: Get your Public Key from Dashboard
+        // Step 3: Create Email Templates
+        // ========================================
+        
+        const EMAILJS_CONFIG = {
+            PUBLIC_KEY: '1GuyWccqX6p3b2_9T',     // Replace with your EmailJS public key
+            SERVICE_ID: 'NYot•••••••••••••••••',     // Replace with your EmailJS service ID
+            TEMPLATE_ADMIN: 'template_payment_received', // Template for admin notification
+            TEMPLATE_STUDENT: 'template_payment_submitted' // Template for student confirmation
+        };
+        
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        
+        // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const amount = urlParams.get('amount') || '250';
         const currency = urlParams.get('currency') || 'ZMW';
@@ -89,9 +107,11 @@
         // Airtel specific merchant number - UPDATE WITH YOUR ACTUAL NUMBER
         const AIRTEL_MERCHANT = '0975914001';
         
+        // Generate unique reference code
         const referenceCode = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
         const displayAmount = currency === 'ZMW' ? `ZK${amount}` : `$${amount}`;
         
+        // Update UI with dynamic values
         document.getElementById('amountDisplay').innerText = displayAmount;
         document.getElementById('amountDisplay2').innerText = displayAmount;
         document.getElementById('referenceCode').innerText = referenceCode;
@@ -100,12 +120,15 @@
         document.getElementById('merchantDisplay').innerText = AIRTEL_MERCHANT;
         
         let selectedFile = null;
+        let selectedFileData = null;
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('proofUpload');
         const preview = document.getElementById('preview');
         const submitBtn = document.getElementById('submitProofBtn');
         const loading = document.getElementById('loading');
+        const successMessage = document.getElementById('successMessage');
         
+        // Handle file selection
         uploadArea.addEventListener('click', () => fileInput.click());
         
         uploadArea.addEventListener('dragover', (e) => {
@@ -135,20 +158,68 @@
             }
             selectedFile = file;
             
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
+            // Convert to base64 for storage (in production, upload to cloud storage)
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                selectedFileData = e.target.result;
+                if (file.type.startsWith('image/')) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
+                }
+            };
+            reader.readAsDataURL(file);
+            
             uploadArea.style.borderColor = '#28A745';
         }
         
-        submitBtn.addEventListener('click', () => {
+        // Send email notification to admin
+        async function sendAdminNotification() {
+            const templateParams = {
+                to_email: 'admin@nolan.edu',
+                applicant_name: applicantName,
+                applicant_email: applicantEmail,
+                applicant_phone: applicantPhone,
+                reference_code: referenceCode,
+                amount: displayAmount,
+                payment_method: 'Airtel Money',
+                submission_date: new Date().toLocaleString(),
+                admin_dashboard_link: 'https://yourdomain.com/admin/dashboard.html'
+            };
+            
+            try {
+                await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ADMIN, templateParams);
+                console.log('Admin notification email sent');
+                return true;
+            } catch (error) {
+                console.error('Failed to send admin email:', error);
+                return false;
+            }
+        }
+        
+        // Send confirmation email to student
+        async function sendStudentConfirmation() {
+            const templateParams = {
+                to_email: applicantEmail,
+                applicant_name: applicantName,
+                reference_code: referenceCode,
+                amount: displayAmount,
+                payment_method: 'Airtel Money',
+                submission_date: new Date().toLocaleString(),
+                status: 'pending'
+            };
+            
+            try {
+                await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_STUDENT, templateParams);
+                console.log('Student confirmation email sent');
+                return true;
+            } catch (error) {
+                console.error('Failed to send student email:', error);
+                return false;
+            }
+        }
+        
+        // Submit proof
+        submitBtn.addEventListener('click', async () => {
             if (!selectedFile) {
                 alert('Please upload proof of payment first');
                 return;
@@ -157,6 +228,7 @@
             loading.classList.add('show');
             submitBtn.disabled = true;
             
+            // Store submission data
             const submissionData = {
                 referenceCode: referenceCode,
                 applicantName: applicantName,
@@ -167,24 +239,29 @@
                 paymentMethod: 'Airtel Money',
                 merchantNumber: AIRTEL_MERCHANT,
                 timestamp: new Date().toISOString(),
-                status: 'pending'
+                status: 'pending',
+                proofImage: selectedFileData // In production, upload to cloud storage
             };
             
+            // Save to localStorage (acts as database)
             let pendingVerifications = JSON.parse(localStorage.getItem('pendingVerifications') || '[]');
             pendingVerifications.push(submissionData);
             localStorage.setItem('pendingVerifications', JSON.stringify(pendingVerifications));
             localStorage.setItem(`proof_${referenceCode}`, JSON.stringify(submissionData));
             
+            // Send real emails
+            await sendAdminNotification();
+            await sendStudentConfirmation();
+            
             setTimeout(() => {
                 loading.classList.remove('show');
-                document.getElementById('submissionStatus').innerHTML = `
-                    <div style="background: #D4EDDA; padding: 16px; border-radius: 12px; color: #155724;">
-                        <i class="fas fa-check-circle"></i> Proof submitted successfully!<br>
-                        Reference: <strong>${referenceCode}</strong><br><br>
-                        Admin will verify your payment within 24 hours.<br>
-                        You will receive confirmation once verified.<br><br>
-                        <a href="../index.html?ref=${referenceCode}&pending=true" style="color: #0A1C3A; font-weight: 600;">Return to Application</a>
-                    </div>
+                successMessage.style.display = 'block';
+                successMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i> Proof submitted successfully!<br>
+                    Reference: <strong>${referenceCode}</strong><br><br>
+                    A confirmation email has been sent to ${applicantEmail}.<br>
+                    Our team will verify your payment within 24 hours.<br><br>
+                    <a href="../index.html?ref=${referenceCode}&pending=true" style="color: #0A1C3A; font-weight: 600;">Return to Application</a>
                 `;
                 submitBtn.style.display = 'none';
                 document.getElementById('cancelBtn').style.display = 'none';
@@ -192,7 +269,7 @@
                 
                 setTimeout(() => {
                     window.location.href = `../index.html?ref=${referenceCode}&pending=true`;
-                }, 4000);
+                }, 5000);
             }, 1500);
         });
         
