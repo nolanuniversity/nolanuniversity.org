@@ -523,22 +523,22 @@
         let paymentUrl = '';
         switch(selectedPaymentMethod) {
             case 'airtel':
-                paymentUrl = `payment/airtel-money.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&phone=${applicantPhone}&email=${applicantEmail}`;
+                paymentUrl = `airtel-money.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&phone=${applicantPhone}&email=${applicantEmail}`;
                 break;
             case 'mtn':
-                paymentUrl = `payment/mtn-money.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&phone=${applicantPhone}&email=${applicantEmail}`;
+                paymentUrl = `mtn-money.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&phone=${applicantPhone}&email=${applicantEmail}`;
                 break;
             case 'zamtel':
-                paymentUrl = `payment/zamtel-money.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&phone=${applicantPhone}&email=${applicantEmail}`;
+                paymentUrl = `zamtel-money.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&phone=${applicantPhone}&email=${applicantEmail}`;
                 break;
             case 'card':
-                paymentUrl = `payment/card-payment.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&email=${applicantEmail}`;
+                paymentUrl = `card-payment.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&email=${applicantEmail}`;
                 break;
             case 'paypal':
-                paymentUrl = `payment/paypal.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&email=${applicantEmail}`;
+                paymentUrl = `paypal.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&email=${applicantEmail}`;
                 break;
             case 'bank':
-                paymentUrl = `payment/bank-transfer.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&email=${applicantEmail}`;
+                paymentUrl = `bank-transfer.html?amount=${amount}&currency=${currency}&name=${encodeURIComponent(applicantName)}&email=${applicantEmail}`;
                 break;
         }
         window.location.href = paymentUrl;
