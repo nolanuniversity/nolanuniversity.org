@@ -3,36 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Nolan University</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Admin Dashboard</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #F5F5F5; }
-        .header { background: #0A1C3A; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logout-btn { background: #C5A028; color: #0A1C3A; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: white; padding: 24px; border-radius: 16px; text-align: center; }
-        .stat-number { font-size: 36px; font-weight: 800; color: #C5A028; }
-        .payment-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #FFC107; }
-        .payment-header { display: flex; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
-        .reference { font-family: monospace; font-size: 16px; font-weight: 700; }
-        .status { padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; }
-        .status-pending { background: #FFF3CD; color: #856404; }
-        .status-approved { background: #D4EDDA; color: #155724; }
-        .status-rejected { background: #F8D7DA; color: #721C24; }
-        .btn-approve { background: #28A745; color: white; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; margin-right: 10px; }
-        .btn-reject { background: #DC3545; color: white; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; }
-        .empty-state { text-align: center; padding: 60px; background: white; border-radius: 16px; color: #666; }
+        body { font-family: Arial; background: #f5f5f5; margin: 0; }
+        .header { background: #0A1C3A; color: white; padding: 20px; display: flex; justify-content: space-between; }
+        button { background: #C5A028; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .container { padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .stats { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-card { background: white; padding: 20px; border-radius: 12px; text-align: center; flex: 1; min-width: 120px; }
+        .stat-number { font-size: 32px; font-weight: bold; color: #C5A028; }
+        .payment-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; border-left: 4px solid #FFC107; }
+        .btn-approve { background: #28A745; color: white; border: none; padding: 6px 16px; border-radius: 6px; cursor: pointer; margin-right: 8px; }
+        .btn-reject { background: #DC3545; color: white; border: none; padding: 6px 16px; border-radius: 6px; cursor: pointer; }
+        .empty { text-align: center; padding: 60px; background: white; border-radius: 12px; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1><i class="fas fa-shield-alt"></i> Payment Verification</h1>
-        <button class="logout-btn" onclick="logout()">Logout</button>
+        <h2>Payment Verification Dashboard</h2>
+        <button onclick="logout()">Logout</button>
     </div>
-    
     <div class="container">
         <div class="stats" id="stats">
             <div class="stat-card"><div class="stat-number" id="pendingCount">0</div><div>Pending</div></div>
@@ -42,167 +32,69 @@
         </div>
         <div id="paymentsList"></div>
     </div>
-        <script>
-    // IMPORTANT: Check if we're in the admin folder
-    console.log('Current path:', window.location.pathname);
-    
-    // Check authentication - use absolute check
-    const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-    
-    if (isLoggedIn !== 'true') {
-        // Stay in admin folder - redirect to admin login, NOT root index
-        window.location.href = 'index.html';
-        return;
-    }
-    
-    // Display admin email
-    document.getElementById('adminEmailDisplay').innerText = sessionStorage.getItem('adminEmail') || 'Admin';
-    
-    let allPayments = [];
-    let currentFilter = 'all';
-    let searchQuery = '';
-    
-    function loadPayments() {
-        const stored = localStorage.getItem('pendingVerifications');
-        allPayments = stored ? JSON.parse(stored) : [];
-        updateStats();
-        renderPayments();
-    }
-    
-    function updateStats() {
-        const pending = allPayments.filter(p => p.status === 'pending').length;
-        const approved = allPayments.filter(p => p.status === 'approved').length;
-        const rejected = allPayments.filter(p => p.status === 'rejected').length;
-        const total = allPayments.length;
-        
-        document.getElementById('pendingCount').innerText = pending;
-        document.getElementById('approvedCount').innerText = approved;
-        document.getElementById('rejectedCount').innerText = rejected;
-        document.getElementById('totalCount').innerText = total;
-    }
-    
-    function renderPayments() {
-        let filtered = allPayments;
-        if (currentFilter !== 'all') filtered = filtered.filter(p => p.status === currentFilter);
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase();
-            filtered = filtered.filter(p => 
-                p.referenceCode.toLowerCase().includes(query) ||
-                p.applicantName.toLowerCase().includes(query) ||
-                p.applicantEmail.toLowerCase().includes(query)
-            );
+
+    <script>
+        // Auth check - redirect to login if not authenticated
+        if (sessionStorage.getItem('adminLoggedIn') !== 'true') {
+            window.location.href = 'index.html';
         }
         
-        const container = document.getElementById('paymentsList');
-        if (filtered.length === 0) {
-            container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No payment submissions found</p></div>';
-            return;
-        }
-        
-        container.innerHTML = filtered.map(payment => `
-            <div class="payment-card ${payment.status}">
-                <div class="payment-header">
-                    <span class="reference">${payment.referenceCode}</span>
-                    <span class="status status-${payment.status}">${payment.status.toUpperCase()}</span>
-                </div>
-                <div class="payment-details">
-                    <div><strong>${payment.applicantName}</strong></div>
-                    <div>${payment.applicantEmail}</div>
-                    <div>${payment.applicantPhone || 'No phone'}</div>
-                    <div>${payment.currency === 'ZMW' ? 'ZK' : '$'}${payment.amount} - ${payment.paymentMethod}</div>
-                    <div>Submitted: ${new Date(payment.timestamp).toLocaleString()}</div>
-                </div>
-                ${payment.status === 'pending' ? `
-                    <div class="actions">
-                        <button class="btn-approve" onclick="verifyPayment('${payment.referenceCode}', 'approved')">✓ Approve</button>
-                        <button class="btn-reject" onclick="verifyPayment('${payment.referenceCode}', 'rejected')">✗ Reject</button>
-                    </div>
-                ` : `
-                    <div class="actions">
-                        <button class="btn-view" onclick="viewDetails('${payment.referenceCode}')">View Details</button>
-                    </div>
-                    <div style="margin-top: 12px; font-size: 12px; color: #666;">
-                        Verified on ${new Date(payment.verifiedAt).toLocaleString()}
-                    </div>
-                `}
-            </div>
-        `).join('');
-    }
-    
-    function verifyPayment(referenceCode, status) {
-        const payment = allPayments.find(p => p.referenceCode === referenceCode);
-        if (payment) {
-            payment.status = status;
-            payment.verifiedAt = new Date().toISOString();
-            payment.verifiedBy = sessionStorage.getItem('adminEmail') || 'Admin';
+        function loadPayments() {
+            const stored = localStorage.getItem('pendingVerifications');
+            const payments = stored ? JSON.parse(stored) : [];
             
-            localStorage.setItem('pendingVerifications', JSON.stringify(allPayments));
-            localStorage.setItem(`verified_${referenceCode}`, status);
+            const pending = payments.filter(p => p.status === 'pending').length;
+            const approved = payments.filter(p => p.status === 'approved').length;
+            const rejected = payments.filter(p => p.status === 'rejected').length;
             
-            if (status === 'approved') {
-                localStorage.setItem(`applicationFeePaid_${referenceCode}`, 'true');
+            document.getElementById('pendingCount').innerText = pending;
+            document.getElementById('approvedCount').innerText = approved;
+            document.getElementById('rejectedCount').innerText = rejected;
+            document.getElementById('totalCount').innerText = payments.length;
+            
+            const pendingPayments = payments.filter(p => p.status === 'pending');
+            const container = document.getElementById('paymentsList');
+            
+            if (pendingPayments.length === 0) {
+                container.innerHTML = '<div class="empty">No pending payments</div>';
+                return;
             }
             
-            alert(`Payment ${status.toUpperCase()}! Applicant will be notified.`);
-            loadPayments();
+            container.innerHTML = pendingPayments.map(p => `
+                <div class="payment-card">
+                    <strong>${p.referenceCode}</strong><br>
+                    Name: ${p.applicantName}<br>
+                    Email: ${p.applicantEmail}<br>
+                    Amount: ${p.currency === 'ZMW' ? 'ZK' : '$'}${p.amount}<br>
+                    Method: ${p.paymentMethod}<br>
+                    Submitted: ${new Date(p.timestamp).toLocaleString()}<br><br>
+                    <button class="btn-approve" onclick="verify('${p.referenceCode}', 'approved')">Approve</button>
+                    <button class="btn-reject" onclick="verify('${p.referenceCode}', 'rejected')">Reject</button>
+                </div>
+            `).join('');
         }
-    }
-    
-    function viewDetails(referenceCode) {
-        const payment = allPayments.find(p => p.referenceCode === referenceCode);
-        if (payment) {
-            alert(`Reference: ${payment.referenceCode}\nApplicant: ${payment.applicantName}\nEmail: ${payment.applicantEmail}\nAmount: ${payment.currency === 'ZMW' ? 'ZK' : '$'}${payment.amount}\nStatus: ${payment.status}`);
+        
+        function verify(ref, status) {
+            const stored = localStorage.getItem('pendingVerifications');
+            let payments = stored ? JSON.parse(stored) : [];
+            const payment = payments.find(p => p.referenceCode === ref);
+            
+            if (payment) {
+                payment.status = status;
+                payment.verifiedAt = new Date().toISOString();
+                localStorage.setItem('pendingVerifications', JSON.stringify(payments));
+                alert(`Payment ${status.toUpperCase()}!`);
+                loadPayments();
+            }
         }
-    }
-    
-    // Search and filter
-    document.getElementById('searchInput')?.addEventListener('input', (e) => {
-        searchQuery = e.target.value;
-        renderPayments();
-    });
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            renderPayments();
-        });
-    });
-    
-    function exportData() {
-        const data = allPayments.map(p => ({
-            Reference: p.referenceCode,
-            Applicant: p.applicantName,
-            Email: p.applicantEmail,
-            Amount: `${p.currency === 'ZMW' ? 'ZK' : '$'}${p.amount}`,
-            Method: p.paymentMethod,
-            Status: p.status,
-            Submitted: new Date(p.timestamp).toLocaleString()
-        }));
         
-        const csv = ['Reference,Applicant,Email,Amount,Method,Status,Submitted'];
-        data.forEach(d => {
-            csv.push(`"${d.Reference}","${d.Applicant}","${d.Email}","${d.Amount}","${d.Method}","${d.Status}","${d.Submitted}"`);
-        });
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
         
-        const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `payments_${new Date().toISOString().slice(0,10)}.csv`;
-        a.click();
-        URL.revokeObjectURL(url);
-    }
-    
-    function logout() {
-        sessionStorage.clear();
-        window.location.href = 'index.html';
-    }
-    
-    // Initialize
-    loadPayments();
-    setInterval(loadPayments, 30000);
-        </script>
+        loadPayments();
+        setInterval(loadPayments, 10000);
+    </script>
 </body>
 </html>
