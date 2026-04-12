@@ -846,7 +846,32 @@
             }
         });
     });
-
+// Add to the checkPaymentStatus function
+function checkPaymentStatus() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref');
+    const isPending = urlParams.get('pending') === 'true';
+    
+    if (refCode) {
+        const verificationStatus = localStorage.getItem(`verified_${refCode}`);
+        if (verificationStatus === 'approved') {
+            paymentCompleted = true;
+            localStorage.setItem('applicationFeePaid', 'true');
+            paymentStatus.style.display = 'block';
+            paymentStatus.className = 'payment-status paid';
+            paymentStatus.innerHTML = '<i class="fas fa-check-circle"></i> Payment verified! You can now complete your application.';
+            unlockSections();
+        } else if (verificationStatus === 'rejected') {
+            paymentStatus.style.display = 'block';
+            paymentStatus.className = 'payment-status pending';
+            paymentStatus.innerHTML = '<i class="fas fa-times-circle"></i> Your payment proof was rejected. Please contact admissions.';
+        } else if (isPending) {
+            paymentStatus.style.display = 'block';
+            paymentStatus.className = 'payment-status pending';
+            paymentStatus.innerHTML = '<i class="fas fa-clock"></i> Your proof is pending verification. Please check back later.';
+        }
+    }
+    }
     // Initialize
     loadFromLocal();
     setupAutoSave();
