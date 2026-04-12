@@ -147,7 +147,7 @@
 <div class="container">
     <form id="applicationForm">
         <!-- SECTION 1: SCHOOL & PROGRAM SELECTION -->
-        <div class="form-section" data-section="1">
+        <div class="form-section active" data-section="1">
             <h2 class="section-title">Choose Your School & Program</h2>
             <p class="section-subtitle">Select the school and program you wish to apply for</p>
             
@@ -182,7 +182,7 @@
             </div>
             
             <div class="form-group full-width" id="qualificationGroup" style="display: none;">
-                <label>Qualification Type</label>
+                <label>Qualification Type (Optional)</label>
                 <select id="qualificationSelect">
                     <option value="">Select</option>
                     <option value="bachelor">Bachelor's Degree (3 years)</option>
@@ -212,10 +212,12 @@
                         <option value="kenya">Kenya</option><option value="ghana">Ghana</option>
                         <option value="us">United States</option><option value="uk">United Kingdom</option>
                         <option value="canada">Canada</option><option value="australia">Australia</option>
-                        <option value="other">Other</option>
+                        <option value="dubai">UAE / Dubai</option><option value="other">Other</option>
                     </select>
                 </div>
                 <div class="form-group full-width"><label>Current Address</label><input type="text" name="address" id="address"></div>
+                <div class="form-group"><label>City</label><input type="text" name="city" id="city"></div>
+                <div class="form-group"><label>Postal Code</label><input type="text" name="postalCode" id="postalCode"></div>
             </div>
         </div>
 
@@ -254,39 +256,64 @@
         </div>
 
         <div class="form-section payment-locked" data-section="5">
-            <h2 class="section-title">Test Scores</h2>
+            <h2 class="section-title">Standardized Test Scores</h2>
             <div class="form-grid">
                 <div class="form-group"><label>SAT Total Score</label><input type="text" name="sat" id="sat" disabled></div>
                 <div class="form-group"><label>ACT Composite Score</label><input type="text" name="act" id="act" disabled></div>
                 <div class="form-group"><label>TOEFL iBT</label><input type="text" name="toefl" id="toefl" disabled></div>
                 <div class="form-group"><label>IELTS</label><input type="text" name="ielts" id="ielts" disabled></div>
+                <div class="form-group"><label>GRE/GMAT (if applicable)</label><input type="text" name="gre" id="gre" disabled></div>
             </div>
         </div>
 
         <div class="form-section payment-locked" data-section="6">
-            <h2 class="section-title">Essays</h2>
-            <div class="form-group full-width"><label>Why Nolan University? <span class="required">*</span></label><textarea name="essay1" id="essay1" rows="6" placeholder="Please explain why you are interested in Nolan University... (300-500 words)" required disabled></textarea></div>
-            <div class="form-group full-width"><label>Leadership & Initiative <span class="required">*</span></label><textarea name="essay2" id="essay2" rows="6" placeholder="Describe a time you demonstrated leadership... (300-500 words)" required disabled></textarea></div>
+            <h2 class="section-title">Personal Essays</h2>
+            <div class="form-group full-width"><label>Essay 1: Why Nolan University? <span class="required">*</span></label><textarea name="essay1" id="essay1" rows="6" placeholder="Please explain why you are interested in Nolan University and how it aligns with your career goals. (300-500 words)" required disabled></textarea></div>
+            <div class="form-group full-width"><label>Essay 2: Leadership & Initiative <span class="required">*</span></label><textarea name="essay2" id="essay2" rows="6" placeholder="Describe a time you demonstrated leadership, took initiative, or solved a challenging problem. (300-500 words)" required disabled></textarea></div>
+            <div class="form-group full-width"><label>Essay 3 (Optional): Additional Information</label><textarea name="essay3" id="essay3" rows="4" placeholder="If there is anything else you would like us to know, please share here." disabled></textarea></div>
         </div>
 
         <div class="form-section payment-locked" data-section="7">
             <h2 class="section-title">Extracurricular Activities</h2>
-            <div id="activitiesContainer"><div class="activity-item"><div class="activity-header"><h4>Activity 1</h4><button type="button" class="remove-activity" onclick="removeActivity(this)" disabled><i class="fas fa-trash-alt"></i></button></div><div class="form-group full-width"><input type="text" name="activityName0" placeholder="Activity Name" disabled></div></div></div>
+            <div id="activitiesContainer">
+                <div class="activity-item" data-activity-id="0">
+                    <div class="activity-header"><h4>Activity 1</h4><button type="button" class="remove-activity" onclick="removeActivity(this)" disabled><i class="fas fa-trash-alt"></i></button></div>
+                    <div class="form-group full-width"><input type="text" name="activityName0" placeholder="Activity Name" disabled></div>
+                    <div class="form-group"><input type="text" name="activityRole0" placeholder="Role/Position" disabled></div>
+                    <div class="form-group"><input type="text" name="activityYears0" placeholder="Years (e.g., 9-12)" disabled></div>
+                    <div class="form-group full-width"><textarea name="activityDesc0" rows="2" placeholder="Description of involvement" disabled></textarea></div>
+                </div>
+            </div>
             <button type="button" class="add-activity-btn" onclick="addActivity()" disabled>+ Add Another Activity</button>
         </div>
 
         <div class="form-section payment-locked" data-section="8">
-            <h2 class="section-title">Documents</h2>
-            <div class="form-group full-width"><label>Resume/CV <span class="required">*</span></label><input type="file" name="resume" id="resume" required disabled></div>
-            <div class="form-group full-width"><label>Transcript <span class="required">*</span></label><input type="file" name="transcript" id="transcript" required disabled></div>
-            <div class="form-group full-width"><label>Letter of Recommendation</label><input type="file" name="rec" id="rec" disabled></div>
+            <h2 class="section-title">Supporting Documents</h2>
+            <div class="form-grid">
+                <div class="form-group full-width"><label>Resume/CV <span class="required">*</span></label><input type="file" name="resume" id="resume" required disabled></div>
+                <div class="form-group full-width"><label>Academic Transcript <span class="required">*</span></label><input type="file" name="transcript" id="transcript" required disabled></div>
+                <div class="form-group full-width"><label>Proof of Payment (if Bank Transfer)</label><input type="file" name="paymentProof" id="paymentProof" disabled></div>
+                <div class="form-group full-width"><label>Letter of Recommendation 1</label><input type="file" name="rec1" id="rec1" disabled></div>
+                <div class="form-group full-width"><label>Letter of Recommendation 2</label><input type="file" name="rec2" id="rec2" disabled></div>
+            </div>
+            <div class="form-group"><label>Recommender Information</label>
+                <div class="form-grid">
+                    <div class="form-group"><label>Recommender 1 Name</label><input type="text" name="recName1" id="recName1" disabled></div>
+                    <div class="form-group"><label>Recommender 1 Email</label><input type="email" name="recEmail1" id="recEmail1" disabled></div>
+                    <div class="form-group"><label>Recommender 2 Name</label><input type="text" name="recName2" id="recName2" disabled></div>
+                    <div class="form-group"><label>Recommender 2 Email</label><input type="email" name="recEmail2" id="recEmail2" disabled></div>
+                </div>
+            </div>
         </div>
 
         <div class="form-section payment-locked" data-section="9">
             <h2 class="section-title">Review & Submit</h2>
             <div id="reviewContent"></div>
-            <div class="form-group"><label><input type="checkbox" id="agreeTerms" disabled> I certify that all information provided is complete and accurate.</label></div>
-            <div class="form-group"><label><input type="checkbox" id="agreeSubmit" disabled> I understand that submitting false information may result in revocation of admission.</label></div>
+            <div class="form-group full-width" style="margin-top: 24px;">
+                <label><input type="checkbox" id="agreeTerms" disabled> I certify that all information provided is complete and accurate. <span class="required">*</span></label>
+                <label><input type="checkbox" id="agreeSubmit" disabled> I understand that submitting false information may result in revocation of admission. <span class="required">*</span></label>
+                <label><input type="checkbox" id="newsletter" disabled> I would like to receive updates about Nolan University news and events.</label>
+            </div>
         </div>
 
         <div class="form-navigation">
@@ -301,7 +328,7 @@
 
 <script>
     // ========================================
-    // SCHOOL PROGRAMS DATA
+    // SCHOOL PROGRAMS DATA - COMPLETE
     // ========================================
     const schoolPrograms = {
         gsbf: {
@@ -344,7 +371,8 @@
                 'MSc AI & Machine Learning',
                 'Certificate in FinTech & Digital Finance',
                 'Certificate in AI for Business',
-                'Professional Diploma in AI for Business'
+                'Professional Diploma in AI for Business',
+                'Career Accelerator: FinTech & Digital Finance'
             ]
         },
         business: {
@@ -418,7 +446,7 @@
     }
 
     // ========================================
-    // SCHOOL SELECTION
+    // SCHOOL SELECTION - RESTORED
     // ========================================
     schoolCards.forEach(card => {
         card.addEventListener('click', () => {
@@ -553,6 +581,7 @@
         lockedInputs.forEach(input => { input.disabled = false; });
         document.getElementById('agreeTerms').disabled = false;
         document.getElementById('agreeSubmit').disabled = false;
+        document.getElementById('newsletter').disabled = false;
     }
 
     // ========================================
@@ -632,24 +661,25 @@
         
         reviewContent.innerHTML = `
             <div class="review-section">
-                <h3>Program Selection</h3>
+                <h3><i class="fas fa-graduation-cap"></i> Program Selection</h3>
                 <div class="review-item"><span class="review-label">School:</span><span>${schoolName}</span></div>
                 <div class="review-item"><span class="review-label">Program:</span><span>${selectedProgram}</span></div>
             </div>
             <div class="review-section">
-                <h3>Personal Information</h3>
+                <h3><i class="fas fa-user"></i> Personal Information</h3>
                 <div class="review-item"><span class="review-label">Name:</span><span>${firstName} ${lastName}</span></div>
                 <div class="review-item"><span class="review-label">Email:</span><span>${email}</span></div>
                 <div class="review-item"><span class="review-label">Phone:</span><span>${phone}</span></div>
             </div>
             <div class="review-section">
-                <h3>Academic History</h3>
-                <div class="review-item"><span class="review-label">Current School:</span><span>${currentSchool}</span></div>
+                <h3><i class="fas fa-book"></i> Academic History</h3>
+                <div class="review-item"><span class="review-label">Current School:</span><span>${currentSchool || 'Not provided'}</span></div>
             </div>
             <div class="review-section">
-                <h3>Payment Information</h3>
+                <h3><i class="fas fa-credit-card"></i> Payment Information</h3>
                 <div class="review-item"><span class="review-label">Application Fee:</span><span>${selectedResident === 'local' ? 'ZK250' : '$25 USD'}</span></div>
                 <div class="review-item"><span class="review-label">Payment Status:</span><span style="color: var(--success);">✓ Paid</span></div>
+                <div class="review-item"><span class="review-label">Payment Method:</span><span>${selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1)}</span></div>
             </div>
         `;
     }
@@ -754,14 +784,15 @@
         const container = document.getElementById('activitiesContainer');
         const newId = activityCount;
         const activityHtml = `
-            <div class="activity-item">
+            <div class="activity-item" data-activity-id="${newId}">
                 <div class="activity-header">
                     <h4>Activity ${activityCount + 1}</h4>
                     <button type="button" class="remove-activity" onclick="removeActivity(this)"><i class="fas fa-trash-alt"></i></button>
                 </div>
-                <div class="form-group full-width">
-                    <input type="text" name="activityName${newId}" placeholder="Activity Name">
-                </div>
+                <div class="form-group full-width"><input type="text" name="activityName${newId}" placeholder="Activity Name"></div>
+                <div class="form-group"><input type="text" name="activityRole${newId}" placeholder="Role/Position"></div>
+                <div class="form-group"><input type="text" name="activityYears${newId}" placeholder="Years (e.g., 9-12)"></div>
+                <div class="form-group full-width"><textarea name="activityDesc${newId}" rows="2" placeholder="Description of involvement"></textarea></div>
             </div>
         `;
         container.insertAdjacentHTML('beforeend', activityHtml);
@@ -778,7 +809,7 @@
     };
 
     // ========================================
-    // AUTO-SAVE
+    // AUTO-SAVE SETUP
     // ========================================
     function setupAutoSave() {
         const inputs = form.querySelectorAll('input, select, textarea');
@@ -825,7 +856,7 @@
     residentOptions[0].classList.add('selected');
     paymentMethods[0].classList.add('selected');
     
-    console.log('Nolan University Central Application loaded - School & Program section restored');
+    console.log('Nolan University Central Application loaded - School & Program section fully restored');
 </script>
 </body>
     </html>
