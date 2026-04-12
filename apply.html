@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Apply to Nolan University | Central Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0A1C3A;
+            --navy-light: #1A2D4D;
+            --navy-dark: #05122A;
+            --gold: #C5A028;
+            --gold-light: #D4B84A;
+            --gold-dark: #A07F1F;
+            --gold-10: rgba(197, 160, 40, 0.1);
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray-mid: #E0E0E0;
+            --gray-dark: #666666;
+            --gray-darker: #333333;
+            --success: #28A745;
+            --error: #DC3545;
+            --warning: #FFC107;
+            --info: #17A2B8;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-darker);
+            line-height: 1.6;
+            background-color: var(--gray-light);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .application-header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .application-header h1 {
+            font-size: 42px;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .application-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .university-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy-dark);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray-mid);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            cursor: pointer;
+            min-width: 70px;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: 2px solid var(--gray-mid);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .step.active .step-circle {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy-dark);
+        }
+
+        .step.completed .step-circle {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .step.payment-paid .step-circle {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 11px;
+            color: var(--gray-dark);
+        }
+
+        .step.active .step-label {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* School Cards */
+        .schools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .school-card {
+            background: var(--gray-light);
+            border: 2px solid var(--gray-mid);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .school-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .school-card.selected {
+            border-color: var(--gold);
+            background: var(--gold-10);
+        }
+
+        .school-card.selected::before {
+            content: '✓';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--gold);
+            color: var(--navy-dark);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .school-icon {
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .school-card h3 {
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .school-card p {
+            font-size: 13px;
+            color: var(--gray-dark);
+        }
+
+        /* Form Sections */
+        .form-section {
+            display: none;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-subtitle {
+            color: var(--gray-dark);
+            font-size: 14px;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--navy);
+        }
+
+        .form-group label .required {
+            color: var(--error);
+            margin-left: 4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--gray-mid);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-10);
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: var(--error);
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: var(--gray-dark);
+            margin-top: 4px;
+        }
+
+        /* Payment Section */
+        .payment-card {
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-mid);
+        }
+
+        .fee-summary {
+            background: var(--gold-10);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .fee-amount {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .fee-amount small {
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .resident-selector {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .resident-option {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid var(--gray-mid);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .resident-option.selected {
+            border-color: var(--gold);
+            background: var(--gold-10);
+        }
+
+        .resident-option h4 {
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .resident-option .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold-dark);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .payment-method {
+            padding: 16px;
+            border: 2px solid var(--gray-mid);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method.selected {
+            border-color: var(--gold);
+            background: var(--gold-10);
+        }
+
+        .payment-method i {
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .payment-method span {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .mobile-money-fields, .card-fields, .bank-fields {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--gray-light);
+            border-radius: 12px;
+        }
+
+        .mobile-money-fields.show, .card-fields.show, .bank-fields.show {
+            display: block;
+        }
+
+        .payment-status {
+            text-align: center;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .payment-status.pending {
+            background: var(--warning);
+            color: #856404;
+        }
+
+        .payment-status.paid {
+            background: var(--success);
+            color: white;
+        }
+
+        .pay-now-btn {
+            background: var(--gold);
+            color: var(--navy-dark);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .pay-now-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .pay-now-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-mid);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--navy);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--navy-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray-light);
+            color: var(--gray-darker);
+            border: 1px solid var(--gray-mid);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gray-mid);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--navy-dark);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-light);
+        }
+
+        /* Review Section */
+        .review-section {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .review-section h3 {
+            color: var(--navy);
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .review-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-mid);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .review-label {
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+
+        .review-value {
+            color: var(--gray-darker);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--success);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Auto-save indicator */
+        .auto-save-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--gray-dark);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .auto-save-indicator.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .progress-steps {
+                overflow-x: auto;
+                gap: 16px;
+                padding-bottom: 8px;
+            }
+            .step {
+                min-width: 70px;
+            }
+            .resident-selector {
+                flex-direction: column;
+            }
+            .schools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="application-header">
+    <div class="container">
+        <div class="university-badge">NOLAN UNIVERSITY</div>
+        <h1>Central Application</h1>
+        <p>Apply to any school at Nolan University — one application, multiple opportunities</p>
+    </div>
+</div>
+
+<div class="progress-container">
+    <div class="container">
+        <div class="progress-steps" id="progressSteps">
+            <div class="step" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">School & Program</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Personal Info</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Payment</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Academic</div>
+            </div>
+            <div class="step" data-step="5">
+                <div class="step-circle">5</div>
+                <div class="step-label">Test Scores</div>
+            </div>
+            <div class="step" data-step="6">
+                <div class="step-circle">6</div>
+                <div class="step-label">Essays</div>
+            </div>
+            <div class="step" data-step="7">
+                <div class="step-circle">7</div>
+                <div class="step-label">Activities</div>
+            </div>
+            <div class="step" data-step="8">
+                <div class="step-circle">8</div>
+                <div class="step-label">Documents</div>
+            </div>
+            <div class="step" data-step="9">
+                <div class="step-circle">9</div>
+                <div class="step-label">Review</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form id="applicationForm">
+        <!-- Section 1: School & Program Selection -->
+        <div class="form-section" data-section="1">
+            <h2 class="section-title">Choose Your School & Program</h2>
+            <p class="section-subtitle">Select the school and program you wish to apply for</p>
+            
+            <div class="schools-grid" id="schoolsGrid">
+                <div class="school-card" data-school="lewis">
+                    <div class="school-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Lewis School of Entrepreneurial Finance</h3>
+                    <p>Finance, venture capital, investment management</p>
+                </div>
+                <div class="school-card" data-school="entrepreneurship">
+                    <div class="school-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>School of Entrepreneurship & Venture Creation</h3>
+                    <p>Startups, venture building, innovation</p>
+                </div>
+                <div class="school-card" data-school="banking">
+                    <div class="school-icon"><i class="fas fa-university"></i></div>
+                    <h3>Graduate School of Banking & Finance</h3>
+                    <p>Banking, financial markets, corporate finance</p>
+                </div>
+                <div class="school-card" data-school="tech">
+                    <div class="school-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>School of Technology & AI</h3>
+                    <p>Artificial intelligence, data science, software engineering</p>
+                </div>
+                <div class="school-card" data-school="business">
+                    <div class="school-icon"><i class="fas fa-globe"></i></div>
+                    <h3>School of Global Business & Leadership</h3>
+                    <p>International business, leadership, strategy</p>
+                </div>
+            </div>
+            
+            <div class="form-group full-width" id="programGroup" style="display: none;">
+                <label>Select Program <span class="required">*</span></label>
+                <select id="programSelect" required>
+                    <option value="">Choose a school first</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Section 2: Personal Information -->
+        <div class="form-section" data-section="2">
+            <h2 class="section-title">Personal Information</h2>
+            <p class="section-subtitle">Tell us about yourself</p>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>First Name <span class="required">*</span></label>
+                    <input type="text" name="firstName" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name <span class="required">*</span></label>
+                    <input type="text" name="lastName" id="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Name</label>
+                    <input type="text" name="preferredName" id="preferredName" placeholder="e.g., Alex, Sam">
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth <span class="required">*</span></label>
+                    <input type="date" name="dob" id="dob" required>
+                </div>
+                <div class="form-group">
+                    <label>Place of Birth</label>
+                    <input type="text" name="birthPlace" id="birthPlace" placeholder="City, Country">
+                </div>
+                <div class="form-group">
+                    <label>Citizenship <span class="required">*</span></label>
+                    <select name="citizenship" id="citizenship" required>
+                        <option value="">Select Country</option>
+                        <option>Zambia</option>
+                        <option>United States</option>
+                        <option>United Kingdom</option>
+                        <option>Canada</option>
+                        <option>Australia</option>
+                        <option>Nigeria</option>
+                        <option>Kenya</option>
+                        <option>South Africa</option>
+                        <option>India</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select name="gender" id="gender">
+                        <option value="">Select</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                        <option>Non-binary</option>
+                        <option>Prefer not to say</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>First Language</label>
+                    <input type="text" name="firstLanguage" id="firstLanguage" placeholder="e.g., English, Bemba">
+                </div>
+                <div class="form-group full-width">
+                    <label>Current Address <span class="required">*</span></label>
+                    <input type="text" name="address" id="address" placeholder="Street address" required>
+                </div>
+                <div class="form-group">
+                    <label>City <span class="required">*</span></label>
+                    <input type="text" name="city" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label>State/Province</label>
+                    <input type="text" name="state" id="state">
+                </div>
+                <div class="form-group">
+                    <label>Postal Code <span class="required">*</span></label>
+                    <input type="text" name="postalCode" id="postalCode" required>
+                </div>
+                <div class="form-group">
+                    <label>Country <span class="required">*</span></label>
+                    <select name="country" id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="zambia">Zambia</option>
+                        <option value="zimbabwe">Zimbabwe</option>
+                        <option value="south africa">South Africa</option>
+                        <option value="nigeria">Nigeria</option>
+                        <option value="kenya">Kenya</option>
+                        <option value="ghana">Ghana</option>
+                        <option value="tanzania">Tanzania</option>
+                        <option value="us">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="canada">Canada</option>
+                        <option value="australia">Australia</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" name="phone" id="phone" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Payment Section -->
+        <div class="form-section" data-section="3">
+            <h2 class="section-title">Application Fee Payment</h2>
+            <p class="section-subtitle">Pay your application fee to complete your submission</p>
+            
+            <div class="payment-card">
+                <div class="fee-summary">
+                    <p>Application Fee Amount</p>
+                    <div class="fee-amount" id="feeAmount">ZK250</div>
+                    <small id="feeNote">(~$12.90 USD) for Zambian and African applicants</small>
+                </div>
+                
+                <div class="resident-selector" id="residentSelector">
+                    <div class="resident-option" data-resident="local">
+                        <h4>🌍 Local / African Applicant</h4>
+                        <div class="price">ZK250</div>
+                        <small>Zambia & other African countries</small>
+                    </div>
+                    <div class="resident-option" data-resident="international">
+                        <h4>🌎 International Applicant</h4>
+                        <div class="price">$25 USD</div>
+                        <small>UK, US, Canada, Australia, Dubai & others</small>
+                    </div>
+                </div>
+                
+                <div class="payment-methods" id="paymentMethods">
+                    <div class="payment-method" data-method="mobile_money">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile Money</span>
+                        <small>(Zambia)</small>
+                    </div>
+                    <div class="payment-method" data-method="card">
+                        <i class="fab fa-cc-visa"></i>
+                        <span>Credit / Debit Card</span>
+                    </div>
+                    <div class="payment-method" data-method="paypal">
+                        <i class="fab fa-paypal"></i>
+                        <span>PayPal</span>
+                    </div>
+                    <div class="payment-method" data-method="bank">
+                        <i class="fas fa-university"></i>
+                        <span>Bank Transfer</span>
+                    </div>
+                </div>
+                
+                <div id="mobileMoneyFields" class="mobile-money-fields">
+                    <h4 style="margin-bottom: 16px;">Mobile Money Payment</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Select Provider</label>
+                            <select id="mobileProvider">
+                                <option value="">Select</option>
+                                <option value="airtel">Airtel Money</option>
+                                <option value="mtn">MTN Money</option>
+                                <option value="zamtel">Zamtel Money</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="tel" id="mobileNumber" placeholder="097XXXXXXX">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="cardFields" class="card-fields">
+                    <h4 style="margin-bottom: 16px;">Card Payment</h4>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Card Number</label>
+                            <input type="text" placeholder="4242 4242 4242 4242">
+                        </div>
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label>CVC</label>
+                            <input type="text" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="paypalFields" class="card-fields">
+                    <h4 style="margin-bottom: 16px;">PayPal Payment</h4>
+                    <div class="form-group full-width">
+                        <label>PayPal Email</label>
+                        <input type="email" placeholder="your@email.com">
+                    </div>
+                </div>
+                
+                <div id="bankFields" class="bank-fields">
+                    <h4 style="margin-bottom: 16px;">Bank Transfer Details</h4>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Bank Name</label>
+                            <input type="text" value="Nolan University - Admissions Account" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Name</label>
+                            <input type="text" value="Nolan University" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input type="text" value="1001234567" readonly>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Reference</label>
+                            <input type="text" id="bankReference" placeholder="Your Full Name">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="pay-now-btn" id="payNowBtn">Pay Application Fee</button>
+                
+                <div id="paymentStatus" class="payment-status pending" style="display: none;">
+                    <i class="fas fa-clock"></i> Payment pending. Complete payment to continue.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Academic History -->
+        <div class="form-section payment-locked" data-section="4">
+            <h2 class="section-title">Academic History</h2>
+            <p class="section-subtitle">Tell us about your educational background</p>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>Current or Most Recent School <span class="required">*</span></label>
+                    <input type="text" name="currentSchool" id="currentSchool" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>School Type</label>
+                    <select name="schoolType" id="schoolType" disabled>
+                        <option value="">Select</option>
+                        <option>Public School</option>
+                        <option>Private School</option>
+                        <option>International School</option>
+                        <option>Home School</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Expected Graduation Year <span class="required">*</span></label>
+                    <input type="number" name="gradYear" id="gradYear" min="2024" max="2030" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>Cumulative GPA <span class="required">*</span></label>
+                    <input type="text" name="gpa" id="gpa" placeholder="e.g., 3.85/4.0" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>Class Rank (optional)</label>
+                    <input type="text" name="classRank" id="classRank" placeholder="e.g., Top 10%" disabled>
+                </div>
+                <div class="form-group full-width">
+                    <label>Relevant Coursework</label>
+                    <textarea name="coursework" id="coursework" rows="3" placeholder="List any relevant courses you have completed" disabled></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label>Awards & Honors</label>
+                    <textarea name="awards" id="awards" rows="3" placeholder="List any academic awards, scholarships, or honors" disabled></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Test Scores -->
+        <div class="form-section payment-locked" data-section="5">
+            <h2 class="section-title">Standardized Test Scores</h2>
+            <p class="section-subtitle">We accept multiple testing options (optional for most programs)</p>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>SAT Total Score</label>
+                    <input type="text" name="sat" id="sat" placeholder="e.g., 1450" disabled>
+                </div>
+                <div class="form-group">
+                    <label>ACT Composite Score</label>
+                    <input type="text" name="act" id="act" placeholder="e.g., 32" disabled>
+                </div>
+                <div class="form-group">
+                    <label>GRE Verbal</label>
+                    <input type="text" name="greVerbal" id="greVerbal" placeholder="e.g., 160" disabled>
+                </div>
+                <div class="form-group">
+                    <label>GRE Quantitative</label>
+                    <input type="text" name="greQuant" id="greQuant" placeholder="e.g., 165" disabled>
+                </div>
+                <div class="form-group">
+                    <label>GMAT Total</label>
+                    <input type="text" name="gmat" id="gmat" placeholder="e.g., 700" disabled>
+                </div>
+                <div class="form-group">
+                    <label>TOEFL iBT (International)</label>
+                    <input type="text" name="toefl" id="toefl" placeholder="e.g., 100" disabled>
+                </div>
+                <div class="form-group">
+                    <label>IELTS (International)</label>
+                    <input type="text" name="ielts" id="ielts" placeholder="e.g., 7.5" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Test Optional Declaration</label>
+                    <select name="testOptional" id="testOptional" disabled>
+                        <option value="">Select</option>
+                        <option>Submitting test scores</option>
+                        <option>Not submitting test scores</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Essays -->
+        <div class="form-section payment-locked" data-section="6">
+            <h2 class="section-title">Personal Essays</h2>
+            <p class="section-subtitle">Help us get to know you better</p>
+            
+            <div class="form-group full-width">
+                <label>Essay 1: Why Nolan University? <span class="required">*</span></label>
+                <textarea name="essay1" id="essay1" rows="6" placeholder="Please explain why you are interested in Nolan University and how it aligns with your career goals. (300-500 words)" required disabled></textarea>
+                <div class="helper-text">300-500 words</div>
+            </div>
+            
+            <div class="form-group full-width">
+                <label>Essay 2: Leadership & Initiative <span class="required">*</span></label>
+                <textarea name="essay2" id="essay2" rows="6" placeholder="Describe a time you demonstrated leadership, took initiative, or solved a challenging problem. (300-500 words)" required disabled></textarea>
+                <div class="helper-text">300-500 words</div>
+            </div>
+            
+            <div class="form-group full-width">
+                <label>Essay 3 (Optional): Additional Information</label>
+                <textarea name="essay3" id="essay3" rows="4" placeholder="If there is anything else you would like us to know, please share here. (250 words max)" disabled></textarea>
+            </div>
+        </div>
+
+        <!-- Section 7: Extracurricular Activities -->
+        <div class="form-section payment-locked" data-section="7">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <p class="section-subtitle">Tell us how you spend your time outside the classroom</p>
+            
+            <div id="activitiesContainer">
+                <div class="activity-item" data-activity-id="0">
+                    <div class="activity-header">
+                        <h4>Activity 1</h4>
+                        <button type="button" class="remove-activity" onclick="removeActivity(this)" disabled><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Activity Name</label>
+                            <input type="text" name="activityName0" id="activityName0" placeholder="e.g., Debate Club, Student Government, Volunteer Work" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Role/Position</label>
+                            <input type="text" name="activityRole0" id="activityRole0" placeholder="e.g., President, Member, Founder" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Years Participated</label>
+                            <input type="text" name="activityYears0" id="activityYears0" placeholder="e.g., 9-12" disabled>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Description</label>
+                            <textarea name="activityDesc0" id="activityDesc0" rows="2" placeholder="Describe your involvement and impact (50 words max)" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="add-activity-btn" id="addActivityBtn" onclick="addActivity()" disabled>+ Add Another Activity</button>
+        </div>
+
+        <!-- Section 8: Documents -->
+        <div class="form-section payment-locked" data-section="8">
+            <h2 class="section-title">Supporting Documents</h2>
+            <p class="section-subtitle">Upload required materials</p>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>Resume/CV <span class="required">*</span></label>
+                    <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx" required disabled>
+                    <div class="helper-text">PDF or DOC format, max 5MB</div>
+                </div>
+                <div class="form-group full-width">
+                    <label>Transcript (Unofficial) <span class="required">*</span></label>
+                    <input type="file" name="transcript" id="transcript" accept=".pdf" required disabled>
+                    <div class="helper-text">PDF format, max 10MB</div>
+                </div>
+                <div class="form-group full-width">
+                    <label>Proof of Payment (If Bank Transfer)</label>
+                    <input type="file" name="paymentProof" id="paymentProof" accept=".pdf,.jpg,.png" disabled>
+                </div>
+                <div class="form-group full-width">
+                    <label>Letter of Recommendation 1</label>
+                    <input type="file" name="rec1" id="rec1" accept=".pdf" disabled>
+                </div>
+                <div class="form-group full-width">
+                    <label>Letter of Recommendation 2</label>
+                    <input type="file" name="rec2" id="rec2" accept=".pdf" disabled>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Recommender Information</label>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Recommender 1 Name</label>
+                        <input type="text" name="recName1" id="recName1" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Recommender 1 Email</label>
+                        <input type="email" name="recEmail1" id="recEmail1" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Recommender 2 Name</label>
+                        <input type="text" name="recName2" id="recName2" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Recommender 2 Email</label>
+                        <input type="email" name="recEmail2" id="recEmail2" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Review & Submit -->
+        <div class="form-section payment-locked" data-section="9">
+            <h2 class="section-title">Review Your Application</h2>
+            <p class="section-subtitle">Please review all information before submitting</p>
+            
+            <div id="reviewContent"></div>
+            
+            <div class="form-group full-width" style="margin-top: 24px;">
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="agreeTerms" disabled> I certify that all information provided is complete and accurate.
+                    </label>
+                    <label>
+                        <input type="checkbox" id="agreeSubmit" disabled> I understand that submitting false information may result in revocation of admission.
+                    </label>
+                    <label>
+                        <input type="checkbox" id="newsletter" disabled> I would like to receive updates about Nolan University news and events.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-navigation">
+            <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">← Previous</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Next →</button>
+            <button type="submit" class="btn btn-gold" id="submitBtn" style="display: none;">Submit Application</button>
+        </div>
+    </form>
+</div>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i> <span id="toastMessage"></span>
+</div>
+
+<div class="auto-save-indicator" id="autoSaveIndicator">
+    <i class="fas fa-save"></i> Draft saved
+</div>
+
+<script>
+    // Application State
+    let currentSection = 1;
+    const totalSections = 9;
+    let activityCount = 1;
+    let paymentCompleted = false;
+    let selectedResident = 'local';
+    let selectedPaymentMethod = 'mobile_money';
+    let selectedSchool = '';
+    let autoSaveTimer = null;
+
+    // School Programs Data
+    const schoolPrograms = {
+        lewis: {
+            name: 'Lewis School of Entrepreneurial Finance',
+            programs: [
+                'BSc Entrepreneurial Finance',
+                'BSc Venture Capital & Private Equity',
+                'BSc Financial Literacy & Enterprise Education',
+                'MSc Entrepreneurial Finance',
+                'MSc Venture Capital & Growth Equity',
+                'Executive Certificate: Funding Your Venture',
+                'Certificate in Family Business & Wealth Management',
+                'Summer Institute in Entrepreneurial Finance'
+            ]
+        },
+        entrepreneurship: {
+            name: 'School of Entrepreneurship & Venture Creation',
+            programs: [
+                'BSc Entrepreneurship',
+                'MSc Venture Creation',
+                'MBA in Entrepreneurship',
+                'Certificate in Social Enterprise',
+                'Executive Programme in Startup Leadership'
+            ]
+        },
+        banking: {
+            name: 'Graduate School of Banking & Finance',
+            programs: [
+                'BSc Banking & Finance',
+                'MSc Banking & Finance',
+                'MBA in Finance',
+                'Executive Certificate in Corporate Finance',
+                'Certificate in Risk Management'
+            ]
+        },
+        tech: {
+            name: 'School of Technology & AI',
+            programs: [
+                'BSc Computer Science',
+                'BSc Artificial Intelligence',
+                'MSc Data Science',
+                'MSc AI & Machine Learning',
+                'Certificate in Blockchain Technology',
+                'Executive Programme in Digital Transformation'
+            ]
+        },
+        business: {
+            name: 'School of Global Business & Leadership',
+            programs: [
+                'BSc International Business',
+                'MBA Global Leadership',
+                'MSc Strategic Management',
+                'Certificate in Cross-Cultural Leadership',
+                'Executive Programme in Corporate Strategy'
+            ]
+        }
+    };
+
+    // DOM Elements
+    const sections = document.querySelectorAll('.form-section');
+    const steps = document.querySelectorAll('.step');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('applicationForm');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const autoSaveIndicator = document.getElementById('autoSaveIndicator');
+
+    // School Selection Elements
+    const schoolCards = document.querySelectorAll('.school-card');
+    const programGroup = document.getElementById('programGroup');
+    const programSelect = document.getElementById('programSelect');
+
+    // Payment Elements
+    const residentOptions = document.querySelectorAll('.resident-option');
+    const paymentMethods = document.querySelectorAll('.payment-method');
+    const mobileMoneyFields = document.getElementById('mobileMoneyFields');
+    const cardFields = document.getElementById('cardFields');
+    const paypalFields = document.getElementById('paypalFields');
+    const bankFields = document.getElementById('bankFields');
+    const payNowBtn = document.getElementById('payNowBtn');
+    const paymentStatus = document.getElementById('paymentStatus');
+    const feeAmount = document.getElementById('feeAmount');
+    const feeNote = document.getElementById('feeNote');
+
+    // School Selection Handler
+    schoolCards.forEach(card => {
+        card.addEventListener('click', () => {
+            schoolCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedSchool = card.dataset.school;
+            
+            // Update program dropdown
+            const programs = schoolPrograms[selectedSchool]?.programs || [];
+            programSelect.innerHTML = '<option value="">Select Program</option>';
+            programs.forEach(program => {
+                programSelect.innerHTML += `<option value="${program}">${program}</option>`;
+            });
+            programGroup.style.display = 'block';
+            
+            // Auto-save
+            saveFormData();
+        });
+    });
+
+    // Show toast notification
+    function showToast(message, isError = false) {
+        toastMessage.textContent = message;
+        toast.className = 'toast show';
+        if (isError) toast.classList.add('error');
+        setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    // Show auto-save indicator
+    function showAutoSave() {
+        autoSaveIndicator.classList.add('show');
+        setTimeout(() => { autoSaveIndicator.classList.remove('show'); }, 2000);
+    }
+
+    // Update fee based on resident selection
+    function updateFee() {
+        if (selectedResident === 'local') {
+            feeAmount.innerHTML = 'ZK250';
+            feeNote.innerHTML = '(~$12.90 USD) for Zambian and African applicants';
+        } else {
+            feeAmount.innerHTML = '$25 USD';
+            feeNote.innerHTML = '(or equivalent in local currency) for international applicants';
+        }
+    }
+
+    // Resident selection handler
+    residentOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            residentOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            selectedResident = option.dataset.resident;
+            updateFee();
+            saveFormData();
+        });
+    });
+
+    // Payment method selection handler
+    paymentMethods.forEach(method => {
+        method.addEventListener('click', () => {
+            paymentMethods.forEach(m => m.classList.remove('selected'));
+            method.classList.add('selected');
+            selectedPaymentMethod = method.dataset.method;
+            
+            mobileMoneyFields.classList.remove('show');
+            cardFields.classList.remove('show');
+            paypalFields.classList.remove('show');
+            bankFields.classList.remove('show');
+            
+            if (selectedPaymentMethod === 'mobile_money') mobileMoneyFields.classList.add('show');
+            else if (selectedPaymentMethod === 'card') cardFields.classList.add('show');
+            else if (selectedPaymentMethod === 'paypal') paypalFields.classList.add('show');
+            else if (selectedPaymentMethod === 'bank') bankFields.classList.add('show');
+            
+            saveFormData();
+        });
+    });
+
+    // Process payment
+    function processPayment() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const country = document.getElementById('country').value;
+        
+        if (!firstName || !lastName || !email || !country) {
+            showToast('Please complete all required fields in Personal Information first', true);
+            return;
+        }
+        
+        if (!selectedSchool) {
+            showToast('Please select a school and program first', true);
+            return;
+        }
+        
+        payNowBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        payNowBtn.disabled = true;
+        
+        setTimeout(() => {
+            paymentCompleted = true;
+            paymentStatus.style.display = 'block';
+            paymentStatus.className = 'payment-status paid';
+            paymentStatus.innerHTML = '<i class="fas fa-check-circle"></i> Payment Successful! You can now complete your application.';
+            payNowBtn.innerHTML = '✓ Payment Complete';
+            payNowBtn.disabled = true;
+            
+            unlockSections();
+            showToast('Payment successful! You can now complete your application.');
+            
+            setTimeout(() => {
+                currentSection = 4;
+                updateFormDisplay();
+            }, 1500);
+        }, 2000);
+    }
+
+    // Unlock all form sections
+    function unlockSections() {
+        const lockedInputs = document.querySelectorAll('.payment-locked input, .payment-locked select, .payment-locked textarea, .payment-locked button');
+        lockedInputs.forEach(input => { input.disabled = false; });
+        
+        document.getElementById('agreeTerms').disabled = false;
+        document.getElementById('agreeSubmit').disabled = false;
+        document.getElementById('newsletter').disabled = false;
+        
+        const step3 = document.querySelector('.step[data-step="3"]');
+        if (step3) step3.classList.add('payment-paid');
+        
+        showToast('Application form unlocked! Please complete all sections.');
+    }
+
+    payNowBtn.addEventListener('click', processPayment);
+
+    // Update form display
+    function updateFormDisplay() {
+        sections.forEach((section, index) => {
+            section.classList.toggle('active', index + 1 === currentSection);
+        });
+        
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index + 1 === currentSection);
+            if (index + 1 < currentSection) step.classList.add('completed');
+        });
+        
+        prevBtn.style.display = currentSection === 1 ? 'none' : 'inline-block';
+        
+        if (currentSection === totalSections) {
+            nextBtn.style.display = 'none';
+            submitBtn.style.display = 'inline-block';
+            generateReview();
+        } else {
+            nextBtn.style.display = 'inline-block';
+            submitBtn.style.display = 'none';
+        }
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Validate current section
+    function validateSection(sectionNum) {
+        if (sectionNum === 1) {
+            if (!selectedSchool) {
+                showToast('Please select a school', true);
+                return false;
+            }
+            if (!programSelect.value) {
+                showToast('Please select a program', true);
+                return false;
+            }
+            return true;
+        }
+        
+        if (sectionNum === 3) {
+            if (!paymentCompleted) {
+                showToast('Please complete the payment to continue', true);
+                return false;
+            }
+            return true;
+        }
+        
+        const section = document.querySelector(`.form-section[data-section="${sectionNum}"]`);
+        const requiredInputs = section.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredInputs.forEach(input => {
+            if (!input.value.trim() && !input.disabled) {
+                input.classList.add('error');
+                isValid = false;
+            } else {
+                input.classList.remove('error');
+            }
+        });
+        
+        if (!isValid) showToast('Please fill in all required fields', true);
+        return isValid;
+    }
+
+    // Generate review content
+    function generateReview() {
+        const reviewContent = document.getElementById('reviewContent');
+        const firstName = document.getElementById('firstName')?.value || '';
+        const lastName = document.getElementById('lastName')?.value || '';
+        const email = document.getElementById('email')?.value || '';
+        const phone = document.getElementById('phone')?.value || '';
+        const country = document.getElementById('country')?.options[document.getElementById('country')?.selectedIndex]?.text || '';
+        const selectedProgram = programSelect?.options[programSelect.selectedIndex]?.text || '';
+        const schoolName = selectedSchool ? schoolPrograms[selectedSchool]?.name : '';
+        const currentSchool = document.getElementById('currentSchool')?.value || '';
+        const gradYear = document.getElementById('gradYear')?.value || '';
+        const gpa = document.getElementById('gpa')?.value || '';
+        
+        reviewContent.innerHTML = `
+            <div class="review-section">
+                <h3>Program Selection</h3>
+                <div class="review-item"><span class="review-label">School:</span><span class="review-value">${schoolName}</span></div>
+                <div class="review-item"><span class="review-label">Program:</span><span class="review-value">${selectedProgram}</span></div>
+            </div>
+            <div class="review-section">
+                <h3>Personal Information</h3>
+                <div class="review-item"><span class="review-label">Name:</span><span class="review-value">${firstName} ${lastName}</span></div>
+                <div class="review-item"><span class="review-label">Email:</span><span class="review-value">${email}</span></div>
+                <div class="review-item"><span class="review-label">Phone:</span><span class="review-value">${phone}</span></div>
+                <div class="review-item"><span class="review-label">Country:</span><span class="review-value">${country}</span></div>
+            </div>
+            <div class="review-section">
+                <h3>Academic History</h3>
+                <div class="review-item"><span class="review-label">Current School:</span><span class="review-value">${currentSchool}</span></div>
+                <div class="review-item"><span class="review-label">Graduation Year:</span><span class="review-value">${gradYear}</span></div>
+                <div class="review-item"><span class="review-label">GPA:</span><span class="review-value">${gpa}</span></div>
+            </div>
+            <div class="review-section">
+                <h3>Payment Information</h3>
+                <div class="review-item"><span class="review-label">Application Fee:</span><span class="review-value">${selectedResident === 'local' ? 'ZK250' : '$25 USD'}</span></div>
+                <div class="review-item"><span class="review-label">Payment Status:</span><span class="review-value"><span style="color: var(--success);">✓ Paid</span></span></div>
+            </div>
+        `;
+    }
+
+    // Next section
+    function nextSection() {
+        if (validateSection(currentSection)) {
+            if (currentSection < totalSections) {
+                currentSection++;
+                updateFormDisplay();
+                saveFormData();
+            }
+        }
+    }
+
+    // Previous section
+    function prevSection() {
+        if (currentSection > 1) {
+            currentSection--;
+            updateFormDisplay();
+            saveFormData();
+        }
+    }
+
+    // Submit form
+    function submitForm(e) {
+        e.preventDefault();
+        
+        const agreeTerms = document.getElementById('agreeTerms');
+        const agreeSubmit = document.getElementById('agreeSubmit');
+        
+        if (!agreeTerms.checked || !agreeSubmit.checked) {
+            showToast('Please agree to the terms and conditions', true);
+            return;
+        }
+        
+        const submitButton = document.getElementById('submitBtn');
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        submitButton.disabled = true;
+        
+        setTimeout(() => {
+            showToast('Application submitted successfully! You will receive a confirmation email.');
+            localStorage.removeItem('nolanApplication');
+            setTimeout(() => {
+                window.location.href = 'thank-you.html';
+            }, 2000);
+        }, 2000);
+    }
+
+    // Save form data
+    function saveFormData() {
+        const formData = {
+            selectedSchool,
+            selectedProgram: programSelect?.value,
+            selectedResident,
+            selectedPaymentMethod,
+            paymentCompleted,
+            currentSection
+        };
+        
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            if (input.name && !input.disabled) {
+                formData[input.name] = input.value;
+            }
+        });
+        
+        localStorage.setItem('nolanApplication', JSON.stringify(formData));
+    }
+
+    // Load form data
+    function loadFormData() {
+        const saved = localStorage.getItem('nolanApplication');
+        if (!saved) return;
+        const formData = JSON.parse(saved);
+        
+        if (formData.selectedSchool) {
+            selectedSchool = formData.selectedSchool;
+            schoolCards.forEach(card => {
+                if (card.dataset.school === selectedSchool) {
+                    card.classList.add('selected');
+                    const programs = schoolPrograms[selectedSchool]?.programs || [];
+                    programSelect.innerHTML = '<option value="">Select Program</option>';
+                    programs.forEach(program => {
+                        programSelect.innerHTML += `<option value="${program}" ${formData.selectedProgram === program ? 'selected' : ''}>${program}</option>`;
+                    });
+                    programGroup.style.display = 'block';
+                }
+            });
+        }
+        
+        if (formData.paymentCompleted) {
+            paymentCompleted = true;
+            unlockSections();
+        }
+        
+        if (formData.selectedResident) {
+            selectedResident = formData.selectedResident;
+            residentOptions.forEach(opt => {
+                if (opt.dataset.resident === selectedResident) opt.classList.add('selected');
+            });
+            updateFee();
+        }
+        
+        if (formData.currentSection) {
+            currentSection = formData.currentSection;
+            updateFormDisplay();
+        }
+    }
+
+    // Add activity
+    function addActivity() {
+        if (!paymentCompleted) return;
+        const container = document.getElementById('activitiesContainer');
+        const newId = activityCount;
+        const activityHtml = `
+            <div class="activity-item" data-activity-id="${newId}">
+                <div class="activity-header">
+                    <h4>Activity ${activityCount + 1}</h4>
+                    <button type="button" class="remove-activity" onclick="removeActivity(this)"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full-width"><label>Activity Name</label><input type="text" name="activityName${newId}" placeholder="e.g., Debate Club"></div>
+                    <div class="form-group"><label>Role/Position</label><input type="text" name="activityRole${newId}" placeholder="e.g., President"></div>
+                    <div class="form-group"><label>Years</label><input type="text" name="activityYears${newId}" placeholder="e.g., 9-12"></div>
+                    <div class="form-group full-width"><label>Description</label><textarea name="activityDesc${newId}" rows="2" placeholder="Describe your involvement"></textarea></div>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', activityHtml);
+        activityCount++;
+    }
+
+    window.removeActivity = function(btn) {
+        const activityItem = btn.closest('.activity-item');
+        if (document.querySelectorAll('.activity-item').length > 1) {
+            activityItem.remove();
+        } else {
+            showToast('You must have at least one activity entry', true);
+        }
+    };
+
+    // Auto-save setup
+    function setupAutoSave() {
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (autoSaveTimer) clearTimeout(autoSaveTimer);
+                autoSaveTimer = setTimeout(() => {
+                    saveFormData();
+                    showAutoSave();
+                }, 1000);
+            });
+        });
+    }
+
+    // Event Listeners
+    nextBtn.addEventListener('click', nextSection);
+    prevBtn.addEventListener('click', prevSection);
+    form.addEventListener('submit', submitForm);
+    
+    steps.forEach(step => {
+        step.addEventListener('click', () => {
+            const stepNum = parseInt(step.dataset.step);
+            if (stepNum === 3 && !paymentCompleted) {
+                showToast('Please complete payment first', true);
+                return;
+            }
+            if (stepNum < currentSection) {
+                currentSection = stepNum;
+                updateFormDisplay();
+            } else if (stepNum > currentSection && validateSection(currentSection)) {
+                currentSection = stepNum;
+                updateFormDisplay();
+            }
+        });
+    });
+
+    // Initialize
+    loadFormData();
+    setupAutoSave();
+    updateFormDisplay();
+    
+    residentOptions[0].classList.add('selected');
+    paymentMethods[0].classList.add('selected');
+    mobileMoneyFields.classList.add('show');
+    
+    console.log('Nolan University Central Application loaded');
+</script>
+</body>
+</html>
