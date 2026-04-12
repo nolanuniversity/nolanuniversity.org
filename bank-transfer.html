@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Transfer | Nolan University</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1C3A 0%, #1A2D4D 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .payment-container { background: white; border-radius: 24px; padding: 40px; max-width: 550px; width: 100%; }
+        .bank-details { background: #F5F5F5; padding: 24px; border-radius: 16px; margin: 20px 0; }
+        .bank-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #E0E0E0; }
+        .btn { width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+        .upload-area { border: 2px dashed #C5A028; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; cursor: pointer; }
+        .upload-area:hover { background: #FFF8E7; }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>🏦 Bank Transfer</h1>
+        <div class="bank-details">
+            <div class="bank-row"><strong>Bank Name:</strong><span>Zanaco Bank</span></div>
+            <div class="bank-row"><strong>Account Name:</strong><span>Nolan University</span></div>
+            <div class="bank-row"><strong>Account Number:</strong><span>1234567890123</span></div>
+            <div class="bank-row"><strong>Branch:</strong><span>Lusaka Main</span></div>
+            <div class="bank-row"><strong>Swift Code:</strong><span>ZANAZMLU</span></div>
+        </div>
+        <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: #C5A028;"></i>
+            <p>Click to upload proof of payment</p>
+            <input type="file" id="proofUpload" style="display: none;" accept="image/*,.pdf">
+        </div>
+        <button class="btn" id="confirmBtn">Confirm & Continue</button>
+        <button class="btn" id="cancelBtn" style="background: #0A1C3A; color: white; margin-top: 12px;">Cancel</button>
+    </div>
+    <script>
+        let proofUploaded = false;
+        document.getElementById('uploadArea').onclick = () => document.getElementById('proofUpload').click();
+        document.getElementById('proofUpload').onchange = function(e) { if(e.target.files.length) { proofUploaded = true; document.getElementById('uploadArea').style.background = '#E8F5E9'; document.getElementById('uploadArea').style.borderColor = '#28A745'; alert('Proof uploaded successfully!'); } };
+        document.getElementById('confirmBtn').onclick = () => { if(proofUploaded) { localStorage.setItem('applicationFeePaid', 'true'); localStorage.setItem('paymentMethod', 'Bank Transfer'); window.location.href = '../index.html?payment=success'; } else alert('Please upload proof of payment first'); };
+        document.getElementById('cancelBtn').onclick = () => window.location.href = '../index.html';
+    </script>
+</body>
+</html>
