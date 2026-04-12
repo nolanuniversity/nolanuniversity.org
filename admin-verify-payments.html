@@ -122,7 +122,7 @@
         // ========================================
         const EMAILJS_CONFIG = {
             PUBLIC_KEY: '1GuyWccqX6p3b2_9T',      // Replace with your EmailJS public key
-            SERVICE_ID: 'NYot•••••••••••••••••',      // Replace with your EmailJS service ID
+            SERVICE_ID: 'service_nolan_university',      // Replace with your EmailJS service ID
             TEMPLATE_APPROVED: 'template_payment_approved', // Template for approval email
             TEMPLATE_REJECTED: 'template_payment_rejected'  // Template for rejection email
         };
@@ -130,10 +130,20 @@
         // Initialize EmailJS
         emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
         
-        // Check authentication
-        if (sessionStorage.getItem('adminLoggedIn') !== 'true') {
-            window.location.href = 'index.html';
-        }
+        // Check authentication with debug
+(function checkAuth() {
+    const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+    console.log('Auth check - adminLoggedIn:', isLoggedIn);
+    
+    if (isLoggedIn !== 'true') {
+        console.log('Not logged in, redirecting to index.html');
+        window.location.replace('index.html');
+        return false;
+    }
+    
+    console.log('Authentication successful');
+    return true;
+     })();
         
         // Display admin email
         document.getElementById('adminEmailDisplay').innerText = sessionStorage.getItem('adminEmail') || 'Admin';
