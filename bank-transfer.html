@@ -3,44 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Transfer | Nolan University</title>
+    <title>Bank Transfer Payment | Nolan University</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1C3A 0%, #1A2D4D 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .payment-container { background: white; border-radius: 24px; padding: 40px; max-width: 550px; width: 100%; }
+        .payment-container { background: white; border-radius: 24px; padding: 40px; max-width: 600px; width: 100%; }
         .bank-details { background: #F5F5F5; padding: 24px; border-radius: 16px; margin: 20px 0; }
         .bank-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #E0E0E0; }
-        .btn { width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 20px; }
-        .upload-area { border: 2px dashed #C5A028; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; cursor: pointer; }
-        .upload-area:hover { background: #FFF8E7; }
+        .upload-area { border: 2px dashed #C5A028; border-radius: 12px; padding: 30px; text-align: center; margin: 20px 0; cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { background: #FFF8E7; border-color: #D4B84A; }
+        .upload-area.dragover { background: #E8F0FE; border-color: #0A1C3A; }
+        .preview-image { max-width: 100%; max-height: 200px; margin-top: 16px; border-radius: 8px; display: none; }
+        .btn { width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; margin-top: 20px; transition: all 0.3s; }
+        .btn:hover { background: #D4B84A; transform: translateY(-2px); }
+        .btn-secondary { background: #0A1C3A; color: white; margin-top: 12px; }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-top: 16px; }
+        .status-pending { background: #FFF3CD; color: #856404; }
+        .status-approved { background: #D4EDDA; color: #155724; }
+        .status-rejected { background: #F8D7DA; color: #721C24; }
+        .reference-code { background: #0A1C3A; color: white; padding: 12px; border-radius: 8px; text-align: center; font-family: monospace; font-size: 18px; letter-spacing: 2px; margin: 16px 0; }
+        .helper-text { font-size: 12px; color: #666; margin-top: 8px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .loading.show { display: block; }
     </style>
 </head>
 <body>
     <div class="payment-container">
-        <h1>🏦 Bank Transfer</h1>
+        <h1><i class="fas fa-university"></i> Bank Transfer</h1>
+        <p>Pay your application fee via bank transfer</p>
+        
         <div class="bank-details">
+            <h3 style="margin-bottom: 16px; color: #0A1C3A;">Bank Account Details</h3>
             <div class="bank-row"><strong>Bank Name:</strong><span>Zanaco Bank</span></div>
             <div class="bank-row"><strong>Account Name:</strong><span>Nolan University</span></div>
             <div class="bank-row"><strong>Account Number:</strong><span>1234567890123</span></div>
             <div class="bank-row"><strong>Branch:</strong><span>Lusaka Main</span></div>
             <div class="bank-row"><strong>Swift Code:</strong><span>ZANAZMLU</span></div>
+            <div class="bank-row"><strong>Reference:</strong><span id="referenceCode">NU-XXXXXXXX</span></div>
         </div>
+        
+        <div class="reference-code" id="refDisplay">NU-XXXXXXXX</div>
+        
         <div class="upload-area" id="uploadArea">
             <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: #C5A028;"></i>
-            <p>Click to upload proof of payment</p>
+            <p>Click or drag to upload proof of payment</p>
+            <p style="font-size: 12px; margin-top: 8px;">PNG, JPG, or PDF (max 5MB)</p>
             <input type="file" id="proofUpload" style="display: none;" accept="image/*,.pdf">
+            <img id="preview" class="preview-image" alt="Preview">
         </div>
-        <button class="btn" id="confirmBtn">Confirm & Continue</button>
-        <button class="btn" id="cancelBtn" style="background: #0A1C3A; color: white; margin-top: 12px;">Cancel</button>
+        
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-spin"></i> Submitting proof...
+        </div>
+        
+        <button class="btn" id="submitProofBtn">Submit Proof for Verification</button>
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        
+        <div id="submissionStatus" style="margin-top: 16px; text-align: center;"></div>
     </div>
+
     <script>
-        let proofUploaded = false;
-        document.getElementById('uploadArea').onclick = () => document.getElementById('proofUpload').click();
-        document.getElementById('proofUpload').onchange = function(e) { if(e.target.files.length) { proofUploaded = true; document.getElementById('uploadArea').style.background = '#E8F5E9'; document.getElementById('uploadArea').style.borderColor = '#28A745'; alert('Proof uploaded successfully!'); } };
-        document.getElementById('confirmBtn').onclick = () => { if(proofUploaded) { localStorage.setItem('applicationFeePaid', 'true'); localStorage.setItem('paymentMethod', 'Bank Transfer'); window.location.href = '../index.html?payment=success'; } else alert('Please upload proof of payment first'); };
-        document.getElementById('cancelBtn').onclick = () => window.location.href = '../index.html';
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount') || '250';
+        const currency = urlParams.get('currency') || 'ZMW';
+        const applicantName = decodeURIComponent(urlParams.get('name') || 'Applicant');
+        const applicantEmail = decodeURIComponent(urlParams.get('email') || '');
+        
+        // Generate unique reference code
+        const referenceCode = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
+        document.getElementById('referenceCode').innerText = referenceCode;
+        document.getElementById('refDisplay').innerText = referenceCode;
+        
+        let selectedFile = null;
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('proofUpload');
+        const preview = document.getElementById('preview');
+        const submitBtn = document.getElementById('submitProofBtn');
+        const loading = document.getElementById('loading');
+        const submissionStatus = document.getElementById('submissionStatus');
+        
+        // Handle file selection
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) handleFile(e.target.files[0]);
+        });
+        
+        function handleFile(file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File too large. Max 5MB');
+                return;
+            }
+            selectedFile = file;
+            
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+            uploadArea.style.borderColor = '#28A745';
+        }
+        
+        // Submit proof for verification
+        submitBtn.addEventListener('click', async () => {
+            if (!selectedFile) {
+                alert('Please upload proof of payment first');
+                return;
+            }
+            
+            loading.classList.add('show');
+            submitBtn.disabled = true;
+            
+            // Create submission data
+            const submissionData = {
+                referenceCode: referenceCode,
+                applicantName: applicantName,
+                applicantEmail: applicantEmail,
+                amount: amount,
+                currency: currency,
+                paymentMethod: 'Bank Transfer',
+                timestamp: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            // In a real implementation, you would send this to your backend
+            // For demo, we'll store in localStorage and simulate email notification
+            
+            // Store pending verification
+            let pendingVerifications = JSON.parse(localStorage.getItem('pendingVerifications') || '[]');
+            pendingVerifications.push(submissionData);
+            localStorage.setItem('pendingVerifications', JSON.stringify(pendingVerifications));
+            
+            // Store that this applicant has submitted proof
+            localStorage.setItem(`proof_${referenceCode}`, JSON.stringify(submissionData));
+            
+            // Simulate sending email to admin
+            console.log('Email sent to admin@nolan.edu - New payment proof awaiting verification');
+            console.log('Reference:', referenceCode);
+            console.log('Applicant:', applicantName);
+            console.log('Amount:', amount, currency);
+            
+            setTimeout(() => {
+                loading.classList.remove('show');
+                submissionStatus.innerHTML = `
+                    <div style="background: #D4EDDA; padding: 16px; border-radius: 12px; color: #155724;">
+                        <i class="fas fa-check-circle"></i> Proof submitted successfully!<br>
+                        Your reference code: <strong>${referenceCode}</strong><br><br>
+                        Our admissions team will verify your payment within 24 hours.<br>
+                        You will receive an email confirmation once verified.<br><br>
+                        <a href="../index.html?ref=${referenceCode}" style="color: #0A1C3A; font-weight: 600;">Return to Application</a>
+                    </div>
+                `;
+                submitBtn.style.display = 'none';
+                document.getElementById('cancelBtn').style.display = 'none';
+                uploadArea.style.display = 'none';
+                
+                // Redirect after 5 seconds
+                setTimeout(() => {
+                    window.location.href = `../index.html?ref=${referenceCode}&pending=true`;
+                }, 5000);
+            }, 1500);
+        });
+        
+        document.getElementById('cancelBtn').addEventListener('click', () => {
+            window.location.href = '../index.html';
+        });
     </script>
 </body>
 </html>
