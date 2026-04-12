@@ -78,184 +78,185 @@
     </div>
 
     <script>
-        // ========================================
-        // EMAILJS CONFIGURATION - REPLACE WITH YOUR ACTUAL KEYS
-        // ========================================
-        const EMAILJS_CONFIG = {
-            PUBLIC_KEY: '1GuyWccqX6p3b2_9T',
-            SERVICE_ID: 'service_nolan_university',
-            TEMPLATE_ADMIN: 'template_payment_received',
-            TEMPLATE_STUDENT: 'template_payment_submitted'
+    // ========================================
+    // EMAILJS CONFIGURATION
+    // ========================================
+    const EMAILJS_CONFIG = {
+        PUBLIC_KEY: '1GuyWccqX6p3b2_9T',
+        SERVICE_ID: 'service_nolan_university',
+        TEMPLATE_ADMIN: 'template_payment_received',
+        TEMPLATE_STUDENT: 'template_payment_submitted'
+    };
+    
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = urlParams.get('amount') || '250';
+    const currency = urlParams.get('currency') || 'ZMW';
+    const applicantName = decodeURIComponent(urlParams.get('name') || 'Applicant');
+    const applicantEmail = decodeURIComponent(urlParams.get('email') || '');
+    const applicantPhone = decodeURIComponent(urlParams.get('phone') || '');
+    
+    // MTN specific merchant number - UPDATE WITH YOUR ACTUAL NUMBER
+    const MTN_MERCHANT = '0768526191';
+    
+    const referenceCode = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
+    const displayAmount = currency === 'ZMW' ? `ZK${amount}` : `$${amount}`;
+    
+    document.getElementById('amountDisplay').innerText = displayAmount;
+    document.getElementById('amountDisplay2').innerText = displayAmount;
+    document.getElementById('referenceCode').innerText = referenceCode;
+    document.getElementById('referenceDisplay').innerText = referenceCode;
+    document.getElementById('merchantNumber').innerText = MTN_MERCHANT;
+    document.getElementById('merchantDisplay').innerText = MTN_MERCHANT;
+    
+    let selectedFile = null;
+    let selectedFileData = null;
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('proofUpload');
+    const preview = document.getElementById('preview');
+    const submitBtn = document.getElementById('submitProofBtn');
+    const loading = document.getElementById('loading');
+    const successMessage = document.getElementById('successMessage');
+    
+    uploadArea.addEventListener('click', () => fileInput.click());
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file) handleFile(file);
+    });
+    
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) handleFile(e.target.files[0]);
+    });
+    
+    function handleFile(file) {
+        if (file.size > 5 * 1024 * 1024) {
+            alert('File too large. Max 5MB');
+            return;
+        }
+        selectedFile = file;
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            selectedFileData = e.target.result;
+            if (file.type.startsWith('image/')) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(file);
+        uploadArea.style.borderColor = '#28A745';
+        submitBtn.disabled = false;  // ✅ FIX 1: Enable submit button after file selection
+    }
+    
+    async function sendAdminNotification() {
+        const templateParams = {
+            to_email: 'admin@nolanuniversity.org',  // ✅ FIX 2: Added closing quote
+            applicant_name: applicantName,
+            applicant_email: applicantEmail,
+            applicant_phone: applicantPhone,
+            reference_code: referenceCode,
+            amount: displayAmount,
+            payment_method: 'MTN Money',
+            submission_date: new Date().toLocaleString(),
+            admin_dashboard_link: 'https://nolanuniversity.org/admin.html'
+        };
+        try {
+            await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ADMIN, templateParams);
+            console.log('Admin notification email sent');
+            return true;
+        } catch (error) {
+            console.error('Failed to send admin email:', error);
+            return false;
+        }
+    }
+    
+    async function sendStudentConfirmation() {
+        const templateParams = {
+            to_email: applicantEmail,
+            applicant_name: applicantName,
+            reference_code: referenceCode,
+            amount: displayAmount,
+            payment_method: 'MTN Money',
+            submission_date: new Date().toLocaleString(),
+            status: 'pending'
+        };
+        try {
+            await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_STUDENT, templateParams);
+            console.log('Student confirmation email sent');
+            return true;
+        } catch (error) {
+            console.error('Failed to send student email:', error);
+            return false;
+        }
+    }
+    
+    submitBtn.addEventListener('click', async () => {
+        if (!selectedFile) {
+            alert('Please upload proof of payment first');
+            return;
+        }
+        
+        loading.classList.add('show');
+        submitBtn.disabled = true;
+        
+        const submissionData = {
+            referenceCode: referenceCode,
+            applicantName: applicantName,
+            applicantEmail: applicantEmail,
+            applicantPhone: applicantPhone,
+            amount: amount,
+            currency: currency,
+            paymentMethod: 'MTN Money',
+            merchantNumber: MTN_MERCHANT,
+            timestamp: new Date().toISOString(),
+            status: 'pending',
+            proofImage: selectedFileData
         };
         
-        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        let pendingVerifications = JSON.parse(localStorage.getItem('pendingVerifications') || '[]');
+        pendingVerifications.push(submissionData);
+        localStorage.setItem('pendingVerifications', JSON.stringify(pendingVerifications));
+        localStorage.setItem(`proof_${referenceCode}`, JSON.stringify(submissionData));
         
-        const urlParams = new URLSearchParams(window.location.search);
-        const amount = urlParams.get('amount') || '250';
-        const currency = urlParams.get('currency') || 'ZMW';
-        const applicantName = decodeURIComponent(urlParams.get('name') || 'Applicant');
-        const applicantEmail = decodeURIComponent(urlParams.get('email') || '');
-        const applicantPhone = decodeURIComponent(urlParams.get('phone') || '');
+        await sendAdminNotification();
+        await sendStudentConfirmation();
         
-        // MTN specific merchant number - UPDATE WITH YOUR ACTUAL NUMBER
-        const MTN_MERCHANT = '0768526191';
-        
-        const referenceCode = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
-        const displayAmount = currency === 'ZMW' ? `ZK${amount}` : `$${amount}`;
-        
-        document.getElementById('amountDisplay').innerText = displayAmount;
-        document.getElementById('amountDisplay2').innerText = displayAmount;
-        document.getElementById('referenceCode').innerText = referenceCode;
-        document.getElementById('referenceDisplay').innerText = referenceCode;
-        document.getElementById('merchantNumber').innerText = MTN_MERCHANT;
-        document.getElementById('merchantDisplay').innerText = MTN_MERCHANT;
-        
-        let selectedFile = null;
-        let selectedFileData = null;
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('proofUpload');
-        const preview = document.getElementById('preview');
-        const submitBtn = document.getElementById('submitProofBtn');
-        const loading = document.getElementById('loading');
-        const successMessage = document.getElementById('successMessage');
-        
-        uploadArea.addEventListener('click', () => fileInput.click());
-        
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
-        });
-        
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files[0]) handleFile(e.target.files[0]);
-        });
-        
-        function handleFile(file) {
-            if (file.size > 5 * 1024 * 1024) {
-                alert('File too large. Max 5MB');
-                return;
-            }
-            selectedFile = file;
-            
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                selectedFileData = e.target.result;
-                if (file.type.startsWith('image/')) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-            };
-            reader.readAsDataURL(file);
-            uploadArea.style.borderColor = '#28A745';
-        }
-        
-        async function sendAdminNotification() {
-            const templateParams = {
-                to_email: 'admin@nolanuniversity.org,
-                applicant_name: applicantName,
-                applicant_email: applicantEmail,
-                applicant_phone: applicantPhone,
-                reference_code: referenceCode,
-                amount: displayAmount,
-                payment_method: 'MTN Money',
-                submission_date: new Date().toLocaleString(),
-                admin_dashboard_link: 'https://nolanuniversity.org/admin.html'
-            };
-            try {
-                await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ADMIN, templateParams);
-                console.log('Admin notification email sent');
-                return true;
-            } catch (error) {
-                console.error('Failed to send admin email:', error);
-                return false;
-            }
-        }
-        
-        async function sendStudentConfirmation() {
-            const templateParams = {
-                to_email: applicantEmail,
-                applicant_name: applicantName,
-                reference_code: referenceCode,
-                amount: displayAmount,
-                payment_method: 'MTN Money',
-                submission_date: new Date().toLocaleString(),
-                status: 'pending'
-            };
-            try {
-                await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_STUDENT, templateParams);
-                console.log('Student confirmation email sent');
-                return true;
-            } catch (error) {
-                console.error('Failed to send student email:', error);
-                return false;
-            }
-        }
-        
-        submitBtn.addEventListener('click', async () => {
-            if (!selectedFile) {
-                alert('Please upload proof of payment first');
-                return;
-            }
-            
-            loading.classList.add('show');
-            submitBtn.disabled = true;
-            
-            const submissionData = {
-                referenceCode: referenceCode,
-                applicantName: applicantName,
-                applicantEmail: applicantEmail,
-                applicantPhone: applicantPhone,
-                amount: amount,
-                currency: currency,
-                paymentMethod: 'MTN Money',
-                merchantNumber: MTN_MERCHANT,
-                timestamp: new Date().toISOString(),
-                status: 'pending',
-                proofImage: selectedFileData
-            };
-            
-            let pendingVerifications = JSON.parse(localStorage.getItem('pendingVerifications') || '[]');
-            pendingVerifications.push(submissionData);
-            localStorage.setItem('pendingVerifications', JSON.stringify(pendingVerifications));
-            localStorage.setItem(`proof_${referenceCode}`, JSON.stringify(submissionData));
-            
-            await sendAdminNotification();
-            await sendStudentConfirmation();
+        setTimeout(() => {
+            loading.classList.remove('show');
+            successMessage.style.display = 'block';
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle"></i> Proof submitted successfully!<br>
+                Reference: <strong>${referenceCode}</strong><br><br>
+                A confirmation email has been sent to ${applicantEmail}.<br>
+                Our team will verify your payment within 24 hours.<br><br>
+                <a href="../index.html?ref=${referenceCode}&pending=true" style="color: #0A1C3A; font-weight: 600;">Return to Application</a>
+            `;
+            submitBtn.style.display = 'none';
+            document.getElementById('cancelBtn').style.display = 'none';
+            uploadArea.style.display = 'none';
             
             setTimeout(() => {
-                loading.classList.remove('show');
-                successMessage.style.display = 'block';
-                successMessage.innerHTML = `
-                    <i class="fas fa-check-circle"></i> Proof submitted successfully!<br>
-                    Reference: <strong>${referenceCode}</strong><br><br>
-                    A confirmation email has been sent to ${applicantEmail}.<br>
-                    Our team will verify your payment within 24 hours.<br><br>
-                    <a href="../index.html?ref=${referenceCode}&pending=true" style="color: #0A1C3A; font-weight: 600;">Return to Application</a>
-                `;
-                submitBtn.style.display = 'none';
-                document.getElementById('cancelBtn').style.display = 'none';
-                uploadArea.style.display = 'none';
-                
-                setTimeout(() => {
-                    window.location.href = `../index.html?ref=${referenceCode}&pending=true`;
-                }, 5000);
-            }, 1500);
-        });
-        
-        document.getElementById('cancelBtn').addEventListener('click', () => {
-            window.location.href = '../index.html';
-        });
-    </script>
+                window.location.href = `../index.html?ref=${referenceCode}&pending=true`;
+            }, 5000);
+        }, 1500);
+    });
+    
+    document.getElementById('cancelBtn').addEventListener('click', () => {
+        window.location.href = '../index.html';
+    });
+        </script>
 </body>
 </html>
