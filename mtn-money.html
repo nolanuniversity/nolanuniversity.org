@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN Money Payment | Nolan University</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0A1C3A 0%, #1A2D4D 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .payment-container { background: white; border-radius: 24px; padding: 40px; max-width: 500px; width: 100%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .payment-icon { width: 80px; height: 80px; background: #E8F0FE; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .payment-icon i { font-size: 48px; color: #C5A028; }
+        h1 { font-size: 28px; color: #0A1C3A; margin-bottom: 8px; }
+        .amount { font-size: 36px; font-weight: 800; color: #C5A028; margin: 20px 0; }
+        .details { background: #F5F5F5; padding: 20px; border-radius: 16px; text-align: left; margin: 20px 0; }
+        .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E0E0E0; }
+        .detail-label { font-weight: 600; color: #666; }
+        .instruction { background: #FFF8E7; padding: 16px; border-radius: 12px; margin: 20px 0; text-align: left; border-left: 4px solid #C5A028; }
+        .phone-number { background: #0A1C3A; color: white; padding: 16px; border-radius: 12px; text-align: center; margin: 20px 0; }
+        .phone-number span { font-size: 24px; font-weight: 700; letter-spacing: 2px; }
+        .btn { display: inline-block; width: 100%; padding: 16px; background: #C5A028; color: #0A1C3A; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; }
+        .btn:hover { background: #D4B84A; transform: translateY(-2px); }
+        .btn-secondary { background: #0A1C3A; color: white; margin-top: 12px; }
+        @media (max-width: 480px) { .payment-container { padding: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h1>MTN Money Payment</h1>
+        <p>Pay your application fee using MTN Money</p>
+        <div class="amount" id="amountDisplay">ZK250</div>
+        
+        <div class="details">
+            <div class="detail-row"><span class="detail-label">Payee:</span><span class="detail-value">Nolan University</span></div>
+            <div class="detail-row"><span class="detail-label">MTN Money Number:</span><span class="detail-value" id="merchantPhone">+260 96 1234567</span></div>
+            <div class="detail-row"><span class="detail-label">Reference:</span><span class="detail-value" id="reference">NU-APP-XXXX</span></div>
+        </div>
+        
+        <div class="instruction">
+            <h3><i class="fas fa-info-circle"></i> How to pay using MTN Money:</h3>
+            <p>1. Dial *303# on your MTN line<br>2. Select "Send Money"<br>3. Enter merchant number: <strong>0961234567</strong><br>4. Enter amount and reference<br>5. Enter your PIN to confirm</p>
+        </div>
+        
+        <div class="phone-number">
+            <i class="fas fa-phone-alt"></i><br>
+            <span>096 123 4567</span>
+        </div>
+        
+        <button class="btn" id="confirmPaidBtn"><i class="fas fa-check-circle"></i> I Have Made the Payment</button>
+        <button class="btn btn-secondary" id="cancelBtn"><i class="fas fa-arrow-left"></i> Cancel & Return</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let amount = urlParams.get('amount') || '250';
+        const currency = urlParams.get('currency') || 'ZMW';
+        const displayAmount = currency === 'ZMW' ? `ZK${amount}` : `$${amount}`;
+        document.getElementById('amountDisplay').innerText = displayAmount;
+        const reference = `NU-${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
+        document.getElementById('reference').innerText = reference;
+        document.getElementById('confirmPaidBtn').addEventListener('click', () => { localStorage.setItem('applicationFeePaid', 'true'); window.location.href = '../index.html?payment=success'; });
+        document.getElementById('cancelBtn').addEventListener('click', () => { window.location.href = '../index.html'; });
+    </script>
+</body>
+</html>
