@@ -9,12 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --navy: #0B1F3B;
       --navy-light: #13294B;
@@ -22,8 +17,6 @@
       --gold: #D4AF37;
       --gold-dark: #B8960C;
       --gold-10: rgba(212, 175, 55, 0.1);
-      --electric-blue: #1E90FF;
-      --orange-startup: #FF6A00;
       --white: #ffffff;
       --soft: #F5F7FA;
       --text: #1A2A3A;
@@ -31,46 +24,19 @@
       --gray-mid: #E2E8F0;
       --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
     }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--soft);
-      color: var(--text);
-      overflow-x: hidden;
-      padding-bottom: 90px;
-    }
-
+    body { font-family: 'Inter', sans-serif; background: var(--soft); color: var(--text); overflow-x: hidden; padding-bottom: 90px; }
     .container { width: min(1180px, 92%); margin: auto; }
-
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(11, 31, 59, 0.96);
-      backdrop-filter: blur(12px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(11, 31, 59, 0.96); backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
-
-    .nav-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      flex-wrap: wrap;
-      gap: 16px;
-      width: min(1180px, 92%);
-      margin: auto;
-    }
-
+    .nav-wrapper { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; flex-wrap: wrap; gap: 16px; width: min(1180px, 92%); margin: auto; }
     .logo img { height: 52px; width: auto; display: block; }
     .logo span.tagline { font-size: 9px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block; }
-
     .nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
     .nav-links a { font-size: 13px; font-weight: 500; color: #e2e8f0; transition: 0.3s; cursor: pointer; }
     .nav-links a:hover, .nav-links a.active-nav { color: var(--gold); text-shadow: 0 0 5px var(--gold); }
-
     .btn { padding: 10px 24px; border-radius: 40px; font-weight: 600; transition: 0.3s; cursor: pointer; font-size: 13px; display: inline-block; text-decoration: none; }
     .btn-primary { background: var(--gold); color: var(--navy); box-shadow: 0 8px 18px rgba(212, 175, 55, 0.25); }
     .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 0 20px var(--gold); }
@@ -78,139 +44,61 @@
     .btn-outline:hover { background: rgba(212, 175, 55, 0.2); transform: translateY(-2px); box-shadow: 0 0 15px var(--gold); }
     .navbar-spacer { height: 95px; }
 
-    /* HERO VIDEO SECTION */
-    .hero-section {
-      position: relative;
-      width: 100%;
-      height: 85vh;
-      min-height: 600px;
-      overflow: hidden;
-      background: #000;
-    }
-    .video-carousel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .video-carousel video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.8s ease;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(11, 31, 59, 0.75), rgba(6, 18, 37, 0.85));
-      z-index: 2;
-    }
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      width: 100%;
-      max-width: 900px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .hero-headline {
-      color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
+    /* HERO VIDEO SECTION - EXACTLY LIKE ORIGINAL */
+    .hero-section { position: relative; width: 100%; height: 85vh; min-height: 600px; overflow: hidden; background: #000; }
+    .video-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .video-carousel video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11, 31, 59, 0.7), rgba(6, 18, 37, 0.85)); z-index: 2; }
+    .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; width: 100%; max-width: 900px; padding: 0 20px; text-align: center; }
+    .hero-headline { color: white; font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; margin-bottom: 16px; }
     .hero-headline .gold { color: var(--gold); }
-    .hero-subheadline { color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 8px; }
-    .program-details {
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      margin: 16px 0;
-      border: 1px solid rgba(212,175,55,0.3);
-    }
+    .hero-subheadline { color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 16px; }
+    .program-details { background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); border-radius: 20px; padding: 20px; margin: 16px 0; border: 1px solid rgba(212,175,55,0.3); }
     .program-details p { color: white; font-size: 0.9rem; margin: 8px 0; line-height: 1.5; }
-    .pricing-tag {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--navy);
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      margin: 8px 0;
-    }
+    .pricing-tag { display: inline-block; background: var(--gold); color: var(--navy); padding: 6px 18px; border-radius: 40px; font-weight: 700; font-size: 0.85rem; margin: 8px 0; }
     .slide-text { display: none; }
     .slide-text.active-slide-text { display: block; }
-    .carousel-dots {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
-      z-index: 3;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+    .carousel-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 3; flex-wrap: wrap; justify-content: center; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: 0.2s; }
     .dot.active { background: var(--gold); width: 24px; border-radius: 20px; box-shadow: 0 0 10px var(--gold); }
     .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
 
-    .section { padding: 70px 0; }
+    .section { padding: 70px 0; position: relative; }
     .section-light { background: white; }
     .section-soft { background: var(--soft); }
     .section-title { text-align: center; margin-bottom: 50px; }
     .section-title span { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; }
     .section-title h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--navy); margin-top: 12px; }
-
     .grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
     .card { background: white; border-radius: 24px; padding: 32px; box-shadow: var(--shadow); transition: all 0.3s ease; }
     .card:hover { transform: translateY(-5px); }
-
     .floating-bottom-nav {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--navy);
-      border-radius: 60px;
-      padding: 10px 24px;
-      display: flex;
-      gap: 32px;
-      z-index: 1000;
-      border: 1px solid rgba(212,175,55,0.3);
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--navy); backdrop-filter: blur(12px); border-radius: 60px;
+      padding: 10px 24px; display: flex; gap: 32px; z-index: 1000;
+      border: 1px solid rgba(212,175,55,0.3); flex-wrap: wrap; justify-content: center;
     }
-    .nav-item { display: flex; flex-direction: column; align-items: center; color: #cbd5e1; font-size: 0.65rem; gap: 3px; cursor: pointer; text-decoration: none; }
-    .nav-item.active, .nav-item:hover { color: var(--gold); }
-
-    footer { background: var(--navy-dark); color: #94a3b8; padding: 40px 20px; text-align: center; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; color: #cbd5e1; font-size: 0.65rem; gap: 3px; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
+    .nav-item i { font-size: 1.2rem; }
+    .nav-item.active, .nav-item:hover { color: var(--gold); transform: translateY(-2px); text-shadow: 0 0 5px var(--gold); }
+    footer { background: var(--navy-dark); color: #94a3b8; padding: 40px 20px; text-align: center; font-size: 12px; }
     .page { display: none; width: 100%; }
     .page.active { display: block; }
     .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
     .star { position: absolute; background: radial-gradient(circle, #D4AF37 0%, rgba(212,175,55,0) 80%); border-radius: 50%; opacity: 0; animation: starFloat 4s ease-in-out infinite; }
-    @keyframes starFloat { 0%,100% { opacity: 0; transform: scale(0.3); } 50% { opacity: 0.8; transform: scale(1) translateY(-20px); } }
-
+    @keyframes starFloat { 0%,100% { opacity: 0; transform: scale(0.3) translateY(0px); } 50% { opacity: 0.8; transform: scale(1) translateY(-20px); } }
+    .glowing-orb { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 70%); pointer-events: none; z-index: 0; animation: orbPulse 6s ease-in-out infinite; }
+    @keyframes orbPulse { 0%,100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.3); opacity: 0.6; } }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
-      .hero-section { height: 80vh; }
+      .hero-section { height: 80vh; min-height: 550px; }
       .program-details { padding: 12px; }
       .program-details p { font-size: 0.8rem; }
     }
+    .product-hero { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white; padding: 80px 0; text-align: center; }
+    .btn-outline-small { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 6px 16px; border-radius: 30px; font-size: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn-outline-small:hover { background: var(--gold); color: var(--navy); }
   </style>
 </head>
 <body>
@@ -240,11 +128,17 @@
 <div class="page-container">
   <div id="home-page" class="page active">
     <div class="navbar-spacer"></div>
+
+    <!-- HERO VIDEO SECTION - 3 SLIDES for 3 PROGRAMS -->
     <div class="hero-section">
       <div class="video-carousel">
+        <!-- VIDEO 1: Investment Banking -->
         <video id="slideVideo0" muted playsinline><source src="institute/Investm.mp4" type="video/mp4"></video>
+        <!-- VIDEO 2: AI & Technology -->
         <video id="slideVideo1" muted playsinline><source src="institute/re.mp4" type="video/mp4"></video>
+        <!-- VIDEO 3: Entrepreneurship -->
         <video id="slideVideo2" muted playsinline><source src="institute/displays.mp4" type="video/mp4"></video>
+        <!-- Extra videos for backup -->
         <video id="slideVideo3" muted playsinline><source src="institute/sbu.mp4" type="video/mp4"></video>
         <video id="slideVideo4" muted playsinline><source src="institute/eets.mp4" type="video/mp4"></video>
       </div>
@@ -255,9 +149,9 @@
           <div class="hero-headline"><span class="gold">Investment Banking</span> & Corporate Finance</div>
           <div class="hero-subheadline">"Most people think investment banking is just theory..."</div>
           <div class="program-details">
-            <p><strong>⚠️ Problem:</strong> Finance education is theoretical — not practical. Graduates lack real deal experience.</p>
-            <p><strong>✅ Solution:</strong> At Nolan Institute, you learn how real deals are structured, companies valued, and financial decisions made in the real world.</p>
-            <p><strong>🏆 Outcomes:</strong> Financial modeling mastery, M&A simulation experience, job-ready portfolio, investment banking certification.</p>
+            <p><strong>⚠️ Problem:</strong> Finance education is theoretical — graduates lack real deal experience.</p>
+            <p><strong>✅ Solution:</strong> At Nolan Institute, you learn how real deals are structured, companies valued, and financial decisions made.</p>
+            <p><strong>🏆 Outcomes:</strong> Financial modeling mastery, M&A simulation experience, job-ready portfolio.</p>
             <div class="pricing-tag">💰 Founding Cohort: $299</div>
           </div>
           <div class="hero-actions">
@@ -270,9 +164,9 @@
           <div class="hero-headline"><span class="gold">AI-Powered</span> Technology & Innovation</div>
           <div class="hero-subheadline">"AI is not the future. It's already here."</div>
           <div class="program-details">
-            <p><strong>⚠️ Problem:</strong> Businesses struggle to implement AI effectively. Most professionals lack applied AI skills.</p>
-            <p><strong>✅ Solution:</strong> Companies are using AI to build products, automate decisions, and transform business. At Nolan Institute, you learn how to actually build and apply AI in real business.</p>
-            <p><strong>🏆 Outcomes:</strong> AI prototypes, innovation leadership skills, applied AI portfolio, AI product management certification.</p>
+            <p><strong>⚠️ Problem:</strong> Businesses struggle to implement AI — professionals lack applied AI skills.</p>
+            <p><strong>✅ Solution:</strong> Companies use AI to build products and transform business. You learn how to actually build and apply AI in real business.</p>
+            <p><strong>🏆 Outcomes:</strong> AI prototypes, innovation leadership skills, applied AI portfolio.</p>
             <div class="pricing-tag">💰 Founding Cohort: $299</div>
           </div>
           <div class="hero-actions">
@@ -286,8 +180,8 @@
           <div class="hero-subheadline">"You don't need more ideas. You need execution."</div>
           <div class="program-details">
             <p><strong>⚠️ Problem:</strong> Most startups fail because founders don't understand business systems, strategy, and scaling.</p>
-            <p><strong>✅ Solution:</strong> Learn how to turn ideas into real businesses with global strategy and execution frameworks — from validation to launch.</p>
-            <p><strong>🏆 Outcomes:</strong> Investor-ready pitch deck, business strategy skills, startup development experience, global network access.</p>
+            <p><strong>✅ Solution:</strong> Learn how to turn ideas into real businesses with global strategy and execution frameworks.</p>
+            <p><strong>🏆 Outcomes:</strong> Investor-ready pitch deck, business strategy skills, startup development experience.</p>
             <div class="pricing-tag">💰 Founding Cohort: $299</div>
           </div>
           <div class="hero-actions">
@@ -295,26 +189,26 @@
             <a class="btn btn-outline" data-page="entrepreneurship">Learn More</a>
           </div>
         </div>
-        <!-- Extra slides fallback -->
+        <!-- Fallback slides -->
         <div id="slideText3" class="slide-text"><div class="hero-headline">Nolan Institute of <span class="gold">Global Business & Technology</span></div><div class="program-details"><p>Join the Founding Cohort 2026. Limited seats available.</p><div class="pricing-tag">Apply Now</div></div></div>
-        <div id="slideText4" class="slide-text"><div class="hero-headline">Build Your <span class="gold">Future</span> at Nolan Institute</div><div class="program-details"><p>World-class programs in Finance, AI, and Entrepreneurship.</p><div class="pricing-tag">Founding Cohort Open</div></div></div>
+        <div id="slideText4" class="slide-text"><div class="hero-headline">Build Your <span class="gold">Future</span></div><div class="program-details"><p>World-class programs in Finance, AI, and Entrepreneurship.</p><div class="pricing-tag">Founding Cohort Open</div></div></div>
       </div>
       <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
-    <!-- Brand Message -->
+    <!-- Brand Message Section -->
     <div class="section section-light">
       <div class="container">
         <div class="section-title"><span>✦ Nolan Institute ✦</span><h2>Real-World Education for the Global Professional</h2><p style="max-width:700px; margin:16px auto 0;">Most programs teach theory. We teach execution through applied projects, mentorship, and global business exposure.</p></div>
         <div class="grid-2col">
           <div class="card"><i class="fas fa-chart-line" style="font-size:40px; color:var(--gold);"></i><h3>Investment Banking</h3><p>M&A simulations, financial modeling, deal structuring.</p><a class="btn-outline-small" data-page="finance" style="margin-top:16px; display:inline-block;">Explore →</a></div>
-          <div class="card"><i class="fas fa-microchip" style="font-size:40px; color:var(--electric-blue);"></i><h3>AI & Technology</h3><p>AI Innovation, prototyping, and applied AI solutions.</p><a class="btn-outline-small" data-page="ai" style="margin-top:16px; display:inline-block;">Explore →</a></div>
-          <div class="card"><i class="fas fa-rocket" style="font-size:40px; color:var(--orange-startup);"></i><h3>Entrepreneurship</h3><p>Global business strategy, pitch deck, startup execution.</p><a class="btn-outline-small" data-page="entrepreneurship" style="margin-top:16px; display:inline-block;">Explore →</a></div>
+          <div class="card"><i class="fas fa-microchip" style="font-size:40px; color:var(--gold);"></i><h3>AI & Technology</h3><p>AI Innovation, prototyping, and applied AI solutions.</p><a class="btn-outline-small" data-page="ai" style="margin-top:16px; display:inline-block;">Explore →</a></div>
+          <div class="card"><i class="fas fa-rocket" style="font-size:40px; color:var(--gold);"></i><h3>Entrepreneurship</h3><p>Global business strategy, pitch deck, startup execution.</p><a class="btn-outline-small" data-page="entrepreneurship" style="margin-top:16px; display:inline-block;">Explore →</a></div>
         </div>
       </div>
     </div>
 
-    <!-- Founding Cohort Value -->
+    <!-- Founding Cohort Value Prop -->
     <div class="section section-soft">
       <div class="container">
         <div class="card" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); color:white; text-align:center;">
@@ -332,12 +226,12 @@
     </div>
   </div>
 
-  <!-- PROGRAM PAGES (simplified for brevity - full content preserved) -->
-  <div id="programs-page" class="page"><div class="navbar-spacer"></div><div class="product-hero" style="background:linear-gradient(135deg,var(--navy),var(--navy-light)); padding:80px 0; text-align:center;"><div class="container"><h1 style="color:white;">Our <span class="gold">Programs</span></h1></div></div><div class="section section-light"><div class="container"><div class="grid-2col"><div class="card"><h3>Investment Banking & Corporate Finance</h3><p>12 weeks: M&A simulations, valuation, deal structuring.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div><div class="card"><h3>AI-Powered Technology & Innovation</h3><p>10 weeks: Build AI prototypes, solve business problems.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div><div class="card"><h3>Entrepreneurship & Global Business</h3><p>12 weeks: Pitch competition, mentorship, business plan.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div></div>
-  <div id="finance-page" class="page"><div class="navbar-spacer"></div><div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>Finance & <span class="gold">Investment Track</span></h1><p>Real-world financial modeling, M&A, and corporate finance skills.</p></div><div class="section section-light"><div class="container"><div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
-  <div id="ai-page" class="page"><div class="navbar-spacer"></div><div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>AI & <span class="gold">Technology Track</span></h1><p>Build and apply AI in real business environments.</p></div><div class="section section-light"><div class="container"><div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset, solving real business problems.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
-  <div id="entrepreneurship-page" class="page"><div class="navbar-spacer"></div><div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>Entrepreneurship & <span class="gold">Global Business</span></h1><p>Turn ideas into scalable ventures.</p></div><div class="section section-light"><div class="container"><div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, global mentorship.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
-  <div id="apply-page" class="page"><div class="navbar-spacer"></div><div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><div class="container"><h1>Join the <span class="gold">Founding Cohort</span> 2026</h1><p>Limited seats — become a pioneer at Nolan Institute.</p></div></div><div class="section section-light"><div class="container"><div class="card" style="max-width:700px; margin:0 auto;"><h3 style="text-align:center;">Apply Now</h3><form><div style="margin-bottom:16px;"><input type="text" placeholder="Full Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div><div style="margin-bottom:16px;"><input type="email" placeholder="Email Address" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div><div style="margin-bottom:16px;"><select style="width:100%; padding:14px; border-radius:12px;"><option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option></select></div><button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('✅ Application received! Our team will contact you within 24 hours.');">Submit Application →</button></form><p style="text-align:center; margin-top:20px; font-size:12px;">Founding Cohort pricing: $299 per program | Bundle access available.</p></div></div></div></div>
+  <!-- OTHER PAGES -->
+  <div id="programs-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Our <span class="gold">Programs</span></h1></div></div><div class="section section-light"><div class="container"><div class="grid-2col"><div class="card"><h3>Investment Banking & Corporate Finance</h3><p>12 weeks: M&A simulations, valuation, deal structuring.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div><div class="card"><h3>AI-Powered Technology & Innovation</h3><p>10 weeks: Build AI prototypes, solve business problems.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div><div class="card"><h3>Entrepreneurship & Global Business</h3><p>12 weeks: Pitch competition, mentorship, business plan.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div></div>
+  <div id="finance-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Finance & <span class="gold">Investment Track</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
+  <div id="ai-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>AI & <span class="gold">Technology Track</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
+  <div id="entrepreneurship-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Entrepreneurship & <span class="gold">Global Business</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, global mentorship.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
+  <div id="apply-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Join the <span class="gold">Founding Cohort</span> 2026</h1><p>Limited seats — become a pioneer.</p></div></div><div class="section section-light"><div class="container"><div class="card" style="max-width:700px; margin:0 auto;"><h3 style="text-align:center;">Apply Now</h3><form><div style="margin-bottom:16px;"><input type="text" placeholder="Full Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div><div style="margin-bottom:16px;"><input type="email" placeholder="Email Address" style="width:100%; padding:14px; border-radius:12px;"></div><div style="margin-bottom:16px;"><select style="width:100%; padding:14px; border-radius:12px;"><option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option></select></div><button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('✅ Application received! Our team will contact you within 24 hours.');">Submit Application →</button></form><p style="text-align:center; margin-top:20px; font-size:12px;">Founding Cohort pricing: $299 per program</p></div></div></div></div>
 </div>
 
 <div style="background: var(--navy-dark); padding: 40px 0; border-top: 1px solid rgba(212,175,55,0.2);">
@@ -356,7 +250,9 @@
 </div>
 
 <script>
-  // VIDEO CAROUSEL - 3 SLIDES with auto-rotation
+  // =========================================================
+  // VIDEO CAROUSEL - EXACTLY LIKE ORIGINAL (auto-rotate with dots)
+  // =========================================================
   const videos = [slideVideo0, slideVideo1, slideVideo2, slideVideo3, slideVideo4];
   const slideTexts = [slideText0, slideText1, slideText2, slideText3, slideText4];
   let currentVideoIndex = 0;
@@ -365,36 +261,62 @@
     const dotsContainer = document.getElementById('carouselDots');
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
+    // Only create 3 dots for the 3 main programs
     for (let i = 0; i < 3; i++) {
       const dot = document.createElement('div');
       dot.classList.add('dot');
       if (i === currentVideoIndex) dot.classList.add('active');
-      dot.addEventListener('click', () => { if (videos[currentVideoIndex]) videos[currentVideoIndex].pause(); showSlide(i); });
+      dot.addEventListener('click', () => { 
+        if (videos[currentVideoIndex]) videos[currentVideoIndex].pause(); 
+        showSlide(i); 
+      });
       dotsContainer.appendChild(dot);
     }
   }
 
   function showSlide(index) {
-    videos.forEach((video, i) => { if (video) { video.style.opacity = '0'; video.pause(); } });
-    slideTexts.forEach((text, i) => { if (text) text.classList.remove('active-slide-text'); });
-    if (videos[index]) { videos[index].style.opacity = '1'; videos[index].currentTime = 0; videos[index].play().catch(e=>console.log(e)); }
+    // Hide all videos
+    videos.forEach((video, i) => { 
+      if (video) { 
+        video.style.opacity = '0'; 
+        video.pause(); 
+      } 
+    });
+    // Hide all slide texts
+    slideTexts.forEach((text, i) => { 
+      if (text) text.classList.remove('active-slide-text'); 
+    });
+    // Show selected video and text
+    if (videos[index]) { 
+      videos[index].style.opacity = '1'; 
+      videos[index].currentTime = 0; 
+      videos[index].play().catch(e => console.log(e)); 
+    }
     if (slideTexts[index]) slideTexts[index].classList.add('active-slide-text');
+    // Update dots
     document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
     currentVideoIndex = index;
   }
 
-  function nextSlide() { showSlide((currentVideoIndex + 1) % 3); }
-  
+  function nextSlide() { 
+    showSlide((currentVideoIndex + 1) % 3); 
+  }
+
+  // Initialize carousel - add ended event listeners to first 3 videos only
   setTimeout(() => {
     for (let i = 0; i < 3; i++) {
-      if (videos[i]) videos[i].addEventListener('ended', () => setTimeout(nextSlide, 500));
+      if (videos[i]) {
+        videos[i].addEventListener('ended', () => setTimeout(nextSlide, 500));
+      }
     }
     showSlide(0);
   }, 100);
 
   createDots();
 
+  // =========================================================
   // PAGE SWITCHING
+  // =========================================================
   const pages = {
     home: document.getElementById('home-page'),
     programs: document.getElementById('programs-page'),
@@ -409,6 +331,14 @@
     Object.values(pages).forEach(p => p?.classList.remove('active'));
     pages[pageId].classList.add('active');
     window.scrollTo(0, 0);
+    // Update active nav
+    document.querySelectorAll('.nav-item, .nav-links a').forEach(el => {
+      if (el.getAttribute && el.getAttribute('data-page') === pageId) {
+        el.classList.add('active-nav');
+      } else if (el.classList) {
+        el.classList.remove('active-nav');
+      }
+    });
   }
 
   document.querySelectorAll('[data-page]').forEach(el => {
@@ -419,7 +349,7 @@
     });
   });
 
-  // Stars background
+  // Stars background effect
   function createStars() {
     const container = document.getElementById('starsContainer');
     if (!container) return;
@@ -437,13 +367,7 @@
   }
   createStars();
 
-  console.log("Nolan Institute — Founding Cohort 2026: Investment Banking, AI & Technology, Entrepreneurship — Problem → Solution → Outcomes → Pricing → CTA");
+  console.log("Nolan Institute — Founding Cohort 2026: Investment Banking, AI & Technology, Entrepreneurship");
 </script>
-
-<style>
-  .product-hero { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white; padding: 80px 0; text-align: center; }
-  .btn-outline-small { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 6px 16px; border-radius: 30px; font-size: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; }
-  .btn-outline-small:hover { background: var(--gold); color: var(--navy); }
-</style>
 </body>
 </html>
