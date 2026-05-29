@@ -44,7 +44,7 @@
     .btn-outline:hover { background: rgba(212, 175, 55, 0.2); transform: translateY(-2px); box-shadow: 0 0 15px var(--gold); }
     .navbar-spacer { height: 95px; }
 
-    /* ===== HERO VIDEO SECTION - EXACTLY LIKE ORIGINAL ===== */
+    /* ===== HERO VIDEO SECTION ===== */
     .hero-section {
       position: relative;
       width: 100%;
@@ -82,7 +82,7 @@
       transform: translate(-50%, -50%);
       z-index: 3;
       width: 100%;
-      max-width: 900px;
+      max-width: 800px;
       padding: 0 20px;
       text-align: center;
     }
@@ -91,39 +91,24 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .hero-headline .gold { color: var(--gold); }
     .hero-subheadline {
       color: rgba(255, 255, 255, 0.9);
       font-size: 1rem;
       line-height: 1.6;
-      margin-bottom: 16px;
-      font-style: italic;
-    }
-    .program-details {
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 20px;
-      margin: 16px 0;
-      border: 1px solid rgba(212,175,55,0.3);
-    }
-    .program-details p {
-      color: white;
-      font-size: 0.9rem;
-      margin: 8px 0;
-      line-height: 1.5;
+      margin-bottom: 24px;
     }
     .pricing-tag {
       display: inline-block;
       background: var(--gold);
       color: var(--navy);
-      padding: 6px 18px;
+      padding: 8px 24px;
       border-radius: 40px;
       font-weight: 700;
-      font-size: 0.85rem;
-      margin: 8px 0;
+      font-size: 1rem;
+      margin-bottom: 24px;
     }
     .slide-text {
       display: none;
@@ -161,7 +146,7 @@
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 16px;
+      margin-top: 8px;
     }
 
     .section { padding: 70px 0; position: relative; }
@@ -215,9 +200,7 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
-      .hero-section { height: 80vh; min-height: 550px; }
-      .program-details { padding: 12px; }
-      .program-details p { font-size: 0.8rem; }
+      .hero-section { height: 70vh; min-height: 500px; }
     }
     .product-hero { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white; padding: 80px 0; text-align: center; }
     .btn-outline-small { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 6px 16px; border-radius: 30px; font-size: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; }
@@ -252,25 +235,18 @@
   <div id="home-page" class="page active">
     <div class="navbar-spacer"></div>
 
-    <!-- ========================================================= -->
-    <!-- HERO VIDEO SECTION - VIDEOS LOAD FROM /institute/ FOLDER  -->
-    <!-- Domain: nolanuniversity.org                                -->
-    <!-- ========================================================= -->
+    <!-- HERO VIDEO SECTION - CLEAN, NO DISTRACTIONS -->
     <div class="hero-section">
       <div class="video-carousel">
-        <!-- VIDEO SLIDE 1: Investment Banking -->
         <video id="slideVideo0" muted playsinline>
           <source src="https://nolanuniversity.org/institute/Investm.mp4" type="video/mp4">
         </video>
-        <!-- VIDEO SLIDE 2: AI & Technology -->
         <video id="slideVideo1" muted playsinline>
           <source src="https://nolanuniversity.org/institute/re.mp4" type="video/mp4">
         </video>
-        <!-- VIDEO SLIDE 3: Entrepreneurship -->
         <video id="slideVideo2" muted playsinline>
           <source src="https://nolanuniversity.org/institute/displays.mp4" type="video/mp4">
         </video>
-        <!-- Additional fallback videos -->
         <video id="slideVideo3" muted playsinline>
           <source src="https://nolanuniversity.org/institute/sbu.mp4" type="video/mp4">
         </video>
@@ -280,59 +256,46 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <!-- TEXT SLIDE 1: Investment Banking -->
+        <!-- SLIDE 1: Investment Banking -->
         <div id="slideText0" class="slide-text active-slide-text">
           <div class="hero-headline"><span class="gold">Investment Banking</span> & Corporate Finance</div>
-          <div class="hero-subheadline">"Most people think investment banking is just theory..."</div>
-          <div class="program-details">
-            <p><strong>⚠️ Problem:</strong> Finance education is theoretical — graduates lack real deal experience.</p>
-            <p><strong>✅ Solution:</strong> At Nolan Institute, you learn how real deals are structured, companies valued, and financial decisions made in the real world.</p>
-            <p><strong>🏆 Outcomes:</strong> Financial modeling mastery, M&A simulation experience, job-ready portfolio.</p>
-            <div class="pricing-tag">💰 Founding Cohort: $299</div>
-          </div>
+          <div class="hero-subheadline">Master financial modeling, M&A, and deal structuring. Real-world skills for real careers.</div>
+          <div class="pricing-tag">Founding Cohort: $299</div>
           <div class="hero-actions">
             <a class="btn btn-primary" data-page="apply">Apply Now →</a>
             <a class="btn btn-outline" data-page="finance">Learn More</a>
           </div>
         </div>
-        <!-- TEXT SLIDE 2: AI & Technology -->
+        <!-- SLIDE 2: AI & Technology -->
         <div id="slideText1" class="slide-text">
           <div class="hero-headline"><span class="gold">AI-Powered</span> Technology & Innovation</div>
-          <div class="hero-subheadline">"AI is not the future. It's already here."</div>
-          <div class="program-details">
-            <p><strong>⚠️ Problem:</strong> Businesses struggle to implement AI effectively. Most professionals lack applied AI skills.</p>
-            <p><strong>✅ Solution:</strong> Companies are using AI to build products, automate decisions, and transform business. At Nolan Institute, you learn how to actually build and apply AI in real business.</p>
-            <p><strong>🏆 Outcomes:</strong> AI prototypes, innovation leadership skills, applied AI portfolio.</p>
-            <div class="pricing-tag">💰 Founding Cohort: $299</div>
-          </div>
+          <div class="hero-subheadline">Build AI prototypes, automate decisions, and transform business with applied AI skills.</div>
+          <div class="pricing-tag">Founding Cohort: $299</div>
           <div class="hero-actions">
             <a class="btn btn-primary" data-page="apply">Apply Now →</a>
             <a class="btn btn-outline" data-page="ai">Learn More</a>
           </div>
         </div>
-        <!-- TEXT SLIDE 3: Entrepreneurship -->
+        <!-- SLIDE 3: Entrepreneurship -->
         <div id="slideText2" class="slide-text">
           <div class="hero-headline"><span class="gold">Entrepreneurship</span> & Global Business</div>
-          <div class="hero-subheadline">"You don't need more ideas. You need execution."</div>
-          <div class="program-details">
-            <p><strong>⚠️ Problem:</strong> Most startups fail because founders don't understand business systems, strategy, and scaling.</p>
-            <p><strong>✅ Solution:</strong> Learn how to turn ideas into real businesses with global strategy and execution frameworks — from validation to launch.</p>
-            <p><strong>🏆 Outcomes:</strong> Investor-ready pitch deck, business strategy skills, startup development experience.</p>
-            <div class="pricing-tag">💰 Founding Cohort: $299</div>
-          </div>
+          <div class="hero-subheadline">Turn ideas into investor-ready startups with global strategy and execution frameworks.</div>
+          <div class="pricing-tag">Founding Cohort: $299</div>
           <div class="hero-actions">
             <a class="btn btn-primary" data-page="apply">Apply Now →</a>
             <a class="btn btn-outline" data-page="entrepreneurship">Learn More</a>
           </div>
         </div>
-        <!-- Fallback text slides -->
+        <!-- Fallback slides -->
         <div id="slideText3" class="slide-text">
           <div class="hero-headline">Nolan Institute of <span class="gold">Global Business & Technology</span></div>
-          <div class="program-details"><p>Join the Founding Cohort 2026. Limited seats available.</p><div class="pricing-tag">Apply Now</div></div>
+          <div class="pricing-tag">Founding Cohort 2026</div>
+          <div class="hero-actions"><a class="btn btn-primary" data-page="apply">Apply Now →</a></div>
         </div>
         <div id="slideText4" class="slide-text">
           <div class="hero-headline">Build Your <span class="gold">Future</span> at Nolan Institute</div>
-          <div class="program-details"><p>World-class programs in Finance, AI, and Entrepreneurship.</p><div class="pricing-tag">Founding Cohort Open</div></div>
+          <div class="pricing-tag">Limited Seats Available</div>
+          <div class="hero-actions"><a class="btn btn-primary" data-page="apply">Apply Now →</a></div>
         </div>
       </div>
       <div class="carousel-dots" id="carouselDots"></div>
@@ -368,12 +331,12 @@
     </div>
   </div>
 
-  <!-- OTHER PAGES (Programs, Finance, AI, Entrepreneurship, Apply) -->
+  <!-- OTHER PAGES -->
   <div id="programs-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Our <span class="gold">Programs</span></h1></div></div><div class="section section-light"><div class="container"><div class="grid-2col"><div class="card"><h3>Investment Banking & Corporate Finance</h3><p>12 weeks: M&A simulations, valuation, deal structuring.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div><div class="card"><h3>AI-Powered Technology & Innovation</h3><p>10 weeks: Build AI prototypes, solve business problems.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div><div class="card"><h3>Entrepreneurship & Global Business</h3><p>12 weeks: Pitch competition, mentorship, business plan.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div></div>
-  <div id="finance-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Finance & <span class="gold">Investment Track</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio. Learn how real deals are structured.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
-  <div id="ai-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>AI & <span class="gold">Technology Track</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset, solving real business problems.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
-  <div id="entrepreneurship-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Entrepreneurship & <span class="gold">Global Business</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, global mentorship. From idea to investor-ready pitch deck.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
-  <div id="apply-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Join the <span class="gold">Founding Cohort</span> 2026</h1><p>Limited seats — become a pioneer at Nolan Institute.</p></div></div><div class="section section-light"><div class="container"><div class="card" style="max-width:700px; margin:0 auto;"><h3 style="text-align:center;">Apply Now</h3><form><div style="margin-bottom:16px;"><input type="text" placeholder="Full Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div><div style="margin-bottom:16px;"><input type="email" placeholder="Email Address" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div><div style="margin-bottom:16px;"><select style="width:100%; padding:14px; border-radius:12px;"><option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option></select></div><button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('✅ Application received! Our team will contact you within 24 hours. Welcome to Nolan Institute Founding Cohort.');">Submit Application →</button></form><p style="text-align:center; margin-top:20px; font-size:12px;">Founding Cohort pricing: $299 per program | Bundle access available.</p></div></div></div></div>
+  <div id="finance-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Finance & <span class="gold">Investment Track</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
+  <div id="ai-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>AI & <span class="gold">Technology Track</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset, applied AI experience.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
+  <div id="entrepreneurship-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Entrepreneurship & <span class="gold">Global Business</span></h1></div></div><div class="section section-light"><div class="container"><div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, global mentorship.</p><a class="btn btn-primary" data-page="apply">Apply Now</a></div></div></div></div>
+  <div id="apply-page" class="page"><div class="navbar-spacer"></div><div class="product-hero"><div class="container"><h1>Join the <span class="gold">Founding Cohort</span> 2026</h1><p>Limited seats — become a pioneer at Nolan Institute.</p></div></div><div class="section section-light"><div class="container"><div class="card" style="max-width:700px; margin:0 auto;"><h3 style="text-align:center;">Apply Now</h3><form><div style="margin-bottom:16px;"><input type="text" placeholder="Full Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div><div style="margin-bottom:16px;"><input type="email" placeholder="Email Address" style="width:100%; padding:14px; border-radius:12px;"></div><div style="margin-bottom:16px;"><select style="width:100%; padding:14px; border-radius:12px;"><option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option></select></div><button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('✅ Application received! Our team will contact you within 24 hours.');">Submit Application →</button></form><p style="text-align:center; margin-top:20px; font-size:12px;">Founding Cohort pricing: $299 per program</p></div></div></div></div>
 </div>
 
 <div style="background: var(--navy-dark); padding: 40px 0; border-top: 1px solid rgba(212,175,55,0.2);">
@@ -392,20 +355,11 @@
 </div>
 
 <script>
-  // =========================================================
   // VIDEO CAROUSEL - FULLY FUNCTIONAL
-  // Videos load from: https://nolanuniversity.org/institute/
-  // - Auto-plays first video on load
-  // - Auto-rotates to next video when current video ends
-  // - Clickable dots to manually switch slides
-  // - Smooth fade transitions between videos
-  // =========================================================
-  
   const videos = [slideVideo0, slideVideo1, slideVideo2, slideVideo3, slideVideo4];
   const slideTexts = [slideText0, slideText1, slideText2, slideText3, slideText4];
   let currentVideoIndex = 0;
 
-  // Create navigation dots (only 3 dots for the 3 main program videos)
   function createDots() {
     const dotsContainer = document.getElementById('carouselDots');
     if (!dotsContainer) return;
@@ -422,52 +376,27 @@
     }
   }
 
-  // Show a specific slide by index
   function showSlide(index) {
-    // Fade out all videos
-    videos.forEach((video, i) => {
-      if (video) {
-        video.style.opacity = '0';
-        video.pause();
-      }
-    });
-    // Hide all text slides
-    slideTexts.forEach((text, i) => {
-      if (text) text.classList.remove('active-slide-text');
-    });
-    // Show selected video
-    if (videos[index]) {
-      videos[index].style.opacity = '1';
-      videos[index].currentTime = 0;
-      videos[index].play().catch(e => console.log("Video play error:", e));
-    }
-    // Show selected text slide
+    videos.forEach((video, i) => { if (video) { video.style.opacity = '0'; video.pause(); } });
+    slideTexts.forEach((text, i) => { if (text) text.classList.remove('active-slide-text'); });
+    if (videos[index]) { videos[index].style.opacity = '1'; videos[index].currentTime = 0; videos[index].play().catch(e=>console.log(e)); }
     if (slideTexts[index]) slideTexts[index].classList.add('active-slide-text');
-    // Update active dot
     document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
     currentVideoIndex = index;
   }
 
-  // Auto-rotate to next slide
-  function nextSlide() {
-    showSlide((currentVideoIndex + 1) % 3);
-  }
+  function nextSlide() { showSlide((currentVideoIndex + 1) % 3); }
 
-  // Initialize carousel - add 'ended' event listeners to first 3 videos only
   setTimeout(() => {
     for (let i = 0; i < 3; i++) {
-      if (videos[i]) {
-        videos[i].addEventListener('ended', () => setTimeout(nextSlide, 500));
-      }
+      if (videos[i]) videos[i].addEventListener('ended', () => setTimeout(nextSlide, 500));
     }
     showSlide(0);
   }, 100);
 
   createDots();
 
-  // =========================================================
-  // PAGE SWITCHING SYSTEM
-  // =========================================================
+  // PAGE SWITCHING
   const pages = {
     home: document.getElementById('home-page'),
     programs: document.getElementById('programs-page'),
@@ -482,7 +411,6 @@
     Object.values(pages).forEach(p => p?.classList.remove('active'));
     pages[pageId].classList.add('active');
     window.scrollTo(0, 0);
-    // Update active nav items
     document.querySelectorAll('.nav-item, .nav-links a').forEach(el => {
       if (el.getAttribute && el.getAttribute('data-page') === pageId) {
         el.classList.add('active-nav');
@@ -500,7 +428,7 @@
     });
   });
 
-  // Stars background effect
+  // Stars background
   function createStars() {
     const container = document.getElementById('starsContainer');
     if (!container) return;
@@ -517,9 +445,6 @@
     }
   }
   createStars();
-
-  console.log("Nolan Institute — Founding Cohort 2026: Investment Banking, AI & Technology, Entrepreneurship");
-  console.log("Videos loading from: https://nolanuniversity.org/institute/");
 </script>
 </body>
 </html>
