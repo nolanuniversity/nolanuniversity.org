@@ -143,38 +143,86 @@
 
     .navbar-spacer { height: 95px; }
 
-    /* Hero Section */
+    /* HERO VIDEO SECTION (FULLY PRESERVED) */
     .hero-section {
       position: relative;
       width: 100%;
       height: 85vh;
       min-height: 600px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      overflow: hidden;
+      background: #000;
     }
-
-    .hero-content {
-      max-width: 800px;
-      padding: 0 20px;
+    .video-carousel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .video-carousel video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.8s ease;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11, 31, 59, 0.75), rgba(6, 18, 37, 0.85));
       z-index: 2;
     }
-
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 100%;
+      max-width: 800px;
+      padding: 0 20px;
+      text-align: center;
+    }
     .hero-headline {
       color: white;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: 700;
       margin-bottom: 20px;
     }
-
     .hero-headline .gold { color: var(--gold); }
     .hero-subheadline {
-      color: rgba(255,255,255,0.9);
-      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      line-height: 1.6;
       margin-bottom: 32px;
+    }
+    .slide-text { display: none; }
+    .slide-text.active-slide-text { display: block; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 3;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .dot.active {
+      background: var(--gold);
+      width: 24px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px var(--gold);
     }
 
     /* Sections */
@@ -206,15 +254,6 @@
       margin-bottom: 16px;
     }
 
-    .pricing-card {
-      background: white;
-      border-radius: 28px;
-      padding: 32px;
-      text-align: center;
-    }
-    .pricing-card.popular { border: 2px solid var(--gold); transform: scale(1.02); }
-    .popular-badge { background: var(--gold); color: var(--navy); }
-
     .floating-bottom-nav {
       position: fixed;
       bottom: 20px;
@@ -227,6 +266,8 @@
       gap: 32px;
       z-index: 1000;
       border: 1px solid rgba(212, 175, 55, 0.3);
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .nav-item {
       display: flex;
@@ -250,14 +291,6 @@
     .page { display: none; width: 100%; }
     .page.active { display: block; }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
-      .hero-section { height: 70vh; }
-      .grid-2col { grid-template-columns: 1fr; }
-    }
-
     /* Founding Cohort Urgency */
     .urgency-badge {
       background: var(--gold);
@@ -268,9 +301,18 @@
       display: inline-block;
       margin-bottom: 20px;
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
+      .hero-section { height: 70vh; }
+    }
   </style>
 </head>
 <body>
+
+<div class="stars-container" id="starsContainer"></div>
 
 <nav class="navbar">
   <div class="nav-wrapper">
@@ -281,8 +323,8 @@
     <div class="nav-links">
       <a data-page="home" class="active-nav">Home</a>
       <a data-page="programs">Programs</a>
-      <a data-page="finance">Finance & Investment</a>
-      <a data-page="ai">AI & Technology</a>
+      <a data-page="finance">Finance Track</a>
+      <a data-page="ai">AI Track</a>
       <a data-page="entrepreneurship">Entrepreneurship</a>
       <a data-page="apply">Apply Now</a>
     </div>
@@ -293,22 +335,45 @@
 </nav>
 
 <div class="page-container">
-  <!-- HOME PAGE with Founding Cohort Focus -->
+  <!-- HOME PAGE with Video Hero (Fully Preserved) -->
   <div id="home-page" class="page active">
     <div class="navbar-spacer"></div>
     <div class="hero-section">
+      <div class="video-carousel">
+        <video id="slideVideo0" muted playsinline><source src="workin.mp4" type="video/mp4"></video>
+        <video id="slideVideo1" muted playsinline><source src="t.mp4" type="video/mp4"></video>
+        <video id="slideVideo2" muted playsinline><source src="innova.mp4" type="video/mp4"></video>
+        <video id="slideVideo3" muted playsinline><source src="prof.mp4" type="video/mp4"></video>
+        <video id="slideVideo4" muted playsinline><source src="ow.mp4" type="video/mp4"></video>
+        <video id="slideVideo5" muted playsinline><source src="training.mp4" type="video/mp4"></video>
+      </div>
+      <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="urgency-badge">🔥 Founding Cohort 2026 — Limited Seats</div>
-        <div class="hero-headline">Nolan Institute of <span class="gold">Global Business & Technology</span></div>
-        <div class="hero-subheadline">Build real-world skills in Finance, AI, and Entrepreneurship. Learn by doing, lead globally.</div>
+        <div id="slideText0" class="slide-text active-slide-text">
+          <div class="hero-headline">Nolan Institute of <span class="gold">Global Business & Technology</span></div>
+          <div class="hero-subheadline">Build real-world skills in Finance, AI, and Entrepreneurship. Founding Cohort 2026 — limited seats.</div>
+        </div>
+        <div id="slideText1" class="slide-text">
+          <div class="hero-headline"><span class="gold">Finance & Investment</span> Track</div>
+          <div class="hero-subheadline">Master financial modeling, M&A, and corporate finance through real case studies.</div>
+        </div>
+        <div id="slideText2" class="slide-text">
+          <div class="hero-headline"><span class="gold">AI & Technology</span> Innovation</div>
+          <div class="hero-subheadline">Build AI-powered solutions and lead innovation in real business environments.</div>
+        </div>
+        <div id="slideText3" class="slide-text">
+          <div class="hero-headline"><span class="gold">Entrepreneurship</span> & Global Business</div>
+          <div class="hero-subheadline">Turn ideas into investor-ready startups with global strategy and execution skills.</div>
+        </div>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-large" data-page="apply">Apply Now →</a>
-          <a class="btn btn-outline btn-large" data-page="programs">Explore Programs</a>
+          <a class="btn btn-primary" data-page="apply">Apply Now →</a>
+          <a class="btn btn-outline" data-page="programs">Explore Programs</a>
         </div>
       </div>
+      <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
-    <!-- Brand Message -->
+    <!-- Brand Message Section -->
     <div class="section section-light">
       <div class="container">
         <div class="section-title">
@@ -317,9 +382,9 @@
           <p style="max-width:700px; margin:16px auto 0;">Most programs teach theory. We teach execution through applied projects, mentorship, and global business exposure.</p>
         </div>
         <div class="grid-2col">
-          <div class="card"><i class="fas fa-chart-line" style="font-size:40px; color:var(--gold);"></i><h3>Finance & Investment</h3><p>Master financial modeling, M&A, and corporate finance through real case studies.</p></div>
-          <div class="card"><i class="fas fa-microchip" style="font-size:40px; color:var(--electric-blue);"></i><h3>AI & Technology</h3><p>Build AI-powered solutions and learn innovation management for real business impact.</p></div>
-          <div class="card"><i class="fas fa-rocket" style="font-size:40px; color:var(--orange-startup);"></i><h3>Entrepreneurship</h3><p>Turn ideas into investor-ready startups with global strategy and execution skills.</p></div>
+          <div class="card"><i class="fas fa-chart-line" style="font-size:40px; color:var(--gold);"></i><h3>Finance & Investment</h3><p>Investment Banking, PE/VC, Corporate Finance — real deal simulations.</p><a class="btn-outline-small" data-page="finance" style="margin-top:16px; display:inline-block;">Explore →</a></div>
+          <div class="card"><i class="fas fa-microchip" style="font-size:40px; color:var(--electric-blue);"></i><h3>AI & Technology</h3><p>AI Innovation Management, R&D, and applied AI prototypes.</p><a class="btn-outline-small" data-page="ai" style="margin-top:16px; display:inline-block;">Explore →</a></div>
+          <div class="card"><i class="fas fa-rocket" style="font-size:40px; color:var(--orange-startup);"></i><h3>Entrepreneurship</h3><p>Global Business, Startup Execution, Pitch Deck to Investors.</p><a class="btn-outline-small" data-page="entrepreneurship" style="margin-top:16px; display:inline-block;">Explore →</a></div>
         </div>
       </div>
     </div>
@@ -342,7 +407,7 @@
     </div>
   </div>
 
-  <!-- PROGRAMS OVERVIEW PAGE (9 Programs) -->
+  <!-- PROGRAMS OVERVIEW PAGE (9 Programs from PDF) -->
   <div id="programs-page" class="page">
     <div class="navbar-spacer"></div>
     <div class="product-hero" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); padding:80px 0; text-align:center;">
@@ -351,15 +416,15 @@
     <div class="section section-light">
       <div class="container">
         <div class="grid-2col">
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Applied Finance & Leadership</h3><p>12 weeks, project-based finance leadership.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Strategy & Finance</h3><p>Bridge strategy with financial decision-making.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Investment Banking & Corporate Finance</h3><p>Master M&A, valuations & deal structuring.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Private Equity & Venture Capital</h3><p>Learn how investors evaluate and fund startups.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">AI Track</span><h3>AI-Powered Technology & Innovation</h3><p>Build AI prototypes & solve business problems.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">AI Track</span><h3>AI Innovation Management</h3><p>Lead AI-driven initiatives & innovation pipelines.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">AI Track</span><h3>AI Research & Development</h3><p>Applied AI research & prototype development.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Entrepreneurship & Global Business</h3><p>From idea to investor-ready pitch deck.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Global Business & Technology</h3><p>Strategies for a tech-driven global economy.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Applied Finance & Leadership</h3><p>12 weeks, project-based. Build financial decision-making & leadership portfolio.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Strategy & Finance</h3><p>Bridge strategic thinking with financial modeling. Real business cases.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Investment Banking & Corporate Finance</h3><p>M&A simulations, valuation, deal structuring — job-ready skills.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Private Equity & Venture Capital</h3><p>Investor mindset, deal analysis, pitch development for startups.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI-Powered Technology & Innovation</h3><p>Build AI prototypes, solve business problems, applied innovation.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI Innovation Management</h3><p>Lead AI initiatives, manage innovation pipelines, strategic implementation.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI Research & Development</h3><p>Applied AI research, prototype development, technical portfolio.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Entrepreneurship & Global Business</h3><p>From idea to investor-ready pitch deck. Business plan + competition.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Global Business & Technology</h3><p>Tech-driven global strategies, market expansion, digital business models.</p><a data-page="apply">Apply →</a></div>
         </div>
       </div>
     </div>
@@ -369,21 +434,45 @@
   <div id="finance-page" class="page">
     <div class="navbar-spacer"></div>
     <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>Finance & <span class="gold">Investment Track</span></h1><p>Real-world financial modeling, deal analysis, and corporate finance skills.</p></div>
-    <div class="section"><div class="container"><div class="grid-2col"><div class="card"><h3>Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio.</p></div><div class="card"><h3>Private Equity & Venture Capital</h3><p>Investor mindset, deal analysis, pitch development.</p></div></div></div></div>
+    <div class="section section-light">
+      <div class="container">
+        <div class="grid-2col">
+          <div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio. Learn how real deals are structured.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>💰 Private Equity & Venture Capital</h3><p>12 weeks: Investor mindset, deal analysis, pitch development. Understand how investors evaluate startups.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>📈 Applied Finance & Leadership</h3><p>12 weeks: Finance leadership, applied projects, strategic decision-making.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>🧠 Strategy & Finance</h3><p>10 weeks: Bridge strategy and finance with real business case studies.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- AI TRACK DETAIL PAGE -->
   <div id="ai-page" class="page">
     <div class="navbar-spacer"></div>
     <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>AI & <span class="gold">Technology Track</span></h1><p>Build and apply AI in real business environments.</p></div>
-    <div class="section"><div class="container"><div class="grid-2col"><div class="card"><h3>AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset.</p></div><div class="card"><h3>AI Innovation Management</h3><p>Lead AI projects, strategic implementation.</p></div></div></div></div>
+    <div class="section section-light">
+      <div class="container">
+        <div class="grid-2col">
+          <div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset, solving real business problems.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>⚙️ AI Innovation Management</h3><p>8 weeks: Lead AI projects, manage innovation pipelines, strategic AI implementation.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>🔬 AI Research & Development</h3><p>12 weeks: Applied AI research, prototype development, technical portfolio.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ENTREPRENEURSHIP TRACK DETAIL -->
   <div id="entrepreneurship-page" class="page">
     <div class="navbar-spacer"></div>
     <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>Entrepreneurship & <span class="gold">Global Business</span></h1><p>Turn ideas into scalable ventures.</p></div>
-    <div class="section"><div class="container"><div class="grid-2col"><div class="card"><h3>Entrepreneurship & Global Business</h3><p>12 weeks: business plan, pitch competition, mentorship.</p></div></div></div></div>
+    <div class="section section-light">
+      <div class="container">
+        <div class="grid-2col">
+          <div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, mentorship from global founders.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>🌍 Global Business & Technology</h3><p>10 weeks: Tech-driven global strategies, market expansion, digital business models.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- APPLICATION PAGE (Founding Cohort Form) -->
@@ -400,9 +489,9 @@
             <div style="margin-bottom:16px;"><input type="text" placeholder="Full Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div>
             <div style="margin-bottom:16px;"><input type="email" placeholder="Email Address" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div>
             <div style="margin-bottom:16px;"><select style="width:100%; padding:14px; border-radius:12px;">
-              <option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option>
+              <option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option><option>Applied Finance & Leadership</option><option>Private Equity & Venture Capital</option><option>AI Innovation Management</option>
             </select></div>
-            <button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('Application received! Our team will contact you within 24 hours. Welcome to Nolan Institute Founding Cohort.');">Submit Application →</button>
+            <button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('✅ Application received! Our team will contact you within 24 hours. Welcome to Nolan Institute Founding Cohort.');">Submit Application →</button>
           </form>
           <p style="text-align:center; margin-top:20px; font-size:12px;">Founding Cohort pricing: $199–$299 per program | Bundle access available.</p>
         </div>
@@ -436,7 +525,43 @@
 </div>
 
 <script>
-  // Page switching system
+  // =========================================================
+  // VIDEO CAROUSEL (FULLY PRESERVED)
+  // =========================================================
+  const videos = [slideVideo0, slideVideo1, slideVideo2, slideVideo3, slideVideo4, slideVideo5];
+  const slideTexts = [slideText0, slideText1, slideText2, slideText3, slideText4, slideText5];
+  let currentVideoIndex = 0;
+
+  function createDots() {
+    const dotsContainer = document.getElementById('carouselDots');
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < videos.length; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === currentVideoIndex) dot.classList.add('active');
+      dot.addEventListener('click', () => { if (videos[currentVideoIndex]) videos[currentVideoIndex].pause(); showSlide(i); });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function showSlide(index) {
+    videos.forEach((video, i) => { if (video) { video.style.opacity = '0'; video.pause(); } });
+    slideTexts.forEach((text, i) => { if (text) text.classList.remove('active-slide-text'); });
+    if (videos[index]) { videos[index].style.opacity = '1'; videos[index].currentTime = 0; videos[index].play().catch(e=>{}); }
+    if (slideTexts[index]) slideTexts[index].classList.add('active-slide-text');
+    document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
+    currentVideoIndex = index;
+  }
+
+  function nextSlide() { showSlide((currentVideoIndex + 1) % videos.length); }
+  videos.forEach((video) => { if (video) video.addEventListener('ended', () => setTimeout(nextSlide, 300)); });
+  createDots();
+  showSlide(0);
+
+  // =========================================================
+  // PAGE SWITCHING SYSTEM
+  // =========================================================
   const pages = {
     home: document.getElementById('home-page'),
     programs: document.getElementById('programs-page'),
@@ -452,7 +577,7 @@
     pages[pageId].classList.add('active');
     window.scrollTo(0, 0);
     // Update active nav items
-    document.querySelectorAll('.nav-item, .nav-links a, .btn-primary, .btn-outline').forEach(el => {
+    document.querySelectorAll('.nav-item, .nav-links a').forEach(el => {
       if (el.getAttribute && el.getAttribute('data-page') === pageId) {
         el.classList.add('active-nav');
       } else if (el.classList) {
@@ -469,11 +594,67 @@
     });
   });
 
-  // Set default active page
-  switchPage('home');
+  // Stars background (preserved)
+  function createStars() {
+    const container = document.getElementById('starsContainer');
+    if (!container) return;
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.width = Math.random() * 4 + 1 + 'px';
+      star.style.height = star.style.width;
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.position = 'absolute';
+      star.style.background = 'radial-gradient(circle, #D4AF37 0%, rgba(212,175,55,0) 80%)';
+      star.style.borderRadius = '50%';
+      star.style.opacity = '0';
+      star.style.animation = 'starFloat 4s ease-in-out infinite';
+      container.appendChild(star);
+    }
+  }
+  createStars();
 
-  // Urgency message for Founding Cohort
   console.log("Nolan Institute — Founding Cohort 2026: Build real-world skills in Finance, AI, and Global Business.");
 </script>
+
+<style>
+  .stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  @keyframes starFloat {
+    0%, 100% { opacity: 0; transform: scale(0.3) translateY(0px); }
+    50% { opacity: 0.8; transform: scale(1) translateY(-20px); }
+  }
+  .btn-outline-small {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+  }
+  .btn-outline-small:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .product-hero {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+  }
+</style>
 </body>
-  </html>
+</html>
