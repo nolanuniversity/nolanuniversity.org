@@ -308,6 +308,43 @@
       .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
       .hero-section { height: 70vh; }
     }
+
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    @keyframes starFloat {
+      0%, 100% { opacity: 0; transform: scale(0.3) translateY(0px); }
+      50% { opacity: 0.8; transform: scale(1) translateY(-20px); }
+    }
+    .btn-outline-small {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.3s;
+    }
+    .btn-outline-small:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .product-hero {
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -317,7 +354,7 @@
 <nav class="navbar">
   <div class="nav-wrapper">
     <div class="logo">
-      <img src="63d8dc0a-70ac-46b9-bce8-3184ada7decf.png" alt="Nolan Institute Logo">
+      <img src="institute.png" alt="Nolan Institute Logo">
       <span class="tagline">Global Business & Technology Institute</span>
     </div>
     <div class="nav-links">
@@ -417,14 +454,14 @@
       <div class="container">
         <div class="grid-2col">
           <div class="card"><span class="program-badge">Finance Track</span><h3>Applied Finance & Leadership</h3><p>12 weeks, project-based. Build financial decision-making & leadership portfolio.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Strategy & Finance</h3><p>Bridge strategic thinking with financial modeling. Real business cases.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Investment Banking & Corporate Finance</h3><p>M&A simulations, valuation, deal structuring — job-ready skills.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Finance Track</span><h3>Private Equity & Venture Capital</h3><p>Investor mindset, deal analysis, pitch development for startups.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">AI Track</span><h3>AI-Powered Technology & Innovation</h3><p>Build AI prototypes, solve business problems, applied innovation.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">AI Track</span><h3>AI Innovation Management</h3><p>Lead AI initiatives, manage innovation pipelines, strategic implementation.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">AI Track</span><h3>AI Research & Development</h3><p>Applied AI research, prototype development, technical portfolio.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Entrepreneurship & Global Business</h3><p>From idea to investor-ready pitch deck. Business plan + competition.</p><a data-page="apply">Apply →</a></div>
-          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Global Business & Technology</h3><p>Tech-driven global strategies, market expansion, digital business models.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Strategy & Finance</h3><p>Bridge strategic thinking with financial modeling. Real business cases.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Investment Banking & Corporate Finance</h3><p>M&A simulations, valuation, deal structuring — job-ready skills.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Private Equity & Venture Capital</h3><p>Investor mindset, deal analysis, pitch development for startups.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI-Powered Technology & Innovation</h3><p>Build AI prototypes, solve business problems, applied innovation.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI Innovation Management</h3><p>Lead AI initiatives, manage innovation pipelines, strategic implementation.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI Research & Development</h3><p>Applied AI research, prototype development, technical portfolio.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Entrepreneurship & Global Business</h3><p>From idea to investor-ready pitch deck. Business plan + competition.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Global Business & Technology</h3><p>Tech-driven global strategies, market expansion, digital business models.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
         </div>
       </div>
     </div>
@@ -437,10 +474,10 @@
     <div class="section section-light">
       <div class="container">
         <div class="grid-2col">
-          <div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio. Learn how real deals are structured.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
-          <div class="card"><h3>💰 Private Equity & Venture Capital</h3><p>12 weeks: Investor mindset, deal analysis, pitch development. Understand how investors evaluate startups.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
-          <div class="card"><h3>📈 Applied Finance & Leadership</h3><p>12 weeks: Finance leadership, applied projects, strategic decision-making.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
-          <div class="card"><h3>🧠 Strategy & Finance</h3><p>10 weeks: Bridge strategy and finance with real business case studies.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>📊 Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio. Learn how real deals are structured.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
+          <div class="card"><h3>💰 Private Equity & Venture Capital</h3><p>12 weeks: Investor mindset, deal analysis, pitch development. Understand how investors evaluate startups.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
+          <div class="card"><h3>📈 Applied Finance & Leadership</h3><p>12 weeks: Finance leadership, applied projects, strategic decision-making.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
+          <div class="card"><h3>🧠 Strategy & Finance</h3><p>10 weeks: Bridge strategy and finance with real business case studies.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
         </div>
       </div>
     </div>
@@ -453,9 +490,9 @@
     <div class="section section-light">
       <div class="container">
         <div class="grid-2col">
-          <div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset, solving real business problems.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
-          <div class="card"><h3>⚙️ AI Innovation Management</h3><p>8 weeks: Lead AI projects, manage innovation pipelines, strategic AI implementation.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
-          <div class="card"><h3>🔬 AI Research & Development</h3><p>12 weeks: Applied AI research, prototype development, technical portfolio.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>🤖 AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset, solving real business problems.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
+          <div class="card"><h3>⚙️ AI Innovation Management</h3><p>8 weeks: Lead AI projects, manage innovation pipelines, strategic AI implementation.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
+          <div class="card"><h3>🔬 AI Research & Development</h3><p>12 weeks: Applied AI research, prototype development, technical portfolio.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
         </div>
       </div>
     </div>
@@ -468,8 +505,8 @@
     <div class="section section-light">
       <div class="container">
         <div class="grid-2col">
-          <div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, mentorship from global founders.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
-          <div class="card"><h3>🌍 Global Business & Technology</h3><p>10 weeks: Tech-driven global strategies, market expansion, digital business models.</p><a class="btn-primary" data-page="apply">Apply Now</a></div>
+          <div class="card"><h3>🚀 Entrepreneurship & Global Business</h3><p>12 weeks: Business plan, pitch competition, mentorship from global founders.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
+          <div class="card"><h3>🌍 Global Business & Technology</h3><p>10 weeks: Tech-driven global strategies, market expansion, digital business models.</p><a class="btn-primary" data-page="apply" style="display:inline-block; margin-top:16px;">Apply Now</a></div>
         </div>
       </div>
     </div>
@@ -576,7 +613,6 @@
     Object.values(pages).forEach(p => p?.classList.remove('active'));
     pages[pageId].classList.add('active');
     window.scrollTo(0, 0);
-    // Update active nav items
     document.querySelectorAll('.nav-item, .nav-links a').forEach(el => {
       if (el.getAttribute && el.getAttribute('data-page') === pageId) {
         el.classList.add('active-nav');
@@ -594,7 +630,7 @@
     });
   });
 
-  // Stars background (preserved)
+  // Stars background
   function createStars() {
     const container = document.getElementById('starsContainer');
     if (!container) return;
@@ -617,44 +653,5 @@
 
   console.log("Nolan Institute — Founding Cohort 2026: Build real-world skills in Finance, AI, and Global Business.");
 </script>
-
-<style>
-  .stars-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
-  @keyframes starFloat {
-    0%, 100% { opacity: 0; transform: scale(0.3) translateY(0px); }
-    50% { opacity: 0.8; transform: scale(1) translateY(-20px); }
-  }
-  .btn-outline-small {
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 6px 16px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
-  }
-  .btn-outline-small:hover {
-    background: var(--gold);
-    color: var(--navy);
-  }
-  .product-hero {
-    background: linear-gradient(135deg, var(--navy), var(--navy-light));
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-  }
-</style>
 </body>
-</html>
+  </html>
