@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Nolan Institute of Global Business & Technology | Founding Cohort 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Nolan Institute Brand Colors - Deep Navy + Gold Accent */
+    :root {
+      --navy: #0B1F3B;
+      --navy-light: #13294B;
+      --navy-dark: #061225;
+      --gold: #D4AF37;
+      --gold-dark: #B8960C;
+      --gold-10: rgba(212, 175, 55, 0.1);
+      --electric-blue: #1E90FF;
+      --orange-startup: #FF6A00;
+      --purple-ai: #6C3BAA;
+      --white: #ffffff;
+      --soft: #F5F7FA;
+      --text: #1A2A3A;
+      --muted: #5A6E7A;
+      --gray-mid: #E2E8F0;
+      --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--soft);
+      color: var(--text);
+      overflow-x: hidden;
+      padding-bottom: 90px;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(11, 31, 59, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+    .logo span.tagline {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active-nav {
+      color: var(--gold);
+      text-shadow: 0 0 5px var(--gold);
+    }
+
+    .btn {
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.3s;
+      cursor: pointer;
+      font-size: 13px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 8px 18px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px var(--gold);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--gold);
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px var(--gold);
+    }
+
+    .navbar-spacer { height: 95px; }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 85vh;
+      min-height: 600px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 20px;
+      z-index: 2;
+    }
+
+    .hero-headline {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero-headline .gold { color: var(--gold); }
+    .hero-subheadline {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+
+    /* Sections */
+    .section { padding: 70px 0; position: relative; }
+    .section-light { background: white; }
+    .section-soft { background: var(--soft); }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title span { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; }
+    .section-title h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--navy); margin-top: 12px; }
+
+    .grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+
+    .program-badge {
+      display: inline-block;
+      background: var(--gold-10);
+      color: var(--gold-dark);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 28px;
+      padding: 32px;
+      text-align: center;
+    }
+    .pricing-card.popular { border: 2px solid var(--gold); transform: scale(1.02); }
+    .popular-badge { background: var(--gold); color: var(--navy); }
+
+    .floating-bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      border-radius: 60px;
+      padding: 10px 24px;
+      display: flex;
+      gap: 32px;
+      z-index: 1000;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #cbd5e1;
+      font-size: 0.65rem;
+      gap: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nav-item.active, .nav-item:hover { color: var(--gold); }
+
+    footer {
+      background: var(--navy-dark);
+      color: #94a3b8;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .page { display: none; width: 100%; }
+    .page.active { display: block; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .floating-bottom-nav { gap: 16px; padding: 8px 16px; }
+      .hero-section { height: 70vh; }
+      .grid-2col { grid-template-columns: 1fr; }
+    }
+
+    /* Founding Cohort Urgency */
+    .urgency-badge {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-wrapper">
+    <div class="logo">
+      <img src="63d8dc0a-70ac-46b9-bce8-3184ada7decf.png" alt="Nolan Institute Logo">
+      <span class="tagline">Global Business & Technology Institute</span>
+    </div>
+    <div class="nav-links">
+      <a data-page="home" class="active-nav">Home</a>
+      <a data-page="programs">Programs</a>
+      <a data-page="finance">Finance & Investment</a>
+      <a data-page="ai">AI & Technology</a>
+      <a data-page="entrepreneurship">Entrepreneurship</a>
+      <a data-page="apply">Apply Now</a>
+    </div>
+    <div class="cta-buttons">
+      <a class="btn btn-primary" data-page="apply">Founding Cohort →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-container">
+  <!-- HOME PAGE with Founding Cohort Focus -->
+  <div id="home-page" class="page active">
+    <div class="navbar-spacer"></div>
+    <div class="hero-section">
+      <div class="hero-content">
+        <div class="urgency-badge">🔥 Founding Cohort 2026 — Limited Seats</div>
+        <div class="hero-headline">Nolan Institute of <span class="gold">Global Business & Technology</span></div>
+        <div class="hero-subheadline">Build real-world skills in Finance, AI, and Entrepreneurship. Learn by doing, lead globally.</div>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-large" data-page="apply">Apply Now →</a>
+          <a class="btn btn-outline btn-large" data-page="programs">Explore Programs</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Message -->
+    <div class="section section-light">
+      <div class="container">
+        <div class="section-title">
+          <span>✦ Nolan Institute ✦</span>
+          <h2>Real-World Education for the Global Professional</h2>
+          <p style="max-width:700px; margin:16px auto 0;">Most programs teach theory. We teach execution through applied projects, mentorship, and global business exposure.</p>
+        </div>
+        <div class="grid-2col">
+          <div class="card"><i class="fas fa-chart-line" style="font-size:40px; color:var(--gold);"></i><h3>Finance & Investment</h3><p>Master financial modeling, M&A, and corporate finance through real case studies.</p></div>
+          <div class="card"><i class="fas fa-microchip" style="font-size:40px; color:var(--electric-blue);"></i><h3>AI & Technology</h3><p>Build AI-powered solutions and learn innovation management for real business impact.</p></div>
+          <div class="card"><i class="fas fa-rocket" style="font-size:40px; color:var(--orange-startup);"></i><h3>Entrepreneurship</h3><p>Turn ideas into investor-ready startups with global strategy and execution skills.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founding Cohort Value Prop -->
+    <div class="section section-soft">
+      <div class="container">
+        <div class="card" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); color:white; text-align:center;">
+          <i class="fas fa-star" style="font-size:48px; color:var(--gold); margin-bottom:16px;"></i>
+          <h2 style="color:white;">Why Join the Founding Cohort?</h2>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; margin-top:30px;">
+            <div><strong style="color:var(--gold);">First Cohort</strong><br>Pioneer status & network</div>
+            <div><strong style="color:var(--gold);">Direct Mentorship</strong><br>Access to global experts</div>
+            <div><strong style="color:var(--gold);">Project-Based</strong><br>Real portfolio outcomes</div>
+            <div><strong style="color:var(--gold);">Limited Seats</strong><br>High-exclusivity intake</div>
+          </div>
+          <a class="btn btn-primary" style="margin-top:32px;" data-page="apply">Secure Your Seat →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS OVERVIEW PAGE (9 Programs) -->
+  <div id="programs-page" class="page">
+    <div class="navbar-spacer"></div>
+    <div class="product-hero" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); padding:80px 0; text-align:center;">
+      <div class="container"><h1 style="color:white;">Our <span class="gold">Programs</span></h1><p style="color:rgba(255,255,255,0.8);">9 career-focused programs across Finance, AI & Entrepreneurship</p></div>
+    </div>
+    <div class="section section-light">
+      <div class="container">
+        <div class="grid-2col">
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Applied Finance & Leadership</h3><p>12 weeks, project-based finance leadership.</p><a class="btn-outline-small" data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Strategy & Finance</h3><p>Bridge strategy with financial decision-making.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Investment Banking & Corporate Finance</h3><p>Master M&A, valuations & deal structuring.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Finance Track</span><h3>Private Equity & Venture Capital</h3><p>Learn how investors evaluate and fund startups.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI-Powered Technology & Innovation</h3><p>Build AI prototypes & solve business problems.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI Innovation Management</h3><p>Lead AI-driven initiatives & innovation pipelines.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">AI Track</span><h3>AI Research & Development</h3><p>Applied AI research & prototype development.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Entrepreneurship & Global Business</h3><p>From idea to investor-ready pitch deck.</p><a data-page="apply">Apply →</a></div>
+          <div class="card"><span class="program-badge">Entrepreneurship</span><h3>Global Business & Technology</h3><p>Strategies for a tech-driven global economy.</p><a data-page="apply">Apply →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCE TRACK DETAIL PAGE -->
+  <div id="finance-page" class="page">
+    <div class="navbar-spacer"></div>
+    <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>Finance & <span class="gold">Investment Track</span></h1><p>Real-world financial modeling, deal analysis, and corporate finance skills.</p></div>
+    <div class="section"><div class="container"><div class="grid-2col"><div class="card"><h3>Investment Banking & Corporate Finance</h3><p>12 weeks: Financial modeling, M&A simulations, job-ready portfolio.</p></div><div class="card"><h3>Private Equity & Venture Capital</h3><p>Investor mindset, deal analysis, pitch development.</p></div></div></div></div>
+  </div>
+
+  <!-- AI TRACK DETAIL PAGE -->
+  <div id="ai-page" class="page">
+    <div class="navbar-spacer"></div>
+    <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>AI & <span class="gold">Technology Track</span></h1><p>Build and apply AI in real business environments.</p></div>
+    <div class="section"><div class="container"><div class="grid-2col"><div class="card"><h3>AI-Powered Technology & Innovation</h3><p>10 weeks: AI prototypes, innovation skillset.</p></div><div class="card"><h3>AI Innovation Management</h3><p>Lead AI projects, strategic implementation.</p></div></div></div></div>
+  </div>
+
+  <!-- ENTREPRENEURSHIP TRACK DETAIL -->
+  <div id="entrepreneurship-page" class="page">
+    <div class="navbar-spacer"></div>
+    <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;"><h1>Entrepreneurship & <span class="gold">Global Business</span></h1><p>Turn ideas into scalable ventures.</p></div>
+    <div class="section"><div class="container"><div class="grid-2col"><div class="card"><h3>Entrepreneurship & Global Business</h3><p>12 weeks: business plan, pitch competition, mentorship.</p></div></div></div></div>
+  </div>
+
+  <!-- APPLICATION PAGE (Founding Cohort Form) -->
+  <div id="apply-page" class="page">
+    <div class="navbar-spacer"></div>
+    <div class="product-hero" style="background:var(--navy); text-align:center; padding:60px 0;">
+      <div class="container"><h1>Join the <span class="gold">Founding Cohort</span> 2026</h1><p>Limited seats — become a pioneer at Nolan Institute.</p></div>
+    </div>
+    <div class="section section-light">
+      <div class="container">
+        <div class="card" style="max-width:700px; margin:0 auto;">
+          <h3 style="text-align:center;">Apply Now</h3>
+          <form id="applicationForm">
+            <div style="margin-bottom:16px;"><input type="text" placeholder="Full Name" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div>
+            <div style="margin-bottom:16px;"><input type="email" placeholder="Email Address" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--gray-mid);"></div>
+            <div style="margin-bottom:16px;"><select style="width:100%; padding:14px; border-radius:12px;">
+              <option>Select Program</option><option>Investment Banking & Corporate Finance</option><option>AI-Powered Technology & Innovation</option><option>Entrepreneurship & Global Business</option>
+            </select></div>
+            <button type="button" class="btn btn-primary" style="width:100%;" onclick="alert('Application received! Our team will contact you within 24 hours. Welcome to Nolan Institute Founding Cohort.');">Submit Application →</button>
+          </form>
+          <p style="text-align:center; margin-top:20px; font-size:12px;">Founding Cohort pricing: $199–$299 per program | Bundle access available.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pre-Footer with Founding Cohort Urgency -->
+<div style="background: var(--navy-dark); padding: 40px 0; border-top: 1px solid rgba(212,175,55,0.2);">
+  <div class="container">
+    <div style="text-align:center;"><p style="color:var(--gold);">✦ Founding Cohort 2026 — Limited Seats ✦</p><p style="color:white;">"Learn by doing, lead globally." — Nolan Institute</p><a class="btn btn-primary" data-page="apply" style="margin-top:16px;">Apply Now →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Nolan Institute of Global Business & Technology. All rights reserved.</p>
+    <p>Operated by Basiwel Holistic Ventures Limited | 355 New Chalala, Lusaka, Zambia</p>
+    <p><a href="#" style="color:var(--gold);">Privacy Policy</a> | <a href="#" style="color:var(--gold);">Contact: hello@nolaninstitute.com</a></p>
+  </div>
+</footer>
+
+<div class="floating-bottom-nav">
+  <a class="nav-item" data-page="home"><i class="fas fa-home"></i><span>Home</span></a>
+  <a class="nav-item" data-page="programs"><i class="fas fa-graduation-cap"></i><span>Programs</span></a>
+  <a class="nav-item" data-page="finance"><i class="fas fa-chart-line"></i><span>Finance</span></a>
+  <a class="nav-item" data-page="ai"><i class="fas fa-microchip"></i><span>AI</span></a>
+  <a class="nav-item" data-page="entrepreneurship"><i class="fas fa-rocket"></i><span>Startups</span></a>
+  <a class="nav-item" data-page="apply"><i class="fas fa-pen-alt"></i><span>Apply</span></a>
+</div>
+
+<script>
+  // Page switching system
+  const pages = {
+    home: document.getElementById('home-page'),
+    programs: document.getElementById('programs-page'),
+    finance: document.getElementById('finance-page'),
+    ai: document.getElementById('ai-page'),
+    entrepreneurship: document.getElementById('entrepreneurship-page'),
+    apply: document.getElementById('apply-page')
+  };
+
+  function switchPage(pageId) {
+    if (!pages[pageId]) return;
+    Object.values(pages).forEach(p => p?.classList.remove('active'));
+    pages[pageId].classList.add('active');
+    window.scrollTo(0, 0);
+    // Update active nav items
+    document.querySelectorAll('.nav-item, .nav-links a, .btn-primary, .btn-outline').forEach(el => {
+      if (el.getAttribute && el.getAttribute('data-page') === pageId) {
+        el.classList.add('active-nav');
+      } else if (el.classList) {
+        el.classList.remove('active-nav');
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-page]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = el.getAttribute('data-page');
+      if (page && pages[page]) switchPage(page);
+    });
+  });
+
+  // Set default active page
+  switchPage('home');
+
+  // Urgency message for Founding Cohort
+  console.log("Nolan Institute — Founding Cohort 2026: Build real-world skills in Finance, AI, and Global Business.");
+</script>
+</body>
+  </html>
