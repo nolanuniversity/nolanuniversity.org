@@ -167,37 +167,6 @@ background:#e6bb3f;
 transform:translateY(-2px);
 }
 
-/* Navbar styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #04122b;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-  flex-wrap: wrap;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #ffd24c;
-}
-
 /* Disabled quick links */
 .disabled-link {
   color: #888 !important;
@@ -205,26 +174,15 @@ transform:translateY(-2px);
   cursor: default;
   text-decoration: none;
 }
-
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-}
 </style>
 
 </head>
 
 <body id="top">
 
-<!-- NAVBAR -->
-<nav class="navbar">
+<!-- NAVBAR (just a bar with logo only) -->
+<nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:#04122b;">
+
   <!-- Logo Image (clickable → top of this same HTML) -->
   <div class="logo">
     <a href="#top" title="Back to top">
@@ -234,13 +192,6 @@ transform:translateY(-2px);
     </a>
   </div>
 
-  <!-- Menu items -->
-  <ul class="nav-links">
-    <li><a href="#top">Home</a></li>
-    <li><a href="#programmes">Explore Programmes</a></li>
-    <li><a href="#scholarships">Scholarships</a></li>
-    <li><a href="apply.html">Apply</a></li>
-  </ul>
 </nav>
 
 <!-- HEADER -->
