@@ -172,11 +172,10 @@ input,select,textarea{color-scheme:light only;font-family:inherit}
 .cta-btn:hover{background:var(--gold-light)}
 
 /* =====================================================
-   SYSTEM STYLES (from Nolan Institute)
+   SYSTEM STYLES
    ===================================================== */
 .section{padding:70px 0}
 .section-alt{background:var(--off-white)}
-.section-navy{background:var(--navy);color:#fff}
 .section-head{text-align:center;margin-bottom:48px;max-width:760px;margin-left:auto;margin-right:auto}
 .section-tag{display:inline-block;background:var(--gold-10);color:var(--gold-dark);padding:5px 14px;border-radius:50px;font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;text-align:center}
 .section-head h2{font-size:clamp(1.7rem,3.5vw,2.4rem);margin-bottom:14px;color:var(--navy)}
@@ -280,7 +279,6 @@ input,select,textarea{color-scheme:light only;font-family:inherit}
 .portal-field input::placeholder{color:#94a3b8!important;opacity:1}
 .portal-field input:focus{outline:none;border-color:#C5A028!important;box-shadow:0 0 0 3px rgba(197,160,40,.12)}
 .portal-field input.err{border-color:#DC3545!important;background:#FFF5F5!important}
-.portal-field input:disabled{background:#F5F5F5!important;color:#999!important;-webkit-text-fill-color:#999!important;cursor:not-allowed}
 .portal-pw-wrap{position:relative}
 .portal-pw-wrap input{padding-right:46px}
 .portal-pw-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:8px;border:none;background:transparent!important;color:#666!important;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
@@ -531,12 +529,6 @@ input,select,textarea{color-scheme:light only;font-family:inherit}
 .nolan-receipt .nr-footer-note{font-style:italic;margin-bottom:8px;line-height:1.5}
 .nolan-receipt .nr-footer-contact{font-size:10.5px;color:#333}
 .nolan-receipt .nr-footer-contact strong{color:#0A1C3A;font-weight:700}
-.app-receipt-check{background:linear-gradient(135deg,#F3F0FF 0%,#FAF7FF 100%);border:1px solid #D6CCF0;border-radius:12px;padding:16px 18px;margin-top:16px;text-align:left}
-.app-receipt-check h6{font-size:11.5px;font-weight:800;letter-spacing:.6px;color:#4A3580;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.app-receipt-check-row{display:flex;gap:8px;flex-wrap:wrap}
-.app-receipt-check-row input{flex:1;min-width:160px;padding:10px 14px;border:2px solid #D6CCF0;border-radius:8px;font-size:13px;color:#4A3580;background:#fff}
-.app-receipt-check-result{font-size:12px;color:#4A3580;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff;border-left:3px solid #7C5FCC;display:none}
-.app-receipt-check-result.show{display:block}
 .app-upload-drop{position:relative;border:2px dashed var(--gray-mid);border-radius:12px;padding:20px 18px;text-align:center;cursor:pointer;transition:var(--transition);background:var(--off-white)}
 .app-upload-drop:hover{border-color:var(--gold);background:#fff}
 .app-upload-drop.has-file{border-style:solid;border-color:var(--gold);background:#fff;text-align:left;padding:13px 15px}
@@ -597,8 +589,6 @@ input,select,textarea{color-scheme:light only;font-family:inherit}
 .finder-empty{text-align:center;padding:30px 20px;color:var(--gray-dark);font-size:13px;grid-column:1/-1}
 .finder-empty i{font-size:22px;color:var(--gray-mid);margin-bottom:10px;display:block}
 
-/* Responsive */
-@media (max-width:1100px){}
 @media (max-width:992px){
   .main-nav{display:none}
   .mobile-menu-btn{display:block}
@@ -708,15 +698,6 @@ input,select,textarea{color-scheme:light only;font-family:inherit}
       <ul>
         <li><a href="#top">Home</a></li>
         <li>
-          <a href="#schools">Schools <i class="fas fa-chevron-down caret"></i></a>
-          <ul class="dropdown-menu">
-            <li><a href="school-technology-ai.html">School of Technology &amp; AI</a></li>
-            <li><a href="gsbf.html">Nolan Graduate School of Banking &amp; Finance</a></li>
-            <li><a href="school-entrepreneurship.html">School of Entrepreneurship &amp; Venture Creation</a></li>
-            <li><a href="school-global-business.html">Nolan School of Global Business &amp; Leadership</a></li>
-          </ul>
-        </li>
-        <li>
           <a href="#programmes">Programmes <i class="fas fa-chevron-down caret"></i></a>
           <ul class="dropdown-menu">
             <li><a href="#programmes" data-scroll>3-Year Bachelor's Degrees</a></li>
@@ -746,18 +727,6 @@ input,select,textarea{color-scheme:light only;font-family:inherit}
 <div class="mobile-nav" id="mobileNav">
   <ul>
     <li><a href="#top">Home</a></li>
-
-    <li>
-      <button type="button" class="mobile-toggle-sub" aria-expanded="false">
-        Schools <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="mobile-sub">
-        <a href="school-technology-ai.html">School of Technology &amp; AI</a>
-        <a href="gsbf.html">Nolan Graduate School of Banking &amp; Finance</a>
-        <a href="school-entrepreneurship.html">School of Entrepreneurship &amp; Venture Creation</a>
-        <a href="school-global-business.html">Nolan School of Global Business &amp; Leadership</a>
-      </div>
-    </li>
 
     <li>
       <button type="button" class="mobile-toggle-sub" aria-expanded="false">
@@ -889,21 +858,6 @@ window.addEventListener('load', function(){
   </div>
   <button type="button" class="cta-btn js-apply-now">Start Excelling Today</button>
 </div>
-
-<!-- SCHOOLS SECTION -->
-<section id="schools">
-  <div class="container">
-    <h2 style="text-align:center; font-size:22px; color:var(--gold); margin-bottom:20px;">Part of Nolan University in Which to Pursue Your Passions</h2>
-    <div class="program-grid">
-      <a href="https://nigbt.nolanuniversity.org" class="school-card-link">
-        <div class="card school-card">🎓 Nolan Institute of Global Business &amp; Technology</div>
-      </a>
-      <a href="https://lewisschool.nolanuniversity.org" class="school-card-link">
-        <div class="card school-card">🎓 Lewis School of Finance &amp; Investment</div>
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- PROGRAMMES SECTION -->
 <div id="programmes">
@@ -1578,9 +1532,6 @@ window.addEventListener('load', function(){
      SCRIPTS
      ===================================================== -->
 <script>
-/* ============================================================
-   CONFIG
-   ============================================================ */
 const ADMIN_WHATSAPP = '260762499581';
 
 const FIREBASE_CONFIG = {
@@ -1612,9 +1563,6 @@ function toUSD(zmw){ const raw = zmw / USD_RATE; if(raw >= 1000) return Math.rou
 function fmtZMW(n){ return 'K' + n.toLocaleString(); }
 function fmtUSD(zmw){ return 'US$' + toUSD(zmw).toLocaleString(); }
 
-/* ============================================================
-   HELPERS
-   ============================================================ */
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -1628,9 +1576,6 @@ function showToast(msg, type){
   toastTimer = setTimeout(() => { t.className = 'toast'; }, 3200);
 }
 
-/* ============================================================
-   PROGRAMMES DATA — Nolan University
-   ============================================================ */
 const FORMAT_PRICES = {
   "Bachelor's Degree": 30000,
   "Master's Degree": 18000,
@@ -1639,29 +1584,22 @@ const FORMAT_PRICES = {
 };
 
 const PROGRAMMES = [
-  // BACHELORS
   {id:'bsc-fi',name:'BSc Finance & Investment',subject:'Finance',format:"Bachelor's Degree",weeks:156,description:'A three-year honours-level bachelor\'s programme covering finance, investment, capital markets and financial analysis.',learn:['Financial accounting & reporting','Corporate finance','Investment analysis','Portfolio management'],audience:'School leavers and professionals pursuing a full finance degree.'},
   {id:'bsc-gbt',name:'BSc Global Business & Technology',subject:'Global Business',format:"Bachelor's Degree",weeks:156,description:'A three-year programme combining global business strategy with technology-enabled operating models.',learn:['International business','Technology & digital strategy','Operations management','Business analytics'],audience:'Students seeking a modern global business degree.'},
-  {id:'bsc-ft',name:'BSc Financial Technology',subject:'FinTech',format:"Bachelor's Degree",weeks:156,description:'A three-year programme focused on the intersection of finance and technology — payments, blockchain, digital banking and analytics.',learn:['Financial systems','Digital banking & payments','Blockchain foundations','Programming for finance'],audience:'Future fintech professionals and entrepreneurs.'},
-  {id:'bsc-ev',name:'BSc Entrepreneurship & Venture Creation',subject:'Entrepreneurship',format:"Bachelor's Degree",weeks:156,description:'A three-year programme designed for future founders — from opportunity identification to venture scaling.',learn:['Entrepreneurial mindset','Venture design','Startup finance','Scaling operations'],audience:'Aspiring founders and business builders.'},
+  {id:'bsc-ft',name:'BSc Financial Technology',subject:'FinTech',format:"Bachelor's Degree",weeks:156,description:'A three-year programme focused on the intersection of finance and technology.',learn:['Financial systems','Digital banking & payments','Blockchain foundations','Programming for finance'],audience:'Future fintech professionals and entrepreneurs.'},
+  {id:'bsc-ev',name:'BSc Entrepreneurship & Venture Creation',subject:'Entrepreneurship',format:"Bachelor's Degree",weeks:156,description:'A three-year programme designed for future founders.',learn:['Entrepreneurial mindset','Venture design','Startup finance','Scaling operations'],audience:'Aspiring founders and business builders.'},
   {id:'bsc-ba',name:'BSc Business Analytics & AI',subject:'Business Analytics',format:"Bachelor's Degree",weeks:156,description:'A three-year degree combining analytics, AI and business decision-making.',learn:['Data analytics','Applied AI for business','Business intelligence','Predictive modelling'],audience:'Students pursuing a modern analytics career.'},
-
-  // MASTERS
   {id:'msc-fcm',name:'MSc Finance & Capital Markets',subject:'Finance',format:"Master's Degree",weeks:52,description:'A one-year master\'s programme covering advanced finance, capital markets and investment strategy.',learn:['Advanced corporate finance','Capital markets','Asset valuation','Risk & derivatives'],audience:'Finance professionals and graduates seeking a specialist master\'s.'},
   {id:'msc-vcpe',name:'MSc Venture Capital & Private Equity',subject:'Venture Capital',format:"Master's Degree",weeks:52,description:'A one-year master\'s focused on venture capital, private equity, deal structuring and fund management.',learn:['Venture capital models','Private equity','Deal structuring','Fund management'],audience:'Investors, finance professionals and founders.'},
-  {id:'msc-vs',name:'MSc Venture Strategy',subject:'Entrepreneurship',format:"Master's Degree",weeks:52,description:'A one-year master\'s in venture strategy — building and scaling high-growth businesses.',learn:['Venture strategy','Growth & scaling','Fundraising','Operating models'],audience:'Founders and operators scaling ventures.'},
+  {id:'msc-vs',name:'MSc Venture Strategy',subject:'Entrepreneurship',format:"Master's Degree",weeks:52,description:'A one-year master\'s in venture strategy.',learn:['Venture strategy','Growth & scaling','Fundraising','Operating models'],audience:'Founders and operators scaling ventures.'},
   {id:'mba-ei',name:'MBA Entrepreneurship & Innovation',subject:'Entrepreneurship',format:"Master's Degree",weeks:52,description:'An MBA programme focused on entrepreneurship, innovation and venture creation.',learn:['Entrepreneurial leadership','Innovation management','Venture finance','Business model design'],audience:'Managers and founders seeking an MBA in entrepreneurship.'},
   {id:'mba-vsf',name:'MBA Venture Strategy & Finance',subject:'Venture Strategy',format:"Master's Degree",weeks:52,description:'An MBA programme combining venture strategy with corporate finance.',learn:['Venture strategy','Corporate finance','Investment analysis','Strategic leadership'],audience:'Professionals pursuing an MBA in venture strategy.'},
   {id:'mba-ef',name:'MBA Entrepreneurship & Finance',subject:'Entrepreneurship',format:"Master's Degree",weeks:52,description:'An MBA programme focused on entrepreneurship and finance.',learn:['Entrepreneurial finance','Venture building','Financial strategy','Leadership'],audience:'Founders and finance professionals.'},
-
-  // PROFESSIONAL DIPLOMAS
   {id:'dip-ib',name:'Diploma in Investment Banking',subject:'Investment Banking',format:'Professional Diploma',weeks:104,description:'A two-year professional diploma covering investment banking, M&A, capital raising and corporate finance.',learn:['Investment banking','M&A','Capital raising','Financial modelling'],audience:'Finance professionals building an investment banking career.'},
   {id:'dip-vcpe',name:'Diploma in Venture Capital & Private Equity',subject:'Venture Capital',format:'Professional Diploma',weeks:104,description:'A two-year professional diploma focused on venture capital and private equity.',learn:['Venture capital','Private equity','Deal execution','Portfolio management'],audience:'Investors and finance professionals.'},
-  {id:'dip-sb',name:'Diploma in Startup Building',subject:'Entrepreneurship',format:'Professional Diploma',weeks:104,description:'A two-year diploma covering the full journey of building a startup — from idea to scaling.',learn:['Idea validation','Business models','Product & go-to-market','Scaling operations'],audience:'Aspiring founders and business builders.'},
+  {id:'dip-sb',name:'Diploma in Startup Building',subject:'Entrepreneurship',format:'Professional Diploma',weeks:104,description:'A two-year diploma covering the full journey of building a startup.',learn:['Idea validation','Business models','Product & go-to-market','Scaling operations'],audience:'Aspiring founders and business builders.'},
   {id:'dip-fintech',name:'Diploma in FinTech & Digital Finance',subject:'FinTech',format:'Professional Diploma',weeks:104,description:'A two-year diploma in financial technology and digital finance.',learn:['FinTech landscape','Payments & digital banking','Blockchain','Digital finance strategy'],audience:'Professionals building a FinTech career.'},
   {id:'dip-aibf',name:'Diploma in AI for Business & Finance',subject:'AI',format:'Professional Diploma',weeks:104,description:'A two-year diploma in applied AI for business and finance.',learn:['AI concepts','Applied AI for finance','AI in business operations','AI strategy & governance'],audience:'Professionals applying AI in business and finance.'},
-
-  // CAREER ACCELERATOR (short programmes)
   {id:'ca-ib',name:'Investment Banking & Financial Markets',subject:'Investment Banking',format:'Career Accelerator',weeks:16,description:'A practical, career-focused programme in investment banking and financial markets.',learn:['Investment banking','Financial markets','M&A basics','Valuation'],audience:'Professionals targeting investment banking roles.'},
   {id:'ca-vcpe',name:'Venture Capital & Private Equity',subject:'Venture Capital',format:'Career Accelerator',weeks:16,description:'A career accelerator in venture capital and private equity.',learn:['VC/PE landscape','Deal analysis','Portfolio management','Fund structuring'],audience:'Professionals targeting VC/PE roles.'},
   {id:'ca-fintech',name:'Financial Technology (FinTech)',subject:'FinTech',format:'Career Accelerator',weeks:16,description:'A practical career accelerator covering FinTech and digital finance.',learn:['FinTech models','Payments','Digital banking','FinTech strategy'],audience:'Professionals moving into FinTech.'},
@@ -1675,21 +1613,10 @@ const PROGRAMMES = [
 ];
 PROGRAMMES.forEach(p => { p.price = FORMAT_PRICES[p.format] || 0; });
 
-/* ============================================================
-   STATE
-   ============================================================ */
 const state = { format:null, currentProgrammeId:null };
 
-/* ============================================================
-   CATALOGUE
-   ============================================================ */
-function getFilteredProgrammes(){
-  if(!state.format) return PROGRAMMES.slice();
-  return PROGRAMMES.filter(p => p.format === state.format);
-}
-function getFeatured(){
-  return PROGRAMMES.slice();
-}
+function getFeatured(){ return PROGRAMMES.slice(); }
+function getFilteredProgrammes(){ return state.format ? PROGRAMMES.filter(p => p.format === state.format) : PROGRAMMES.slice(); }
 function progCardHTML(p){
   return `<button type="button" class="prog-card" data-id="${p.id}" aria-label="View ${esc(p.name)}">
     <div class="prog-top">
@@ -1711,18 +1638,13 @@ function renderCatalogue(){
   const grid = $('#catalogueGrid'), bar = $('#catalogueBar'), label = $('#catalogueBarLabel');
   if(!grid) return;
   const list = state.format ? getFilteredProgrammes() : getFeatured();
-  if(state.format && bar){
-    bar.style.display = 'flex';
-    label.innerHTML = 'Showing <strong>' + esc(state.format) + '</strong> (' + list.length + ')';
-  } else if(bar){ bar.style.display = 'none'; }
+  if(state.format && bar){ bar.style.display = 'flex'; label.innerHTML = 'Showing <strong>' + esc(state.format) + '</strong> (' + list.length + ')'; }
+  else if(bar){ bar.style.display = 'none'; }
   grid.innerHTML = list.length === 0 ? `<div class="empty-state"><i class="fas fa-search"></i><h4>No programmes match that filter</h4><p>Try a different format.</p></div>` : list.map(progCardHTML).join('');
   grid.querySelectorAll('.prog-card').forEach(card => card.addEventListener('click', () => openProgramme(card.dataset.id)));
 }
 function clearFilters(){ state.format = null; renderCatalogue(); showToast('Filter cleared'); }
 
-/* ============================================================
-   PROGRAMME MODAL
-   ============================================================ */
 function openProgramme(id){
   const p = PROGRAMMES.find(x => x.id === id); if(!p) return;
   state.currentProgrammeId = id;
@@ -1731,7 +1653,6 @@ function openProgramme(id){
   else if(p.format === "Master's Degree") award = "Master's Degree";
   else if(p.format === 'Professional Diploma') award = 'Professional Diploma';
   else if(p.format === 'Career Accelerator') award = 'Career Accelerator Certificate';
-
   $('#programmeContent').innerHTML = `
     <span class="pm-badge">${esc(p.format)}</span>
     <h2 class="pm-title">${esc(p.name)}</h2>
@@ -1755,9 +1676,6 @@ function openProgramme(id){
 function applyFromModal(){ const p = PROGRAMMES.find(x => x.id === state.currentProgrammeId); closeProgramme(); if(p){ setSelectedProgramme(p); openApplication(); } }
 function closeProgramme(){ $('#programmeModal').classList.remove('show'); document.body.style.overflow = ''; }
 
-/* ============================================================
-   SEARCH
-   ============================================================ */
 const searchModal = $('#searchModal'), searchInput = $('#searchInput'), searchResults = $('#searchResults'), searchHint = $('#searchHint');
 function buildSearchTags(){
   const tags = ['Finance','MBA','AI','FinTech','Entrepreneurship','Bachelor','Master','Diploma','Data','Leadership'];
@@ -1772,14 +1690,11 @@ function renderSearchResults(q){
   if(!query){ searchHint.innerHTML = 'Type to search — try <strong>"finance"</strong>, <strong>"AI"</strong>, or <strong>"MBA"</strong>.'; searchResults.innerHTML = `<div class="search-empty"><i class="fas fa-search"></i>Start typing to search across ${PROGRAMMES.length} programmes.</div>`; return; }
   const matches = PROGRAMMES.filter(p => { const hay = (p.name + ' ' + p.subject + ' ' + p.format + ' ' + p.description + ' ' + p.learn.join(' ')).toLowerCase(); return hay.includes(query); });
   searchHint.innerHTML = `<strong>${matches.length}</strong> programme${matches.length!==1?'s':''} found for "<strong>${esc(q.trim())}</strong>"`;
-  if(matches.length === 0){ searchResults.innerHTML = `<div class="search-empty"><i class="fas fa-search-minus"></i>No programmes match that search. Try a different keyword.</div>`; return; }
+  if(matches.length === 0){ searchResults.innerHTML = `<div class="search-empty"><i class="fas fa-search-minus"></i>No programmes match that search.</div>`; return; }
   searchResults.innerHTML = matches.map(p => `<div class="search-result" data-id="${p.id}"><div class="search-result-info"><h5>${esc(p.name)}</h5><div class="search-meta"><span>${esc(p.format)}</span><span>${esc(p.subject)}</span><span><strong>${fmtZMW(p.price)}</strong> · ${fmtUSD(p.price)}</span><span>${p.weeks} Weeks</span></div></div><i class="fas fa-arrow-right search-result-arrow"></i></div>`).join('');
   searchResults.querySelectorAll('.search-result').forEach(el => el.addEventListener('click', () => { const id = el.dataset.id; closeSearch(); setTimeout(() => openProgramme(id), 200); }));
 }
 
-/* ============================================================
-   FINDER
-   ============================================================ */
 (function buildFinderFormats(){
   const sel = $('#finderFormat'); if(!sel) return;
   ['Bachelor\'s Degree',"Master's Degree",'Professional Diploma','Career Accelerator'].forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; sel.appendChild(o); });
@@ -1792,14 +1707,11 @@ function runFinder(){
   const wrap = $('#finderResults'), list = $('#finderList'), count = $('#finderCount');
   wrap.classList.add('show');
   count.textContent = results.length + ' programme' + (results.length !== 1 ? 's' : '') + ' found';
-  if(results.length === 0){ list.innerHTML = `<div class="finder-empty"><i class="fas fa-search-minus"></i>No programmes match your filters. Try broadening your search.</div>`; return; }
+  if(results.length === 0){ list.innerHTML = `<div class="finder-empty"><i class="fas fa-search-minus"></i>No programmes match your filters.</div>`; return; }
   list.innerHTML = results.map(p => `<div class="finder-item" data-id="${p.id}"><h5>${esc(p.name)}</h5><div class="finder-meta"><span><i class="fas fa-clock" style="color:var(--gold-dark)"></i> ${p.weeks} Wks</span><span><strong>${fmtZMW(p.price)}</strong> · ${fmtUSD(p.price)}</span><span>${esc(p.format)}</span></div></div>`).join('');
   list.querySelectorAll('.finder-item').forEach(el => el.addEventListener('click', () => openProgramme(el.dataset.id)));
 }
 
-/* ============================================================
-   MOBILE MENU + SCROLLING
-   ============================================================ */
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileNav = document.getElementById('mobileNav');
 if(mobileMenuBtn && mobileNav){
@@ -1836,9 +1748,6 @@ $$('[data-scroll]').forEach(a => {
 });
 window.addEventListener('resize', () => { if(window.innerWidth > 992 && mobileNav){ mobileNav.classList.remove('show'); if(mobileMenuBtn){ mobileMenuBtn.setAttribute('aria-expanded','false'); mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>'; } } });
 
-/* ============================================================
-   FIREBASE
-   ============================================================ */
 let fbDb = null, fbAuth = null, FB = null;
 const firebaseReady = (async function initFirebase(){
   if(!IS_FIREBASE_CONFIGURED) return null;
@@ -1871,17 +1780,11 @@ const firebaseReady = (async function initFirebase(){
 })();
 (function initEmailJS(){ if(!IS_EMAILJS_CONFIGURED) return; if(typeof emailjs === 'undefined') return; try{ emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey }); }catch(e){} })();
 
-/* ============================================================
-   TURNSTILE
-   ============================================================ */
 window.__turnstileToken = null;
 window.onTurnstileSuccess = function(token){ window.__turnstileToken = token; };
 window.onTurnstileExpired = function(){ window.__turnstileToken = null; };
 window.onTurnstileError = function(){ window.__turnstileToken = null; };
 
-/* ============================================================
-   AMOUNT IN WORDS
-   ============================================================ */
 function numberToWords(num){
   const ones = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
   const tens = ['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
@@ -1891,9 +1794,6 @@ function numberToWords(num){
 }
 function amountInWords(amountStr, currency){ const num = parseFloat(String(amountStr).replace(/[^\d.]/g, '')) || 0; const words = numberToWords(Math.round(num)); if(currency === 'USD') return 'US Dollars ' + words + ' Only'; return words + ' Kwacha Only'; }
 
-/* ============================================================
-   RECEIPT NUMBER
-   ============================================================ */
 async function generateReceiptNumber(){
   const year = new Date().getFullYear();
   const fb = await firebaseReady;
@@ -1912,9 +1812,6 @@ async function generateReceiptNumber(){
   return 'NOL-' + year + '-' + String(Math.floor(Math.random() * 900000) + 100000);
 }
 
-/* ============================================================
-   PAYMENT METHODS
-   ============================================================ */
 const PAYMENT_METHODS = {
   airtel: { label:'Airtel Money', brandClass:'brand-airtel', icon:'fa-mobile-alt', title:'Airtel Money', sub:'Pay via Airtel Money in Zambian Kwacha', amountZMW:'K120', amountUSD:'K120', recipientAccount:'+260 975 914 001 (Airtel)', ussdCode:'*115#', ussdLabel:'Open Airtel Menu',
     rows:[{label:'Recipient Name',value:'Mwaba Lewis',plain:true},{label:'Recipient Note',value:'Receiving on behalf of Nolan University',plain:true},{label:'Airtel Number',value:'+260 975 914 001',copy:true,copyValue:'+260975914001'}],
@@ -1938,9 +1835,6 @@ const PAYMENT_METHODS = {
     note:'Crypto is offered as an option for international applicants.' }
 };
 
-/* ============================================================
-   FILE UPLOADS
-   ============================================================ */
 (function fileUploads(){
   const LIMITS = {
     apResume:{max:5*1024*1024,exts:['.pdf','.doc','.docx'],mimes:['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],label:'Resume / CV'},
@@ -1987,9 +1881,6 @@ const PAYMENT_METHODS = {
   const note = document.getElementById('documentUploadNote'); if(note) note.style.display = 'flex';
 })();
 
-/* ============================================================
-   APPLICATION
-   ============================================================ */
 function setSelectedProgramme(p){
   try { sessionStorage.setItem('nolanSelectedProgramme', JSON.stringify({id:p.id,name:p.name,subject:p.subject,format:p.format,weeks:p.weeks,price:p.price})); } catch(e){}
   state.currentProgrammeId = p.id;
@@ -2419,9 +2310,6 @@ document.addEventListener('click', e => {
   if(btn){ e.preventDefault(); openApplication(); }
 });
 
-/* ============================================================
-   STUDENT PORTAL
-   ============================================================ */
 const portalModal = document.getElementById('portalModal');
 const portalViews = {
   login: document.getElementById('portalLoginView'),
@@ -2667,9 +2555,6 @@ document.getElementById('portalBack2').addEventListener('click', () => showPorta
 
 document.querySelectorAll('.open-portal').forEach(el => el.addEventListener('click', e => { e.preventDefault(); openPortal(el.dataset.portal || 'login'); }));
 
-/* ============================================================
-   BOOT
-   ============================================================ */
 renderCatalogue();
 buildSearchTags();
 $('#searchOpenBtn').addEventListener('click', openSearch);
