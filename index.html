@@ -4,175 +4,567 @@
   <title>Nolan University – Finance, Technology & Entrepreneurship</title>
 
 <meta name="description" content="Nolan University is a modern global university for Finance, Technology, and Entrepreneurship. Offering Bachelor's, Master's, and MBA programs with scholarships available.">
-
 <meta name="keywords" content="Nolan University, MBA Africa, Finance degree, Technology degree, Entrepreneurship, Online university Zambia">
-
 <meta name="author" content="Nolan University">
-
 <meta property="og:title" content="Nolan University">
 <meta property="og:description" content="A Modern Global University for Finance, Technology, and Entrepreneurship.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nolanuniversity.org">
 <meta property="og:image" content="https://nolanuniversity.org/preview.jpg">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Nolan University</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-html {
-  scroll-behavior: smooth;
+:root{
+  --navy:#0A1C3A;
+  --navy-light:#1A2D4D;
+  --navy-dark:#04122b;
+  --gold:#ffd24c;
+  --gold-light:#ffea7a;
+  --gold-dark:#C5A028;
+  --gold-10:rgba(255,210,76,0.12);
+  --white:#fff;
+  --off-white:#FAFAF8;
+  --gray-light:#F5F5F5;
+  --gray-mid:#E0E0E0;
+  --gray-dark:#666;
+  --gray-darker:#333;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+  --shadow-md:0 4px 12px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 32px rgba(0,0,0,.12);
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+  --radius:16px;
+  --radius-sm:10px;
 }
 
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px;overflow-x:hidden;width:100%;background:#fff}
 body{
-font-family: Arial, Helvetica, sans-serif;
-margin:0;
-background:#0b2a5b;
-color:white;
-line-height:1.6;
+  font-family:'Inter',sans-serif;
+  color:var(--gray-darker);
+  line-height:1.6;
+  background:#0b2a5b;
+  overflow-x:hidden;
+  width:100%;
+  position:relative;
+  max-width:100vw;
+}
+img,video,iframe,table,svg{max-width:100%;height:auto}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2;color:var(--gold);word-wrap:break-word;overflow-wrap:break-word}
+p,span,a,li,div{word-wrap:break-word;overflow-wrap:break-word}
+a{text-decoration:none;color:inherit;transition:var(--transition)}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px;width:100%}
+
+/* =====================================================
+   TOP BAR
+   ===================================================== */
+.top-bar{
+  background:var(--navy-dark);
+  color:#cbd5e1;
+  font-size:12.5px;
+  padding:9px 0;
+}
+.top-bar .container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.top-bar-left{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  min-width:0;
+}
+.top-bar-left span{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  white-space:nowrap;
+}
+.top-bar-left i{color:var(--gold);flex-shrink:0}
+.top-bar-right{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.top-bar-right a,
+.top-bar-right button{
+  color:#cbd5e1;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:12.5px;
+  font-family:inherit;
+  padding:0;
+}
+.top-bar-right a:hover,
+.top-bar-right button:hover{color:var(--gold)}
+
+/* =====================================================
+   MAIN HEADER (WHITE, STICKY)
+   ===================================================== */
+.main-header{
+  background:#fff;
+  box-shadow:var(--shadow-sm);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  transition:var(--transition);
+  width:100%;
+}
+.main-header.scrolled{box-shadow:var(--shadow-md)}
+.main-header .container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 24px;
+  gap:16px;
+  min-width:0;
+  max-width:100%;
 }
 
-.container{
-width:90%;
-max-width:1100px;
-margin:auto;
-padding:20px 0;
+/* LOGO */
+.logo{
+  display:flex;
+  flex-direction:column;
+  flex-shrink:1;
+  min-width:0;
+  overflow:hidden;
+}
+.logo-name{
+  font-size:17px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  color:var(--navy);
+  line-height:1.2;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.logo-tag{
+  font-size:9.5px;
+  color:var(--gold-dark);
+  font-weight:700;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  margin-top:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-h1,h2,h3{
-color:#ffd24c;
-margin-bottom:10px;
+/* MAIN NAV */
+.main-nav ul{
+  display:flex;
+  gap:24px;
+  align-items:center;
+}
+.main-nav ul li{position:relative}
+.main-nav ul li > a{
+  font-size:14px;
+  font-weight:500;
+  color:var(--gray-darker);
+  padding:10px 0;
+  position:relative;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+.main-nav ul li > a::after{
+  content:'';
+  position:absolute;
+  bottom:2px;
+  left:0;
+  width:0;
+  height:2px;
+  background:var(--gold-dark);
+  transition:var(--transition);
+}
+.main-nav ul li > a:hover{color:var(--gold-dark)}
+.main-nav ul li > a:hover::after{width:100%}
+.main-nav ul li > a i.caret{
+  font-size:9px;
+  opacity:.6;
+  transition:transform .25s ease;
+}
+.main-nav ul li:hover > a i.caret{transform:rotate(180deg)}
+
+/* DROPDOWN */
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:270px;
+  background:#fff;
+  border:1px solid var(--gray-mid);
+  border-radius:12px;
+  box-shadow:var(--shadow-lg);
+  padding:10px 0;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:var(--transition);
+  z-index:1100;
+}
+.main-nav ul li:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+.dropdown-menu li{border:none;margin:0}
+.dropdown-menu a{
+  display:block;
+  padding:11px 20px;
+  font-size:13px;
+  color:var(--gray-darker);
+  font-weight:500;
+  white-space:normal;
+  line-height:1.4;
+}
+.dropdown-menu a:hover{
+  background:var(--off-white);
+  color:var(--gold-dark);
+  padding-left:24px;
+}
+.dropdown-menu a::after{display:none !important}
+
+/* HEADER ACTIONS */
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+}
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  border:1px solid var(--gray-mid);
+  background:#fff;
+  color:var(--navy);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  transition:var(--transition);
+  flex-shrink:0;
+}
+.icon-btn:hover{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--navy-dark);
+  transform:translateY(-2px);
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 22px;
+  font-weight:600;
+  font-size:13.5px;
+  border-radius:8px;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:var(--transition);
+  text-align:center;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--gold);
+  color:var(--navy-dark);
+  border-color:var(--gold);
+}
+.btn-primary:hover{
+  background:var(--gold-light);
+  border-color:var(--gold-light);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(255,210,76,.4);
+}
+.btn-sm{padding:10px 18px;font-size:13px}
+.mobile-menu-btn{
+  display:none;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:var(--navy);
+  padding:6px;
+  flex-shrink:0;
+  line-height:1;
 }
 
-section{
-padding:30px 0;
+/* =====================================================
+   MOBILE NAV
+   ===================================================== */
+.mobile-nav{
+  display:none;
+  background:#fff;
+  border-top:1px solid var(--gray-mid);
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .4s ease;
+  width:100%;
+  position:sticky;
+  top:70px;
+  z-index:999;
+  box-shadow:var(--shadow-md);
 }
+.mobile-nav.show{
+  display:block;
+  max-height:900px;
+}
+.mobile-nav ul{padding:16px 20px 20px}
+.mobile-nav ul li{
+  margin-bottom:6px;
+  border-bottom:1px solid var(--gray-light);
+}
+.mobile-nav ul li:last-child{border-bottom:none;margin-bottom:0}
+.mobile-nav ul li a,
+.mobile-nav ul li button{
+  display:flex;
+  width:100%;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  font-size:15px;
+  font-weight:500;
+  color:var(--navy);
+  padding:12px 4px;
+  border-radius:6px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
+}
+.mobile-nav ul li a:hover,
+.mobile-nav ul li button:hover{color:var(--gold-dark);background:var(--gray-light)}
 
+/* Mobile dropdown */
+.mobile-sub{
+  display:none;
+  padding:4px 0 8px 16px;
+  border-left:2px solid var(--gold);
+  margin-left:6px;
+}
+.mobile-sub.show{display:block}
+.mobile-sub a{
+  font-size:13.5px !important;
+  color:var(--gray-dark) !important;
+  padding:9px 4px !important;
+  font-weight:500 !important;
+}
+.mobile-sub a:hover{color:var(--gold-dark) !important}
+.mobile-cta{
+  margin-top:14px !important;
+  border-bottom:none !important;
+}
+.mobile-cta .btn{width:100%}
+
+/* =====================================================
+   ORIGINAL CONTENT STYLES (kept intact)
+   ===================================================== */
 .logo-title{
-font-size:28px;
-font-weight:bold;
-color:#ffd24c;
+  font-size:28px;
+  font-weight:bold;
+  color:var(--gold);
 }
-
 .tagline{
-font-size:16px;
-color:white;
+  font-size:16px;
+  color:white;
 }
-
-header{
-background:#04122b;
-text-align:center;
-padding:20px;
-border-bottom:2px solid #ffd24c;
+.header-block{
+  background:var(--navy-dark);
+  text-align:center;
+  padding:20px;
+  border-bottom:2px solid var(--gold);
 }
-
-.hero{
-text-align:center;
-}
-
-.hero h1{
-font-size:36px;
-}
-
-.hero p{
-font-size:18px;
-max-width:800px;
-margin:auto;
-}
-
+.hero{text-align:center}
+.hero h1{font-size:36px}
+.hero p{font-size:18px;max-width:800px;margin:auto}
 .program-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-top:15px;
 }
-
 .card{
-background:#123d82;
-padding:25px;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.3);
+  background:#123d82;
+  padding:25px;
+  border-radius:8px;
+  box-shadow:0 0 10px rgba(0,0,0,0.3);
 }
-
-.card ul{
-padding-left:18px;
-}
-
-.highlight{
-background:#102f64;
-text-align:center;
-}
-
+.card ul{padding-left:18px}
+.highlight{background:#102f64;text-align:center}
 .benefits{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  margin-top:20px;
 }
-
-.benefit{
-background:#123d82;
-padding:15px 20px;
-border-radius:6px;
-}
-
+.benefit{background:#123d82;padding:15px 20px;border-radius:6px}
 .cta{
-text-align:center;
-background:#061a3a;
-padding:40px 20px;
+  text-align:center;
+  background:#061a3a;
+  padding:40px 20px;
 }
-
-.cta h2{
-font-size:26px;
-}
-
+.cta h2{font-size:26px}
 .cta button{
-background:#ffd24c;
-color:#0b2a5b;
-border:none;
-padding:14px 30px;
-font-size:16px;
-font-weight:bold;
-border-radius:5px;
-cursor:pointer;
-margin-top:15px;
+  background:var(--gold);
+  color:var(--navy-dark);
+  border:none;
+  padding:14px 30px;
+  font-size:16px;
+  font-weight:bold;
+  border-radius:5px;
+  cursor:pointer;
+  margin-top:15px;
 }
-
-.cta button:hover{
-background:white;
-}
-
-.duration{
-font-weight:bold;
-margin-bottom:15px;
-color:#ffd24c;
-}
-
+.cta button:hover{background:white}
 .scholarship-btn{
-background:#ffd24c;
-color:#0b2a5b !important;
-padding:10px 18px;
-border-radius:6px;
-font-weight:bold;
-text-decoration:none;
-display:inline-block;
-transition:all 0.3s ease;
+  background:var(--gold);
+  color:var(--navy-dark) !important;
+  padding:10px 18px;
+  border-radius:6px;
+  font-weight:bold;
+  text-decoration:none;
+  display:inline-block;
+  transition:all 0.3s ease;
+}
+.scholarship-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.school-card-link{text-decoration:none;color:var(--gold);display:block}
+.school-card{
+  font-size:14px;
+  text-align:center;
+  color:var(--gold);
+  padding:18px 15px;
+  transition:transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.school-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+  background:#1a4a9a;
+  color:var(--gold);
 }
 
-.scholarship-btn:hover{
-background:#e6bb3f;
-transform:translateY(-2px);
+/* Slider */
+.hero-slider .slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.hero-slider .slide:first-child{display:flex}
+.hero-slider img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
 
-/* Disabled quick links */
-.disabled-link {
-  color: #888 !important;
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
+/* Excellence content */
+.excellence-content{
+  max-width:1100px;
+  margin:0 auto;
+  padding:5px 20px 40px 20px;
+  text-align:center;
+  font-family:'Inter',sans-serif;
+  background:#0b2a5b;
+}
+.excellence-content h2{color:var(--gold);font-size:34px;margin:10px 0}
+.subheadline{
+  max-width:750px;
+  margin:auto;
+  font-size:17px;
+  color:white;
+  margin-bottom:30px;
+}
+.value-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+.value-card{
+  background:#f5f7fb;
+  padding:25px;
+  border-radius:8px;
+  text-align:center;
+}
+.value-card i{font-size:32px;color:#0b2a5b;margin-bottom:12px}
+.value-card p{color:#222;font-weight:500}
+.cta-btn{
+  display:inline-block;
+  margin-top:35px;
+  background:var(--gold);
+  color:var(--navy-dark);
+  padding:16px 38px;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:6px;
+}
+.cta-btn:hover{background:var(--gold-light)}
+
+/* Footer */
+footer a:hover{color:var(--gold)}
+footer button:hover{background:#fff200}
+footer i:hover{transform:scale(1.2);transition:transform 0.3s}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width:992px){
+  .main-nav{display:none}
+  .mobile-menu-btn{display:block}
+  .top-bar-left span:nth-child(3){display:none}
+}
+@media (max-width:768px){
+  .top-bar{padding:7px 0;font-size:12px}
+  .top-bar-left{display:none}
+  .top-bar-right{gap:14px}
+  .top-bar-right a,
+  .top-bar-right button{font-size:12px}
+  .mobile-nav{top:auto;position:relative}
+}
+@media (max-width:600px){
+  .container{padding:0 16px}
+  .main-header .container{padding:11px 16px;gap:8px;flex-wrap:nowrap}
+  .logo-name{font-size:14px;letter-spacing:1px}
+  .logo-tag{font-size:8px;letter-spacing:1.2px}
+  .header-actions{gap:6px}
+  .header-actions .btn-primary{padding:9px 14px;font-size:12px}
+  .icon-btn{width:38px;height:38px;font-size:14px}
+  .mobile-menu-btn{font-size:20px;padding:5px}
+}
+@media (max-width:400px){
+  .container{padding:0 12px}
+  .main-header .container{padding:9px 12px;gap:6px}
+  .logo-name{font-size:12px;letter-spacing:.5px}
+  .logo-tag{font-size:7px;letter-spacing:.8px}
+  .header-actions{gap:5px}
+  .header-actions .btn-primary{padding:7px 11px;font-size:11px}
+  .icon-btn{width:34px;height:34px;font-size:12.5px;border-radius:8px}
+  .mobile-menu-btn{font-size:18px;padding:4px}
 }
 </style>
 
@@ -180,764 +572,551 @@ transform:translateY(-2px);
 
 <body id="top">
 
-<!-- NAVBAR (just a bar with logo only) -->
-<nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:#04122b;">
-
-  <!-- Logo Image (clickable → top of this same HTML) -->
-  <div class="logo">
-    <a href="#top" title="Back to top">
-      <img src="ChatGPT Image Mar 11, 2026, 07_22_41 PM.png" 
-           alt="Nolan University Logo" 
-           style="height:50px; object-fit:contain; cursor:pointer; display:block;">
-    </a>
+<!-- =====================================================
+     TOP BAR
+     ===================================================== -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <span><i class="fas fa-phone-alt"></i> +260 768 526 191</span>
+      <span><i class="fas fa-envelope"></i> info@nolanuniversity.org</span>
+      <span><i class="fas fa-globe"></i> Online Learning Worldwide</span>
+    </div>
+    <div class="top-bar-right">
+      <a href="student-login.html"><i class="fas fa-user"></i> Student Portal</a>
+      <a href="#"><i class="fas fa-graduation-cap"></i> Alumni</a>
+    </div>
   </div>
+</div>
 
-</nav>
+<!-- =====================================================
+     MAIN HEADER
+     ===================================================== -->
+<header class="main-header" id="mainHeader">
+  <div class="container">
+    <!-- Logo -->
+    <a href="#top" class="logo" title="Nolan University — Home">
+      <span class="logo-name">NOLAN UNIVERSITY</span>
+      <span class="logo-tag">Learn to Lead. Lead to Excel.</span>
+    </a>
 
-<!-- HEADER -->
-<header>
-<div class="logo-title">NOLAN UNIVERSITY</div>
-<div class="tagline">Learn to Lead. Lead to Excel.</div>
+    <!-- Desktop Nav -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#top">Home</a></li>
+
+        <!-- Schools dropdown -->
+        <li>
+          <a href="#">Schools <i class="fas fa-chevron-down caret"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="school-technology-ai.html">School of Technology &amp; AI</a></li>
+            <li><a href="gsbf.html">Nolan Graduate School of Banking &amp; Finance</a></li>
+            <li><a href="school-entrepreneurship.html">School of Entrepreneurship &amp; Venture Creation</a></li>
+            <li><a href="school-global-business.html">Nolan School of Global Business &amp; Leadership</a></li>
+          </ul>
+        </li>
+
+        <!-- Programmes dropdown -->
+        <li>
+          <a href="#programmes">Programmes <i class="fas fa-chevron-down caret"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="bachelor's-degrees-portal.html">3-Year Bachelor's Degrees</a></li>
+            <li><a href="masters-degrees-portal.html">1-Year Master's Degrees</a></li>
+            <li><a href="diploma-programmes.html">2-Year Professional Diplomas</a></li>
+            <li><a href="short-programmes.html">Career Accelerator &amp; Executive Certificates</a></li>
+            <li><a href="youth-programmes.html">Youth Programmes</a></li>
+          </ul>
+        </li>
+
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="faculty.html">Faculty</a></li>
+        <li><a href="scholarships.html">Scholarships</a></li>
+      </ul>
+    </nav>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      <button type="button" class="icon-btn" aria-label="Search" title="Search">
+        <i class="fas fa-search"></i>
+      </button>
+      <a href="apply.html" class="btn btn-primary btn-sm">Apply Now</a>
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
 </header>
 
-<!-- HERO SECTION -->
+<!-- =====================================================
+     MOBILE NAV
+     ===================================================== -->
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="#top">Home</a></li>
+
+    <!-- Schools (mobile) -->
+    <li>
+      <button type="button" class="mobile-toggle-sub" aria-expanded="false">
+        Schools <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="mobile-sub">
+        <a href="school-technology-ai.html">School of Technology &amp; AI</a>
+        <a href="gsbf.html">Nolan Graduate School of Banking &amp; Finance</a>
+        <a href="school-entrepreneurship.html">School of Entrepreneurship &amp; Venture Creation</a>
+        <a href="school-global-business.html">Nolan School of Global Business &amp; Leadership</a>
+      </div>
+    </li>
+
+    <!-- Programmes (mobile) -->
+    <li>
+      <button type="button" class="mobile-toggle-sub" aria-expanded="false">
+        Programmes <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="mobile-sub">
+        <a href="bachelor's-degrees-portal.html">3-Year Bachelor's Degrees</a>
+        <a href="masters-degrees-portal.html">1-Year Master's Degrees</a>
+        <a href="diploma-programmes.html">2-Year Professional Diplomas</a>
+        <a href="short-programmes.html">Career Accelerator &amp; Executive Certificates</a>
+        <a href="youth-programmes.html">Youth Programmes</a>
+      </div>
+    </li>
+
+    <li><a href="admissions.html">Admissions</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="faculty.html">Faculty</a></li>
+    <li><a href="scholarships.html">Scholarships</a></li>
+    <li class="mobile-cta"><a href="apply.html" class="btn btn-primary">Apply Now</a></li>
+  </ul>
+</div>
+
+<!-- =====================================================
+     HEADER BLOCK (original title strip)
+     ===================================================== -->
+<div class="header-block">
+  <div class="logo-title">NOLAN UNIVERSITY</div>
+  <div class="tagline">Learn to Lead. Lead to Excel.</div>
+</div>
+
+<!-- =====================================================
+     HERO SLIDER #1
+     ===================================================== -->
 <section class="hero-slider" style="position:relative; width:100%; max-width:900px; margin:auto; height:0; padding-bottom:115%; overflow:hidden; background:#0b2a5b;">
 
-  <!-- Slides -->
   <div class="slide active" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="http://afrileapcapital.com/wp-content/uploads/2026/03/ChatGPT-Image-Mar-13-2026-03_13_18-PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
+    <img src="http://afrileapcapital.com/wp-content/uploads/2026/03/ChatGPT-Image-Mar-13-2026-03_13_18-PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 01_45_01 PM.jpg" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_10_37 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_36_34 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_28_15 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_23_29 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_41_46 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_20_27 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 02_54_02 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 01_42_45 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 01_45_01 PM.jpg" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+    <img src="ChatGPT Image Mar 13, 2026, 03_20_27 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
   </div>
 
-  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 01_45_01 PM.jpg" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-
-  <div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_10_37 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_36_34 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_28_15 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_23_29 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_41_46 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_20_27 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 02_54_02 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 01_42_45 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 01_45_01 PM.jpg" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-<div class="slide" style="position:absolute; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-    <img src="ChatGPT Image Mar 13, 2026, 03_20_27 PM.png" 
-         style="max-width:100%; max-height:100%; object-fit:contain;">
-  </div>
-  <!-- CTA Buttons -->
   <div class="hero-buttons" style="position:absolute; bottom:0px; left:50%; transform:translateX(-50%); display:flex; gap:15px; z-index:2;">
-    <a href="apply.html" style="padding:12px 25px; background:#ffd24c; color:#0b2a5b; border-radius:5px; text-decoration:none; font-weight:bold;">Apply Now</a>
-    <a href="#programmes" style="padding:12px 25px; border:2px solid #ffd24c; color:#ffd24c; border-radius:5px; text-decoration:none; font-weight:bold;">Explore Programmes</a>
+    <a href="apply.html" style="padding:12px 25px; background:var(--gold); color:var(--navy-dark); border-radius:5px; text-decoration:none; font-weight:bold;">Apply Now</a>
+    <a href="#programmes" style="padding:12px 25px; border:2px solid var(--gold); color:var(--gold); border-radius:5px; text-decoration:none; font-weight:bold;">Explore Programmes</a>
   </div>
 
 </section>
 
-<!-- SIMPLE JS SLIDER -->
 <script>
-let slides = document.querySelectorAll(".hero-slider .slide");
-let index = 0;
+let heroSlides = document.querySelectorAll(".hero-slider .slide");
+let heroIndex = 0;
 
-function showSlide(i){
-  slides.forEach(s => s.style.display = "none");
-  index = i;
-  if(index >= slides.length) index = 0;
-  if(index < 0) index = slides.length - 1;
-  slides[index].style.display = "flex";
+function showHeroSlide(i){
+  heroSlides.forEach(s => s.style.display = "none");
+  heroIndex = i;
+  if(heroIndex >= heroSlides.length) heroIndex = 0;
+  if(heroIndex < 0) heroIndex = heroSlides.length - 1;
+  heroSlides[heroIndex].style.display = "flex";
 }
-
-// Auto Slide
-setInterval(()=>{ showSlide(index+1); }, 5000);
-
-// Initial
-showSlide(0);
+setInterval(()=>{ showHeroSlide(heroIndex+1); }, 5000);
+showHeroSlide(0);
 </script>
 
-<!-- HERO SECTION -->
+<!-- =====================================================
+     HERO INTRO
+     ===================================================== -->
 <section class="hero">
-<div class="container">
-<h1>Your Future in Finance, Technology & Entrepreneurship Starts Here</h1>
-<p>
-Nolan University is a modern global & professional university built for company builders, investors, and innovators.</p>
-<p>
-Nolan University — A globally respected UK-style institution, rooted in Africa, educating the next generation of company builders, investors, and innovators.</p>
-<p>
-A university attracts students from UK, US, Canada, Australia, Dubai, and across Africa.
-It is a place where Company Builders, Investors, and Innovators Are Educated.
-</p>
-</div>
-</section>
-<!-- FONT AWESOME -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<section class="hero-slider" style="position:relative; width:100%; max-width:900px; margin:auto; height:0; padding-bottom:100%; overflow:hidden; background:#0b2a5b;">
-
-<!-- SLIDES -->
-<div class="slide">
-<img src="ChatGPT Image Mar 13, 2026, 02_54_02 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
-</div>
-
-<div class="slide">
-<img src="ChatGPT Image Mar 13, 2026, 03_41_46 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
-</div>
-
-<div class="slide">
-<img src="ChatGPT Image Mar 11, 2026, 11_47_33 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
-</div>
-
+  <div class="container" style="padding-top:40px;">
+    <h1 style="color:var(--gold); font-size:36px;">Your Future in Finance, Technology &amp; Entrepreneurship Starts Here</h1>
+    <p style="font-size:18px; max-width:800px; margin:auto; color:#fff;">
+      Nolan University is a modern global &amp; professional university built for company builders, investors, and innovators.
+    </p>
+    <p style="font-size:18px; max-width:800px; margin:auto; color:#fff;">
+      A globally respected UK-style institution, rooted in Africa, educating the next generation of company builders, investors, and innovators.
+    </p>
+    <p style="font-size:18px; max-width:800px; margin:auto; color:#fff;">
+      A university attracting students from the UK, US, Canada, Australia, Dubai, and across Africa — where Company Builders, Investors, and Innovators are educated.
+    </p>
+  </div>
 </section>
 
+<!-- =====================================================
+     HERO SLIDER #2 (secondary)
+     ===================================================== -->
+<section class="hero-slider" style="position:relative; width:100%; max-width:900px; margin:auto; height:0; padding-bottom:100%; overflow:hidden; background:#0b2a5b; margin-top:30px;">
+  <div class="slide">
+    <img src="ChatGPT Image Mar 13, 2026, 02_54_02 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide">
+    <img src="ChatGPT Image Mar 13, 2026, 03_41_46 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+  <div class="slide">
+    <img src="ChatGPT Image Mar 11, 2026, 11_47_33 PM.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+  </div>
+</section>
 
-<!-- CONTENT -->
+<!-- =====================================================
+     EXCELLENCE CONTENT
+     ===================================================== -->
 <div class="excellence-content">
 
-<h2>Prepare to Stand Out</h2>
+  <h2>Prepare to Stand Out</h2>
 
-<p class="subheadline">
-Nolan University prepares ambitious professionals to stand out in competitive industries through online programs in finance, entrepreneurship, and leadership.
-</p>
+  <p class="subheadline">
+    Nolan University prepares ambitious professionals to stand out in competitive industries through online programs in finance, entrepreneurship, and leadership.
+  </p>
 
-<div class="value-grid">
+  <div class="value-grid">
+    <div class="value-card">
+      <i class="fas fa-laptop"></i>
+      <p>Modern, flexible online courses for career advancement</p>
+    </div>
+    <div class="value-card">
+      <i class="fas fa-briefcase"></i>
+      <p>Learn skills that employers value immediately</p>
+    </div>
+    <div class="value-card">
+      <i class="fas fa-user-graduate"></i>
+      <p>Personalized support and mentorship</p>
+    </div>
+    <div class="value-card">
+      <i class="fas fa-network-wired"></i>
+      <p>Build your professional brand and network</p>
+    </div>
+  </div>
 
-<div class="value-card">
-<i class="fas fa-laptop"></i>
-<p>Modern, flexible online courses for career advancement</p>
-</div>
-
-<div class="value-card">
-<i class="fas fa-briefcase"></i>
-<p>Learn skills that employers value immediately</p>
-</div>
-
-<div class="value-card">
-<i class="fas fa-user-graduate"></i>
-<p>Personalized support and mentorship</p>
-</div>
-
-<div class="value-card">
-<i class="fas fa-network-wired"></i>
-<p>Build your professional brand and network</p>
-</div>
-
-</div>
-
-<a href="apply.html" class="cta-btn">Start Excelling Today</a>
+  <a href="apply.html" class="cta-btn">Start Excelling Today</a>
 
 </div>
 
-
-<style>
-
-/* SLIDER */
-
-.hero-slider .slide{
-position:absolute;
-width:100%;
-height:100%;
-display:none;
-align-items:center;
-justify-content:center;
-}
-
-.hero-slider .slide:first-child{
-display:flex;
-}
-
-.hero-slider img{
-width:100%;
-height:100%;
-object-fit:contain;
-}
-
-
-/* CONTENT */
-
-.excellence-content{
-max-width:1100px;
-margin:0 auto;
-padding:5px 20px 40px 20px; /* removes gap */
-text-align:center;
-font-family:Arial, Helvetica, sans-serif;
-background:#0b2a5b; /* same color as slider */
-}
-
-.excellence-content h2{
-color:#0b2a5b;
-font-size:34px;
-margin:10px 0;
-}
-
-.subheadline{
-max-width:750px;
-margin:auto;
-font-size:17px;
-color:white;
-margin-bottom:30px;
-}
-
-/* VALUE GRID */
-
-.value-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-}
-
-.value-card{
-background:#f5f7fb;
-padding:25px;
-border-radius:8px;
-text-align:center;
-}
-
-.value-card i{
-font-size:32px;
-color:#0b2a5b;
-margin-bottom:12px;
-}
-
-.value-card p{
-color:#222;
-font-weight:500;
-}
-
-/* CTA */
-
-.cta-btn{
-display:inline-block;
-margin-top:35px;
-background:#ffd24c;
-color:#0b2a5b;
-padding:16px 38px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-}
-
-.cta-btn:hover{
-background:#ffea7a;
-}
-
-</style>
-
-
-<script>
-
-window.onload = function(){
-
-let slides = document.querySelectorAll(".hero-slider .slide");
-let index = 0;
-
-function showSlide(i){
-
-slides.forEach(slide => slide.style.display="none");
-
-index = i;
-
-if(index >= slides.length) index = 0;
-if(index < 0) index = slides.length-1;
-
-slides[index].style.display="flex";
-
-}
-
-setInterval(function(){
-showSlide(index+1);
-},5000);
-
-}
-
-</script>
-
-<!-- SCHOOLS SECTION -->
+<!-- =====================================================
+     SCHOOLS SECTION
+     ===================================================== -->
 <section>
   <div class="container">
-    <h2 style="text-align:center; font-size:22px; color:#ffd24c; margin-bottom:20px;">
+    <h2 style="text-align:center; font-size:22px; color:var(--gold); margin-bottom:20px;">
       Part of Nolan University in Which to Pursue Your Passions
     </h2>
 
     <div class="program-grid">
-
       <a href="https://nigbt.nolanuniversity.org" class="school-card-link">
         <div class="card school-card">
-          🎓 Nolan Institute of Global Business & Technology
+          🎓 Nolan Institute of Global Business &amp; Technology
         </div>
       </a>
 
       <a href="https://lewisschool.nolanuniversity.org" class="school-card-link">
         <div class="card school-card">
-          🎓 Lewis School of Finance & Investment
+          🎓 Lewis School of Finance &amp; Investment
         </div>
       </a>
-
     </div>
   </div>
 </section>
 
-<style>
-
-.school-card-link{
-text-decoration:none;
-color:#ffd24c;
-display:block;
-}
-
-.school-card{
-font-size:14px;
-text-align:center;
-color:#ffd24c;
-padding:18px 15px;
-transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.school-card:hover{
-transform: translateY(-5px);
-box-shadow:0 8px 20px rgba(0,0,0,0.5);
-background:#1a4a9a;
-color:#ffd24c;
-}
-
-</style>
-
-<!-- PROGRAMMES SECTION with id for scrolling -->
+<!-- =====================================================
+     PROGRAMMES (with anchor id)
+     ===================================================== -->
 <div id="programmes">
-<!-- BACHELORS & MASTERS -->
-<section>
-<div class="container">
-<h2>Pursue One of Our Degrees</h2>
-<div class="program-grid">
 
-<div class="card">
-<h3>🎓 3-Year Bachelor’s Degrees</h3>
-<ul>
-<li>BSc Finance & Investment</li>
-<li>BSc Global Business & Technology</li>
-</ul>
-</div>
+  <section>
+    <div class="container">
+      <h2>Pursue One of Our Degrees</h2>
+      <div class="program-grid">
+        <div class="card">
+          <h3>🎓 3-Year Bachelor's Degrees</h3>
+          <ul>
+            <li>BSc Finance &amp; Investment</li>
+            <li>BSc Global Business &amp; Technology</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎓 1-Year Master's Degrees</h3>
+          <ul>
+            <li>MSc Finance &amp; Capital Markets</li>
+            <li>MSc Venture Capital &amp; Private Equity</li>
+            <li>MSc Venture Strategy</li>
+            <li>MBA Entrepreneurship &amp; Innovation</li>
+            <li>MBA Venture Strategy &amp; Finance</li>
+            <li>MBA Entrepreneurship &amp; Finance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<h3>🎓 1-Year Master’s Degrees</h3>
-<ul>
-<li>MSc Finance & Capital Markets</li>
-<li>MSc Venture Capital & Private Equity</li>
-<li>MSc Venture Strategy</li>
-<li>MBA Entrepreneurship & Innovation</li>
-<li>MBA Venture Strategy & Finance</li>
-<li>MBA Entrepreneurship & Finance</li>
-</ul>
-</div>
+  <section>
+    <div class="container">
+      <h2>Professional Diplomas</h2>
+      <div class="program-grid">
+        <div class="card">
+          <h3>🎓 2-Year Professional Diplomas</h3>
+          <ul>
+            <li>Diploma in Investment Banking</li>
+            <li>Diploma in Venture Capital &amp; Private Equity</li>
+            <li>Diploma in Startup Building</li>
+            <li>Diploma in Financial Technology (FinTech) &amp; Digital Finance</li>
+            <li>Diploma in Artificial Intelligence for Business &amp; Finance</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:40px;">
+        <a href="diploma-programmes.html" style="display:inline-block; padding:14px 30px; background:var(--gold); color:var(--navy-dark); font-weight:bold; text-decoration:none; border-radius:6px; font-size:16px; transition:0.3s;">View All Diplomas</a>
+      </div>
+    </div>
+  </section>
 
-</div>
-</div>
-</section>
+  <section>
+    <div class="container">
+      <h2>Career Accelerator Programs, Executive Certificates, Postgraduate Certificates &amp; Industry Certifications</h2>
+      <div class="program-grid">
+        <div class="card">
+          <h3>🎓 3 – 5 Month Programs</h3>
+          <ul>
+            <li>Investment Banking &amp; Financial Markets</li>
+            <li>Venture Capital &amp; Private Equity</li>
+            <li>Financial Technology (FinTech)</li>
+            <li>Entrepreneurship &amp; Startup Creation</li>
+            <li>Artificial Intelligence for Business</li>
+            <li>Business Analytics &amp; Data Strategy</li>
+            <li>Wealth Management &amp; Investment Advisory</li>
+            <li>Global Business &amp; Strategic Leadership</li>
+            <li>Digital Finance &amp; Blockchain</li>
+            <li>Innovation &amp; Venture Building</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:40px;">
+        <a href="short-programmes.html" style="display:inline-block; padding:14px 30px; background:var(--gold); color:var(--navy-dark); font-weight:bold; text-decoration:none; border-radius:6px; font-size:16px; transition:0.3s;">View All Short Courses</a>
+      </div>
+    </div>
+  </section>
 
-<!-- PROFESSIONAL DIPLOMAS -->
-<section>
-<div class="container">
+</div><!-- /#programmes -->
 
-<h2>Professional Diplomas</h2>
-
-<div class="program-grid">
-
-<div class="card">
-
-<h3>🎓 2-Year Professional Diplomas</h3>
-
-<ul>
-<li>Diploma in Investment Banking</li>
-<li>Diploma in Venture Capital & Private Equity</li>
-<li>Diploma in Startup Building</li>
-<li>Diploma in Financial Technology (FinTech) & Digital Finance</li>
-<li>Diploma in Artificial Intelligence for Business & Finance</li>
-</ul>
-
-</div>
-
-</div>
-
-<!-- CTA BUTTON -->
-<div style="text-align:center; margin-top:40px;">
-
-<a href="diploma-programmes.html" 
-style="
-display:inline-block;
-padding:14px 30px;
-background:#ffd24c;
-color:#0b2a5b;
-font-weight:bold;
-text-decoration:none;
-border-radius:6px;
-font-size:16px;
-transition:0.3s;
-">
-
-View All Diplomas
-
-</a>
-
-</div>
-
-</div>
-</section>
-
-<!-- CAREER ACCELERATOR PROGRAMS -->
-<section>
-<div class="container">
-<h2>Career Accelerator Programs, Executive Certificates, Postgraduate Certificates & Industry Certifications</h2>
-<div class="program-grid">
-
-<div class="card">
-<h3>🎓 3 – 5 Month Programs</h3>
-<ul>
-<li>Investment Banking & Financial Markets</li>
-<li>Venture Capital & Private Equity</li>
-<li>Financial Technology (FinTech)</li>
-<li>Entrepreneurship & Startup Creation</li>
-<li>Artificial Intelligence for Business</li>
-<li>Business Analytics & Data Strategy</li>
-<li>Wealth Management & Investment Advisory</li>
-<li>Global Business & Strategic Leadership</li>
-<li>Digital Finance & Blockchain</li>
-<li>Innovation & Venture Building</li>
-</ul>
-
-</div>
-
-</div>
-
-<!-- CTA BUTTON -->
-<div style="text-align:center; margin-top:40px;">
-
-<a href="short-programmes.html" 
-style="
-display:inline-block;
-padding:14px 30px;
-background:#ffd24c;
-color:#0b2a5b;
-font-weight:bold;
-text-decoration:none;
-border-radius:6px;
-font-size:16px;
-transition:0.3s;
-">
-
-View All Short Courses
-
-
-</a>
-
-</div>
-
-</div>
-</section>
-</div> <!-- end programmes -->
-
-<!-- Scholarships Section with id -->
+<!-- =====================================================
+     SCHOLARSHIPS
+     ===================================================== -->
 <section id="scholarships" class="scholarship-section" style="text-align:center; margin:0; padding:0;">
-
-  <!-- Image -->
-  <img src="ChatGPT Image Mar 14, 2026, 12_53_42 AM.png" 
-       alt="Diverse professionals representing scholarships" 
-       style="width:100%; max-width:1100px; height:auto; display:block; object-fit:cover;">
-
-  <!-- Headline and Paragraph -->
+  <img src="ChatGPT Image Mar 14, 2026, 12_53_42 AM.png" alt="Diverse professionals representing scholarships" style="width:100%; max-width:1100px; height:auto; display:block; object-fit:cover; margin:auto;">
   <div style="margin:0; padding:0;">
-    <h2 style="margin:0; font-size:32px; color:white;">Scholarships</h2>
-    <p style="margin:0; font-size:16px; color:white;">
+    <h2 style="margin:0; font-size:32px; color:#fff;">Scholarships</h2>
+    <p style="margin:0; font-size:16px; color:#fff;">
       We are committed to ensuring our world-class education is available to talented individuals from any background.
     </p>
-    <p style="margin:0; font-size:16px; color:white;">
+    <p style="margin:0; font-size:16px; color:#fff;">
       See how our scholarships are supporting future leaders and apply.
     </p>
-
-    <!-- CTA Button -->
     <div style="margin-top:15px;">
-      <a href="scholarships.html" 
-         style="background:#ffd24c; color:#0b2a5b; padding:14px 30px; text-decoration:none; font-weight:bold; border-radius:6px; display:inline-block;">
-         Explore Scholarships & Funding
-      </a>
+      <a href="scholarships.html" style="background:var(--gold); color:var(--navy-dark); padding:14px 30px; text-decoration:none; font-weight:bold; border-radius:6px; display:inline-block;">Explore Scholarships &amp; Funding</a>
     </div>
   </div>
-
 </section>
 
-<!-- BENEFITS -->
+<!-- =====================================================
+     BENEFITS
+     ===================================================== -->
 <section class="highlight">
-<div class="container">
-<h2>Why Study at Nolan University</h2>
-<p>All programs are <strong>100% Online</strong> and designed for global careers.</p>
-<div class="benefits">
-<div class="benefit">🎓 Scholarships Available</div>
-<div class="benefit">📚 Flexible Learning</div>
-<div class="benefit">🌍 International Opportunities</div>
-</div>
-</div>
-<li><a href="scholarships.html" class="scholarship-btn">Explore Scholarships & Funding</a></li>
+  <div class="container">
+    <h2 style="color:var(--gold);">Why Study at Nolan University</h2>
+    <p style="color:#fff;">All programs are <strong>100% Online</strong> and designed for global careers.</p>
+    <div class="benefits">
+      <div class="benefit">🎓 Scholarships Available</div>
+      <div class="benefit">📚 Flexible Learning</div>
+      <div class="benefit">🌍 International Opportunities</div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:30px;">
+    <a href="scholarships.html" class="scholarship-btn">Explore Scholarships &amp; Funding</a>
+  </div>
 </section>
 
-<!-- CALL TO ACTION -->
+<!-- =====================================================
+     CALL TO ACTION
+     ===================================================== -->
 <section class="cta">
-<h2>🔥 Don’t wait for opportunities — prepare for them.</h2>
-<button>👉 Enroll in Nolan University Online Today</button>
+  <h2 style="color:var(--gold);">🔥 Don't wait for opportunities — prepare for them.</h2>
+  <a href="apply.html" class="btn btn-primary" style="display:inline-block; margin-top:15px; padding:14px 30px; font-size:16px;">👉 Enroll in Nolan University Online Today</a>
 </section>
 
-<!-- FOOTER SECTION -->
-<footer style="background:#0b2a5b; color:white; padding:60px 20px; font-family:Arial, Helvetica, sans-serif;">
-
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+<footer style="background:#0b2a5b; color:white; padding:60px 20px; font-family:'Inter',sans-serif;">
   <div style="max-width:1100px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:30px;">
 
-    <!-- Quick Links + Our 4 Schools Card -->
-<div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2); display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-  
-  <!-- Quick Links (disabled) -->
-  <div>
-    <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Quick Links</h3>
-    <ul style="list-style:none; padding:0; margin:0;">
-      <li style="margin-bottom:12px;"><span class="disabled-link">Programs</span></li>
-      <li style="margin-bottom:12px;"><span class="disabled-link">About Us</span></li>
-      <li style="margin-bottom:12px;"><span class="disabled-link">Admissions</span></li>
-      <li style="margin-bottom:12px;"><span class="disabled-link">Contact</span></li>
-      <li><span class="disabled-link">FAQ</span></li>
-    </ul>
-  </div>
-  
-  <!-- Our Academic Units -->
-  <div>
-    <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Our Academic Units</h3>
-    <ul style="list-style:none; padding:0; margin:0;">
-      <li style="margin-bottom:12px;"><a href="https://nigbt.nolanuniversity.org" style="color:white; text-decoration:none; transition:color 0.3s;">🎓 Nolan Institute of Global Business & Technology</a></li>
-      <li style="margin-bottom:12px;"><a href="https://lewisschool.nolanuniversity.org" style="color:white; text-decoration:none; transition:color 0.3s;">🎓 Lewis School of Finance & Investment</a></li>
-      </ul>
-  </div>
-
-</div>
-
-    <!-- Social Media Card -->
-    <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
-      <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Follow Us</h3>
-      <div style="display:flex; gap:15px; font-size:24px;">
-        <a href="https://www.facebook.com/share/1EZkFUcwbw/" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/company/nolan-university/" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" style="color:white; transition:color 0.3s;"><i class="fa-brands fa-instagram"></i></a>
+    <div style="background:var(--navy-dark); padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2); display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <div>
+        <h3 style="color:var(--gold); margin-bottom:20px; font-size:20px;">Quick Links</h3>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li style="margin-bottom:12px;"><a href="programs.html" style="color:white; text-decoration:none;">Programs</a></li>
+          <li style="margin-bottom:12px;"><a href="#" style="color:white; text-decoration:none;">About Us</a></li>
+          <li style="margin-bottom:12px;"><a href="admissions.html" style="color:white; text-decoration:none;">Admissions</a></li>
+          <li style="margin-bottom:12px;"><a href="contact.html" style="color:white; text-decoration:none;">Contact</a></li>
+          <li><a href="faq.html" style="color:white; text-decoration:none;">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--gold); margin-bottom:20px; font-size:20px;">Our Academic Units</h3>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li style="margin-bottom:12px;"><a href="https://nigbt.nolanuniversity.org" style="color:white; text-decoration:none;">🎓 Nolan Institute of Global Business &amp; Technology</a></li>
+          <li style="margin-bottom:12px;"><a href="https://lewisschool.nolanuniversity.org" style="color:white; text-decoration:none;">🎓 Lewis School of Finance &amp; Investment</a></li>
+        </ul>
       </div>
     </div>
 
-    <!-- Newsletter Card -->
-    <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
-      <h3 style="color:#ffd24c; margin-bottom:15px; font-size:20px;">Newsletter</h3>
+    <div style="background:var(--navy-dark); padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <h3 style="color:var(--gold); margin-bottom:20px; font-size:20px;">Follow Us</h3>
+      <div style="display:flex; gap:15px; font-size:24px;">
+        <a href="https://www.facebook.com/share/1EZkFUcwbw/" style="color:white;"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" style="color:white;"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/nolan-university/" style="color:white;"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" style="color:white;"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div style="background:var(--navy-dark); padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <h3 style="color:var(--gold); margin-bottom:15px; font-size:20px;">Newsletter</h3>
       <p style="margin:0 0 10px 0;">Stay updated on new courses and certifications</p>
       <form style="display:flex; flex-wrap:wrap; gap:10px;">
-        <input type="email" placeholder="Enter your email" 
-               style="padding:10px; border-radius:5px; border:none; flex:1; min-width:150px;">
-        <button type="submit" 
-                style="background:#ffd24c; color:#0b2a5b; padding:10px 20px; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition:background 0.3s;">
-          Subscribe
-        </button>
+        <input type="email" placeholder="Enter your email" style="padding:10px; border-radius:5px; border:none; flex:1; min-width:150px;">
+        <button type="submit" style="background:var(--gold); color:var(--navy-dark); padding:10px 20px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Subscribe</button>
       </form>
     </div>
 
-    <footer class="footer">
-  <div class="footer-container">
-
-    <!-- Branding -->
-    <div class="footer-brand">
-      <h2>Nolan University</h2>
-      <p class="locations">Zambia | UK | Dubai</p>
-      <p class="note">Global Offices</p>
-    </div>
-
-    <!-- Divider -->
-    <div class="footer-divider"></div>
-
-  </div>
-
-  <p class="footer-bottom">A globally respected UK-style institution, rooted in Zambia, Africa educating the next generation of company builders, investors, and innovators, or simply students from UK, US, Canada, Australia, Dubai, and across Africa.</p>
-</footer>
-
-<style>
-/* Footer Base */
-.footer {
-  background: #061a3a;
-  color: #ffffff;
-  padding: 70px 20px 30px;
-  text-align: center;
-  animation: fadeIn 1.2s ease-in-out;
-}
-
-/* Branding */
-.footer-brand h2 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-family: "Georgia", "Times New Roman", serif; /* elite feel */
-}
-
-.footer-brand .locations {
-  margin-top: 12px;
-  font-size: 16px;
-  color: #d4af37;
-  letter-spacing: 2px;
-}
-
-.footer-brand .note {
-  margin-top: 6px;
-  font-size: 13px;
-  color: #aaaaaa;
-  letter-spacing: 1px;
-}
-
-/* Gold Divider */
-.footer-divider {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #d4af37, transparent);
-  margin: 30px auto 10px;
-  opacity: 0.8;
-}
-
-/* Bottom */
-.footer-bottom {
-  margin-top: 25px;
-  font-size: 13px;
-  color: #888888;
-}
-
-/* Fade Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== YOUR HOVER EFFECTS (kept as requested) ===== */
-footer a:hover {
-  color: #ffd24c;
-}
-
-footer button:hover {
-  background: #fff200;
-}
-
-footer i:hover {
-  transform: scale(1.2);
-  transition: transform 0.3s;
-}
-</style>
-<!-- Legal Card -->
-    <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
-      <h3 style="color:#ffd24c; margin-bottom:15px; font-size:20px;">Legal Info</h3>
+    <div style="background:var(--navy-dark); padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      <h3 style="color:var(--gold); margin-bottom:15px; font-size:20px;">Legal Info</h3>
       <p style="font-size:14px; line-height:1.6;">
-        Nolan University is being established as higher education and recognized globally.  
-        &copy; 2026 Nolan University. All rights reserved.  
-        <a href="terms.html" style="color:#ffd24c; text-decoration:none;">Terms of Service</a> | 
-        <a href="privacy.html" style="color:#ffd24c; text-decoration:none;">Privacy Policy</a>
+        Nolan University is being established as higher education and recognized globally.
+        &copy; 2026 Nolan University. All rights reserved.
+        <a href="terms.html" style="color:var(--gold); text-decoration:none;">Terms of Service</a> |
+        <a href="privacy.html" style="color:var(--gold); text-decoration:none;">Privacy Policy</a>
       </p>
     </div>
 
   </div>
 
+  <div class="footer" style="background:#061a3a; color:#ffffff; padding:60px 20px 30px; text-align:center; margin-top:40px; border-radius:8px; max-width:1100px; margin-left:auto; margin-right:auto;">
+    <div class="footer-brand">
+      <h2 style="font-family:'Playfair Display',serif; font-size:30px; font-weight:600; letter-spacing:1px; color:#fff; margin:0;">Nolan University</h2>
+      <p style="margin-top:12px; font-size:16px; color:var(--gold); letter-spacing:2px;">Zambia | UK | Dubai</p>
+      <p style="margin-top:6px; font-size:13px; color:#aaa; letter-spacing:1px;">Global Offices</p>
+    </div>
+    <div style="width:60px; height:2px; background:linear-gradient(to right, transparent, var(--gold), transparent); margin:30px auto 10px; opacity:.8;"></div>
+    <p style="margin-top:25px; font-size:13px; color:#888;">
+      A globally respected UK-style institution, rooted in Zambia, Africa — educating the next generation of company builders, investors, and innovators, or simply students from the UK, US, Canada, Australia, Dubai, and across Africa.
+    </p>
+  </div>
 </footer>
 
-<!-- FONT AWESOME CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- FOOTER HOVER EFFECTS -->
-<style>
-footer a:hover {
-  color: #ffd24c;
-}
-footer button:hover {
-  background: #fff200;
-}
-footer i:hover {
-  transform: scale(1.2);
-  transition: transform 0.3s;
-}
-</style>
-
+<!-- =====================================================
+     HEADER + MOBILE NAV JS
+     ===================================================== -->
 <script>
+// Sticky header shadow on scroll
+window.addEventListener('scroll', () => {
+  const h = document.getElementById('mainHeader');
+  if(h) h.classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
 
-let slides = document.querySelectorAll(".slide");
-let dotsContainer = document.getElementById("dotsContainer");
-let index = 0;
+// Hamburger toggle
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
 
-/* CREATE DOTS AUTOMATICALLY */
+mobileMenuBtn.addEventListener('click', () => {
+  const isOpen = mobileNav.classList.toggle('show');
+  mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  mobileMenuBtn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+});
 
-if (dotsContainer) {
-  slides.forEach((slide,i)=>{
-    let dot = document.createElement("span");
-    dot.addEventListener("click",()=>showSlide(i));
-    dotsContainer.appendChild(dot);
+// Mobile sub-dropdown toggles
+document.querySelectorAll('.mobile-toggle-sub').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sub = btn.nextElementSibling;
+    const isOpen = sub.classList.toggle('show');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    const caret = btn.querySelector('i');
+    if(caret) caret.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
   });
-}
+});
 
-let dots = dotsContainer ? dotsContainer.querySelectorAll("span") : [];
+// Close mobile nav when a link is clicked
+mobileNav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileNav.classList.remove('show');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  });
+});
 
-function showSlide(i){
-
-slides.forEach(s=>s.classList.remove("active"));
-dots.forEach(d=>d.classList.remove("active"));
-
-index = i;
-
-if(index >= slides.length) index = 0;
-if(index < 0) index = slides.length - 1;
-
-slides[index].classList.add("active");
-if (dots[index]) dots[index].classList.add("active");
-
-}
-
-function nextSlide(){
-showSlide(index+1);
-}
-
-function prevSlide(){
-showSlide(index-1);
-}
-
-/* AUTO SLIDE */
-
-setInterval(nextSlide,5000);
-
-showSlide(0);
-
+// Close mobile nav on resize to desktop
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 992){
+    mobileNav.classList.remove('show');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+});
 </script>
+
+<!-- =====================================================
+     SECONDARY SLIDER SCRIPT
+     ===================================================== -->
+<script>
+window.addEventListener('load', function(){
+  let secondarySlides = document.querySelectorAll("section.hero-slider .slide");
+  let sIndex = 0;
+  function showSlide(i){
+    secondarySlides.forEach(s => s.style.display="none");
+    sIndex = i;
+    if(sIndex >= secondarySlides.length) sIndex = 0;
+    if(sIndex < 0) sIndex = secondarySlides.length - 1;
+    secondarySlides[sIndex].style.display="flex";
+  }
+  setInterval(function(){ showSlide(sIndex+1); }, 5000);
+  if(secondarySlides.length) showSlide(0);
+});
+</script>
+
 </body>
 </html>
