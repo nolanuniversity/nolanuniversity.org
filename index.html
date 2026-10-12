@@ -22,6 +22,10 @@
 
 <style>
 
+html {
+  scroll-behavior: smooth;
+}
+
 body{
 font-family: Arial, Helvetica, sans-serif;
 margin:0;
@@ -162,15 +166,65 @@ transition:all 0.3s ease;
 background:#e6bb3f;
 transform:translateY(-2px);
 }
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #04122b;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffd24c;
+}
+
+/* Disabled quick links */
+.disabled-link {
+  color: #888 !important;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+}
 </style>
 
 </head>
 
 <body id="top">
 
-<!-- NAVBAR (bar kept, menu items removed) -->
-<nav class="navbar" style="display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:#04122b;">
-
+<!-- NAVBAR -->
+<nav class="navbar">
   <!-- Logo Image (clickable → top of this same HTML) -->
   <div class="logo">
     <a href="#top" title="Back to top">
@@ -180,38 +234,14 @@ transform:translateY(-2px);
     </a>
   </div>
 
+  <!-- Menu items -->
+  <ul class="nav-links">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#programmes">Explore Programmes</a></li>
+    <li><a href="#scholarships">Scholarships</a></li>
+    <li><a href="apply.html">Apply</a></li>
+  </ul>
 </nav>
-
-<!-- CSS for navbar (kept as is, not affecting anything since no menu items) -->
-<style>
-body {margin:0; font-family:Arial, Helvetica, sans-serif; background:#0b2a5b; color:white;}
-.navbar {display:flex; justify-content:space-between; align-items:center; background:#04122b; padding:15px 20px; position:relative;}
-.logo {color:#ffd24c; font-weight:bold; font-size:18px;}
-.menu-icon {font-size:24px; cursor:pointer; color:white; display:block;}
-
-/* Nav Links hidden by default */
-.nav-links {list-style:none; margin:0; padding:0; display:none; flex-direction:column; background:#123d82; position:absolute; top:100%; right:0; width:300px; border-radius:6px; z-index:1000;}
-.nav-links.show {display:flex;}
-.nav-links li {border-bottom:1px solid #102f64; position:relative;}
-.nav-links a {text-decoration:none; color:white; display:block; padding:12px 15px;}
-.nav-links a:hover {background:#102f64;}
-
-/* Dropdown menus */
-.dropdown-menu {display:none; flex-direction:column; background:#102f64; padding-left:0;}
-.nested {padding-left:20px;} /* indent nested items for clean look */
-.toggle::after {content:" ▼"; float:right;}
-.dropdown:hover > .dropdown-menu {display:flex;} /* desktop hover */
-
-/* Responsive */
-@media screen and (min-width:768px){
-  .menu-icon {display:none;}
-  .nav-links {display:flex !important; flex-direction:row; position:static; width:auto; background:transparent;}
-  .nav-links li {border:none; margin:0 12px;}
-  .dropdown-menu {position:absolute; display:none; min-width:250px;}
-  .dropdown:hover > .dropdown-menu {display:block;}
-  .nested {padding-left:15px;} 
-}
-</style>
 
 <!-- HEADER -->
 <header>
@@ -276,7 +306,7 @@ body {margin:0; font-family:Arial, Helvetica, sans-serif; background:#0b2a5b; co
   <!-- CTA Buttons -->
   <div class="hero-buttons" style="position:absolute; bottom:0px; left:50%; transform:translateX(-50%); display:flex; gap:15px; z-index:2;">
     <a href="apply.html" style="padding:12px 25px; background:#ffd24c; color:#0b2a5b; border-radius:5px; text-decoration:none; font-weight:bold;">Apply Now</a>
-    <a href="bachelor's-degrees-portal.html" style="padding:12px 25px; border:2px solid #ffd24c; color:#ffd24c; border-radius:5px; text-decoration:none; font-weight:bold;">Explore Programmes</a>
+    <a href="#programmes" style="padding:12px 25px; border:2px solid #ffd24c; color:#ffd24c; border-radius:5px; text-decoration:none; font-weight:bold;">Explore Programmes</a>
   </div>
 
 </section>
@@ -547,6 +577,8 @@ color:#ffd24c;
 
 </style>
 
+<!-- PROGRAMMES SECTION with id for scrolling -->
+<div id="programmes">
 <!-- BACHELORS & MASTERS -->
 <section>
 <div class="container">
@@ -676,9 +708,10 @@ View All Short Courses
 
 </div>
 </section>
+</div> <!-- end programmes -->
 
-<!-- Scholarships Section -->
-<section class="scholarship-section" style="text-align:center; margin:0; padding:0;">
+<!-- Scholarships Section with id -->
+<section id="scholarships" class="scholarship-section" style="text-align:center; margin:0; padding:0;">
 
   <!-- Image -->
   <img src="ChatGPT Image Mar 14, 2026, 12_53_42 AM.png" 
@@ -734,15 +767,15 @@ View All Short Courses
     <!-- Quick Links + Our 4 Schools Card -->
 <div style="background:#04122b; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2); display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap;">
   
-  <!-- Quick Links -->
+  <!-- Quick Links (disabled) -->
   <div>
     <h3 style="color:#ffd24c; margin-bottom:20px; font-size:20px;">Quick Links</h3>
     <ul style="list-style:none; padding:0; margin:0;">
-      <li style="margin-bottom:12px;"><a href="programs.html" style="color:white; text-decoration:none; transition:color 0.3s;">Programs</a></li>
-      <li style="margin-bottom:12px;"><a href="#" style="color:white; text-decoration:none; transition:color 0.3s;">About Us</a></li>
-      <li style="margin-bottom:12px;"><a href="admissions.html" style="color:white; text-decoration:none; transition:color 0.3s;">Admissions</a></li>
-      <li style="margin-bottom:12px;"><a href="contact.html" style="color:white; text-decoration:none; transition:color 0.3s;">Contact</a></li>
-      <li><a href="faq.html" style="color:white; text-decoration:none; transition:color 0.3s;">FAQ</a></li>
+      <li style="margin-bottom:12px;"><span class="disabled-link">Programs</span></li>
+      <li style="margin-bottom:12px;"><span class="disabled-link">About Us</span></li>
+      <li style="margin-bottom:12px;"><span class="disabled-link">Admissions</span></li>
+      <li style="margin-bottom:12px;"><span class="disabled-link">Contact</span></li>
+      <li><span class="disabled-link">FAQ</span></li>
     </ul>
   </div>
   
